@@ -6,6 +6,8 @@ class Convert
 {
     // Converts OS Easting/Northing to Lat/Long
     // by bramp
+    // Originally published at:
+    // http://bramp.net/blog/2008/06/04/os-easting-northing-to-lat-long/
 
     /*
     * Compute meridional arc.
