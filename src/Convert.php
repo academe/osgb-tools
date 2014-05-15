@@ -10,13 +10,13 @@ class Convert
     // http://bramp.net/blog/2008/06/04/os-easting-northing-to-lat-long/
 
     /*
-    * Compute meridional arc.
-    * Input: - 
-    *  ellipsoid semi major axis multiplied by central meridian scale factor (bf0) in meters; 
-    *  n (computed from a, b and f0); 
-    *  lat of false origin (PHI0) 
-    *  initial or final latitude of point (PHI) IN RADIANS.
-    */
+     * Compute meridional arc.
+     * Input: - 
+     *  ellipsoid semi major axis multiplied by central meridian scale factor (bf0) in meters; 
+     *  n (computed from a, b and f0); 
+     *  lat of false origin (PHI0) 
+     *  initial or final latitude of point (PHI) IN RADIANS.
+     */
 
     public function Marc($bf0, $n, $PHI0, $PHI) {
         $n2 = pow($n, 2);
@@ -31,14 +31,14 @@ class Convert
     }
 
     /*
-    * Compute initial value for Latitude (PHI) IN RADIANS.
-    * Input: - _
-    * northing of point (North) and northing of false origin (n0) in meters; 
-    * semi major axis multiplied by central meridian scale factor (af0) in meters; 
-    * latitude of false origin (PHI0) IN RADIANS;
-    * n (computed from a, b and f0) 
-    * ellipsoid semi major axis multiplied by central meridian scale factor (bf0) in meters.
-    */
+     * Compute initial value for Latitude (PHI) IN RADIANS.
+     * Input: - _
+     * northing of point (North) and northing of false origin (n0) in meters; 
+     * semi major axis multiplied by central meridian scale factor (af0) in meters; 
+     * latitude of false origin (PHI0) IN RADIANS;
+     * n (computed from a, b and f0) 
+     * ellipsoid semi major axis multiplied by central meridian scale factor (bf0) in meters.
+     */
 
     public function initialLat($North, $n0, $afo, $PHI0, $n, $bfo) {
         //First PHI value (PHI1)
@@ -59,6 +59,14 @@ class Convert
 
         return $PHI2;
     }
+
+    /**
+     * e.g.
+     * $e = 349000;
+     * $n = 461000;
+     * 
+     * print_r( $convert->E_N_to_Lat_Long($e, $n) );
+     */
 
     public function E_N_to_Lat_Long($East, $North) {
         $a  = 6377563.396; // Semi-major axis, a
