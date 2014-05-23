@@ -12,7 +12,7 @@ class Convert
     /*
      * Compute meridional arc.
      * Input: - 
-     *  ellipsoid semi major axis multiplied by central meridian scale factor (bf0) in meters; 
+     *  ellipsoid semi major axis multiplied by central meridian scale factor (bf0) in metres; 
      *  n (computed from a, b and f0); 
      *  lat of false origin (PHI0) 
      *  initial or final latitude of point (PHI) IN RADIANS.
@@ -41,16 +41,16 @@ class Convert
      */
 
     public function initialLat($North, $n0, $afo, $PHI0, $n, $bfo) {
-        //First PHI value (PHI1)
+        // First PHI value (PHI1)
         $PHI1 = (($North - $n0) / $afo) + $PHI0;
 
-        //Calculate M
+        // Calculate M
         $M = Marc($bfo, $n, $PHI0, $PHI1);
 
-        //Calculate new PHI value (PHI2)
+        // Calculate new PHI value (PHI2)
         $PHI2 = (($North - $n0 - $M) / $afo) + $PHI1;
 
-        //Iterate to get final value for InitialLat
+        // Iterate to get final value for InitialLat
         while ( abs($North - $n0 - $M) &gt; 0.00001 ) {
             $PHI2 = (($North - $n0 - $M) / $afo) + $PHI1;
             $M = Marc($bfo, $n, $PHI0, $PHI2);
@@ -78,18 +78,18 @@ class Convert
         $PHI0 = 49.0; // True origin latitude, j0
         $LAM0 = -2.0; // True origin longitude, l0
 
-        //Convert angle measures to radians
+        // Convert angle measures to radians
         $RadPHI0 = $PHI0 * (M_PI / 180);
         $RadLAM0 = $LAM0 * (M_PI / 180);
 
-        //Compute af0, bf0, e squared (e2), n and Et
+        // Compute af0, bf0, e squared (e2), n and Et
         $af0 = $a * $f0;
         $bf0 = $b * $f0;
         $e2 = ($af0*$af0 - $bf0*$bf0 ) / ($af0*$af0);
         $n = ($af0 - $bf0) / ($af0 + $bf0);
         $Et = $East - $e0;
 
-        //Compute initial value for latitude (PHI) in radians
+        // Compute initial value for latitude (PHI) in radians
         $PHId = InitialLat($North, $n0, $af0, $RadPHI0, $n, $bf0);
 
         $sinPHId2 = pow(sin($PHId),  2);
@@ -100,12 +100,12 @@ class Convert
         $tanPHId4 = pow($tanPHId, 4);
         $tanPHId6 = pow($tanPHId, 6);
 
-        //Compute nu, rho and eta2 using value for PHId
+        // Compute nu, rho and eta2 using value for PHId
         $nu = $af0 / (sqrt(1 - ($e2 * $sinPHId2)));
         $rho = ($nu * (1 - $e2)) / (1 - $e2 * $sinPHId2);
         $eta2 = ($nu / $rho) - 1;
 
-        //Compute Longitude
+        // Compute Longitude
         $X    = $cosPHId / $nu;
         $XI   = $cosPHId / (   6 * pow($nu, 3)) * (($nu / $rho)         +  2 * $tanPHId2);
         $XII  = $cosPHId / ( 120 * pow($nu, 5)) * (5  + 28 * $tanPHId2  + 24 * $tanPHId4);
