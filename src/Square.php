@@ -41,7 +41,7 @@ class Square
      * TODO: make this a constant?
      */
 
-    protected $gb_origin_east = 1000000;
+    public static $gb_origin_east = 1000000;
 
     /**
      * The number of metres North of square VV where the Southern-most 500km square
@@ -49,7 +49,7 @@ class Square
      * 500km
      */
 
-    protected $gb_origin_north = 500000;
+    public static $gb_origin_north = 500000;
 
     /**
      * The letters used to name squares, in a 5x5 grid.
@@ -84,6 +84,12 @@ class Square
 
     public static function lettersToAbsEast($letters)
     {
+        // If there are no letters, then default to square 'S'.
+        if (empty($letters)) {
+            $letters = 'S';
+        }
+
+        // Split the string into an array of single letters.
         $split = str_split($letters);
 
         // The first letter will aways be the 500km square.
@@ -104,6 +110,13 @@ class Square
 
     public static function lettersToAbsNorth($letters)
     {
+        // If there are no letters, then default to square 'S'.
+        // Without letters, this is assumed to be the origin.
+        if (empty($letters)) {
+            $letters = 'S';
+        }
+
+        // Split the string into an array of single letters.
         $split = str_split($letters);
 
         // The first letter will aways be the 500km square.
@@ -118,7 +131,8 @@ class Square
     }
 
     /**
-     * Convert a numeric string of N digits to a North or East value, in metres.
+     * Convert a numeric string of N digits to a North or East offset value, in metres.
+     * e.g. "NE 01230 14500" will be at 1230m East of the West edge of 100km sqaure "NE".
      *
      * The digits will represent an offset in a box 10km, 100km
      * or 1000km. The size of the box will depend on how many letters are used with the
@@ -129,30 +143,66 @@ class Square
      * The default is a 10km box, with up to 5 digits identifying a 1m location, with the
      * most sigificant digit (which may be a zero) identifying a 10km box.
      *
+     * Alternatively, pass in the number of letters available in place of the box
+     * size (0, 1 or 2).
+     *
      * TODO: validation.
+     * CHECKME: does truncating to the right make sense when the string is too long?
      */
 
     public static function digitsToDistance($digits, $box_size = 10)
     {
         switch ($box_size) {
             case 1000:
-            $pad_size = 7;
-            break;
+            case 0:
+                $pad_size = 7;
+                break;
 
             case 100:
-            $pad_size = 6;
-            break;
+            case 1:
+                $pad_size = 6;
+                break;
 
             default:
-            $pad_size = 5;
-            break;
+            case 10:
+            case 2:
+                $pad_size = 5;
+                break;
         }
 
-        // Pad the string out.
-        $padded = str_pad($digits, $pad_size, '0', STR_PAD_RIGHT);
+        // Pad the string out, or truncate if it started too long.
+        $padded = substr(str_pad($digits, $pad_size, '0', STR_PAD_RIGHT), 0, $pad_size);
 
         // Now return as an integer number of metres.
         return (int)$padded;
+    }
+
+    /**
+     * Return the absolute east offset for letters and a number string.
+     * There can be zero, one or two letters.
+     */
+
+    public static function toAbsEast($letters, $digits)
+    {
+        $east = static::lettersToAbsEast($letters);
+
+        $east += static::digitsToDistance($digits, strlen($letters));
+
+        return $east;
+    }
+
+    /**
+     * Return the absolute north offset for letters and a number string.
+     * There can be zero, one or two letters.
+     */
+
+    public static function toAbsNorth($letters, $digits)
+    {
+        $north = static::lettersToAbsNorth($letters);
+
+        $north += static::digitsToDistance($digits, strlen($letters));
+
+        return $north;
     }
 }
 
