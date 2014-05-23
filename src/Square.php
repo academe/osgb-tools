@@ -59,6 +59,14 @@ class Square
     public static $letters = 'VWXYZQRSTULMNOPFGHJKABCDE';
 
     /**
+     * Square sizes, in metres.
+     * TODO: make these constants.
+     */
+
+    public static $km500 = 500000;
+    public static $km100 = 100000;
+
+    /**
      * Convert a letter to its Eastern zero-based postion in a 25x25 grid
      * TODO: validation check on letter.
      */
@@ -93,11 +101,11 @@ class Square
         $split = str_split($letters);
 
         // The first letter will aways be the 500km square.
-        $east = 500000 * static::letterEastPosition($split[0]);
+        $east = static::$km500 * static::letterEastPosition($split[0]);
 
         // The optional second letter will identify the 100km square.
         if (isset($split[1])) {
-            $east += 100000 * static::letterEastPosition($split[1]);
+            $east += static::$km100 * static::letterEastPosition($split[1]);
         }
 
         return $east;
@@ -120,11 +128,11 @@ class Square
         $split = str_split($letters);
 
         // The first letter will aways be the 500km square.
-        $north = 500000 * static::letterNorthPosition($split[0]);
+        $north = static::$km500 * static::letterNorthPosition($split[0]);
 
         // The optional second letter will identify the 100km square.
         if (isset($split[1])) {
-            $north += 100000 * static::letterNorthPosition($split[1]);
+            $north += static::$km100 * static::letterNorthPosition($split[1]);
         }
 
         return $north;
@@ -222,8 +230,8 @@ class Square
         if ($number_of_letters >= 1) {
             // Get the first letter (we have at least one).
             // Find the position on the 5x5 500km grid.
-            $east_500_position = floor($abs_east / 500000);
-            $north_500_position = floor($abs_north / 500000);
+            $east_500_position = floor($abs_east / static::$km500);
+            $north_500_position = floor($abs_north / static::$km500);
 
             $letters[] = static::$letters[($north_500_position * 5) + $east_500_position];
         }
@@ -231,8 +239,8 @@ class Square
         if ($number_of_letters >= 2) {
             // Get the second letter.
             // Find the position on the 5x5 100km grid, within the 500km grid.
-            $east_100_position = floor(($abs_east - 500000 * $east_500_position) / 100000);
-            $north_100_position = floor(($abs_north - 500000 * $north_500_position) / 100000);
+            $east_100_position = floor(($abs_east - static::$km500 * $east_500_position) / static::$km100);
+            $north_100_position = floor(($abs_north - static::$km500 * $north_500_position) / static::$km100);
 
             $letters[] = static::$letters[($north_100_position * 5) + $east_100_position];
         }
@@ -259,12 +267,12 @@ class Square
 
             case 1:
                 // One letter, so an offset within the 500km box.
-                $offset = $abs_east % 500000;
+                $offset = $abs_east % static::$km500;
                 break;
 
             case 2:
                 // Two letters, so an offset within a 100km box.
-                $offset = $abs_east % 100000;
+                $offset = $abs_east % static::$km100;
                 break;
         }
 
@@ -290,12 +298,12 @@ class Square
 
             case 1:
                 // One letter, so an offset within the 500km box.
-                $offset = $abs_north % 500000;
+                $offset = $abs_north % static::$km500;
                 break;
 
             case 2:
                 // Two letters, so an offset within a 100km box.
-                $offset = $abs_north % 100000;
+                $offset = $abs_north % static::$km100;
                 break;
         }
 
