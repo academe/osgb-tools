@@ -8,6 +8,10 @@ namespace Academe\OsgbTools;
  *
  * The model represents the bottom-left corner (South-West) of a square in the OSGB NGR.
  * A square ranges in size from 1m to 500km.
+ *
+ * The approach being taken is to make all values relative to square VV (far SW limit)
+ * and convert to more appropriate offsets as needed for calculations and I/O. This may
+ * be the right approach, or may be wrong, but we'll go this route and see what happens.
  */
 
 class Square
@@ -111,6 +115,44 @@ class Square
         }
 
         return $north;
+    }
+
+    /**
+     * Convert a numeric string of N digits to a North or East value, in metres.
+     *
+     * The digits will represent an offset in a box 10km, 100km
+     * or 1000km. The size of the box will depend on how many letters are used with the
+     * representation of the position.
+     * Leading zeroes are significant, and the digits are right-padded with zeroes to fill
+     * one of the three box sizes, then converted to an integer, in metres.
+     * The box size is in km, and can be 10, 100 or 1000.
+     * The default is a 10km box, with up to 5 digits identifying a 1m location, with the
+     * most sigificant digit (which may be a zero) identifying a 10km box.
+     *
+     * TODO: validation.
+     */
+
+    public static function digitsToDistance($digits, $box_size = 10)
+    {
+        switch ($box_size) {
+            case 1000:
+            $pad_size = 7;
+            break;
+
+            case 100:
+            $pad_size = 6;
+            break;
+
+            default:
+            $pad_size = 5;
+            break;
+        }
+
+        // Pad the string out.
+        $padded = str_pad($digits, $pad_size, '0', STR_PAD_RIGHT);
+
+        // Now return as an integer number of metres.
+        return (int)$padded;
     }
 }
 
