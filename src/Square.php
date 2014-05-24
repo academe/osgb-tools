@@ -614,6 +614,9 @@ class Square
             $final_multiplier = 1;
         }
 
+        // The square size is ten to the power of the number of digits less than the
+        // maximum, with an exception (final multiplier) for a single letter. Location
+        // 'S' of OSGB will be the South West region of Great Britain.
         return pow(10, $missing_factor) * $final_multiplier;
     }
 }
