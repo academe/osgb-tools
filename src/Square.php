@@ -16,6 +16,7 @@ namespace Academe\OsgbTools;
  * TODO: parse a coordinate string in any format.
  * TODO: output a coordinate string in any format.
  * TODO: parse format details so the output format can be defaulted to the input format. This effectively sets the square size.
+ * TODO: provide methods to handle determining if a square is in a valid range.
  */
 
 class Square
@@ -71,7 +72,7 @@ class Square
      * 'V' is the bottom left (South-West).
      */
 
-    public static $letters = 'VWXYZQRSTULMNOPFGHJKABCDE';
+    const LETTERS = 'VWXYZQRSTULMNOPFGHJKABCDE';
 
     /**
      * Square sizes, in metres.
@@ -81,13 +82,87 @@ class Square
     const KM100 = 100000;
 
     /**
+     * Valid squares, used by the OS.
+     * These cover just land in GB
+     */
+
+    protected $valid_squares = array(
+        'H' => array(
+            'HP',
+            'HT',
+            'HU',
+            'HW',
+            'HX',
+            'HY',
+            'HZ',
+        ),
+        'N' => array(
+            'NA',
+            'NB',
+            'NC',
+            'ND',
+            'NF',
+            'NG',
+            'NH',
+            'NJ',
+            'NK',
+            'NL',
+            'NM',
+            'NM',
+            'NO',
+            'NR',
+            'NS',
+            'NT',
+            'NU',
+            'NW',
+            'NX',
+            'NY',
+            'NZ',
+        ),
+        'O' => array(
+            'OV',
+        ),
+        'S' => array(
+            'SC',
+            'SD',
+            'SE',
+            'SH',
+            'SJ',
+            'SK',
+            'SM',
+            'SN',
+            'SO',
+            'SP',
+            'SR',
+            'SS',
+            'ST',
+            'SU',
+            'SV',
+            'SW',
+            'SX',
+            'SY',
+            'SZ',
+        ),
+        'T' => array(
+            'TA',
+            'TF',
+            'TG',
+            'TL',
+            'TM',
+            'TQ',
+            'TR',
+            'TV',
+        ),
+    );
+
+    /**
      * Convert a letter to its Eastern zero-based postion in a 25x25 grid
      * TODO: validation check on letter.
      */
 
     public static function letterEastPosition($letter)
     {
-        return (strpos(static::$letters, strtoupper($letter)) % 5);
+        return (strpos(static::LETTERS, strtoupper($letter)) % 5);
     }
 
     /**
@@ -96,7 +171,7 @@ class Square
 
     public static function letterNorthPosition($letter)
     {
-        return floor(strpos(static::$letters, strtoupper($letter)) / 5);
+        return floor(strpos(static::LETTERS, strtoupper($letter)) / 5);
     }
 
     /**
@@ -247,7 +322,7 @@ class Square
             $east_500_position = floor($abs_east / static::KM500);
             $north_500_position = floor($abs_north / static::KM500);
 
-            $letters[] = static::$letters[($north_500_position * 5) + $east_500_position];
+            $letters[] = substr(static::LETTERS, ($north_500_position * 5) + $east_500_position, 1);
         }
 
         if ($number_of_letters >= 2) {
@@ -256,7 +331,7 @@ class Square
             $east_100_position = floor(($abs_east - static::KM500 * $east_500_position) / static::KM100);
             $north_100_position = floor(($abs_north - static::KM500 * $north_500_position) / static::KM100);
 
-            $letters[] = static::$letters[($north_100_position * 5) + $east_100_position];
+            $letters[] = substr(static::LETTERS, ($north_100_position * 5) + $east_100_position, 1);
         }
 
         return implode('', $letters);
