@@ -573,5 +573,48 @@ class Square
 
         return $this->absNorthToDigits($this->abs_northing, $number_of_letters, $number_of_digits);
     }
+
+    /**
+     * Get the current square size, i.e. the accuracy of the geographic reference.
+     * The square size will vary between 1m (two letters and five digits, OSGB) and
+     * 500km (just a single OSGB letter).
+     * A single digit, and no letter, in has a square size of 1000km.
+     */
+
+    public function getSize($number_of_letters = null, $number_of_digits = null)
+    {
+        if ( ! isset($number_of_letters)) {
+            $number_of_letters = $this->getNumberOfLetters();
+        }
+
+        if ( ! isset($number_of_digits)) {
+            $number_of_digits = $this->getNumberOfDigits();
+        }
+
+        $total_characters = $number_of_letters + $number_of_digits;
+
+        if ($total_characters > static::MAX_DIGITS) {
+            $total_characters = static::MAX_DIGITS;
+        }
+
+        // Each missing character from MAX_DIGITS takes the accuracy down by a factor
+        // of ten. The last remaining letter has a square size of 500km, not 1000km.
+        $missing_factor = static::MAX_DIGITS - $total_characters;
+
+        // Are we down to one letter only?
+        if ($total_characters == 1 && $number_of_letters == 1) {
+            // A single letter has a aquare size of 500km.
+            $final_multiplier = 5;
+
+            // Knock the missing accuracy factor down by one, as this is what the
+            // multiplier will replace.
+            $missing_factor -= 1;
+        } else {
+            // Any other combination of letters and digits will be handled as a factor of ten.
+            $final_multiplier = 1;
+        }
+
+        return pow(10, $missing_factor) * $final_multiplier;
+    }
 }
 
