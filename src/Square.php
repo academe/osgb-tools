@@ -7,20 +7,31 @@ namespace Academe\OsgbTools;
  * The Irish grid is handled slightly differently.
  *
  * The model represents the bottom-left corner (South-West) of a square in the OSGB NGR.
- * A square ranges in size from 1m to 500km.
+ * A square ranges in size from 1m to 500km, or even bigger without letters.
  *
  * The approach being taken is to make all values relative to square VV (far SW limit)
  * and convert to more appropriate offsets as needed for calculations and I/O. This may
  * be the right approach, or may be wrong, but we'll go this route and see what happens.
  *
+ * This model does not perform conversions to other geographic coordinate systems; it is
+ * just for bringing together the various different formats used in OSGB into one class
+ * for eash of use.
+ *
  * TODO: parse a coordinate string in any format.
- * TODO: output a coordinate string in any format.
+ * TODO: output a coordinate string in any format (some kind of template, perhaps).
  * TODO: parse format details so the output format can be defaulted to the input format. This effectively sets the square size.
  * TODO: provide methods to handle determining if a square is in a valid range.
+ * TODO: work out how the Irish grid can be implemented through shared code.
  */
 
 class Square
 {
+    /**
+     * The national grid reference type (OSGB or Irish)
+     */
+
+    const NGR_TYPE = 'OSGB';
+
     /**
      * The easting value.
      * Integer 0 to 9999999.
@@ -52,12 +63,26 @@ class Square
     protected $number_of_digits = 5;
 
     /**
+     * The maximum number of digits (for easting or nothing).
+     * This is the maximum number with no letters. Each letter will
+     * reduce this by one.
+     */
+
+    const MAX_DIGITS = 7;
+
+    /**
+     * The maximum number of letters in a coordinate.
+     */
+
+    const MAX_LETTERS = 2;
+
+    /**
      * The number of metres East of square VV where the Western-most 500km square
      * of GB (square S) is located.
      * 1000km
      */
 
-    const GB_ORIGIN_EAST = 1000000;
+    const ORIGIN_EAST = 1000000;
 
     /**
      * The number of metres North of square VV where the Southern-most 500km square
@@ -65,7 +90,7 @@ class Square
      * 500km
      */
 
-    const GB_ORIGIN_NORTH = 500000;
+    const ORIGIN_NORTH = 500000;
 
     /**
      * The letters used to name squares, in a 5x5 grid.
@@ -83,7 +108,10 @@ class Square
 
     /**
      * Valid squares, used by the OS.
-     * These cover just land in GB
+     * These cover just land in GB.
+     * There is no reason in theory why sqaures outside these bounds cannot be
+     * used, apart from being very inaccurate, so validation against these letter
+     * combinations will be optional.
      */
 
     protected $valid_squares = array(
@@ -193,7 +221,7 @@ class Square
         $east = static::KM500 * static::letterEastPosition($split[0]);
 
         // The optional second letter will identify the 100km square.
-        if (isset($split[1])) {
+        if (isset($split[1]) && static::MAX_LETTERS == 2) {
             $east += static::KM100 * static::letterEastPosition($split[1]);
         }
 
@@ -220,7 +248,7 @@ class Square
         $north = static::KM500 * static::letterNorthPosition($split[0]);
 
         // The optional second letter will identify the 100km square.
-        if (isset($split[1])) {
+        if (isset($split[1]) && static::MAX_LETTERS == 2) {
             $north += static::KM100 * static::letterNorthPosition($split[1]);
         }
 
@@ -247,23 +275,20 @@ class Square
      * CHECKME: does truncating to the right make sense when the string is too long?
      */
 
-    public static function digitsToDistance($digits, $box_size = 10)
+    public static function digitsToDistance($digits, $number_of_letters = 2)
     {
-        switch ($box_size) {
-            case 1000:
+        switch ($number_of_letters) {
             case 0:
-                $pad_size = 7;
+                $pad_size = static::MAX_DIGITS;
                 break;
 
-            case 100:
             case 1:
-                $pad_size = 6;
+                $pad_size = static::MAX_DIGITS - 1;
                 break;
 
             default:
-            case 10:
             case 2:
-                $pad_size = 5;
+                $pad_size = static::MAX_DIGITS - min(2, static::MAX_LETTERS);
                 break;
         }
 
@@ -318,20 +343,21 @@ class Square
 
         if ($number_of_letters >= 1) {
             // Get the first letter (we have at least one).
-            // Find the position on the 5x5 500km grid.
-            $east_500_position = floor($abs_east / static::KM500);
-            $north_500_position = floor($abs_north / static::KM500);
+            // Find the offset on the 5x5 500km grid.
+            $east_500_offset = floor($abs_east / static::KM500);
+            $north_500_offset = floor($abs_north / static::KM500);
 
-            $letters[] = substr(static::LETTERS, ($north_500_position * 5) + $east_500_position, 1);
+            $letters[] = substr(static::LETTERS, ($north_500_offset * 5) + $east_500_offset, 1);
         }
 
-        if ($number_of_letters >= 2) {
-            // Get the second letter.
-            // Find the position on the 5x5 100km grid, within the 500km grid.
-            $east_100_position = floor(($abs_east - static::KM500 * $east_500_position) / static::KM100);
-            $north_100_position = floor(($abs_north - static::KM500 * $north_500_position) / static::KM100);
+        if ($number_of_letters >= 2 && $number_of_letters <= static::MAX_LETTERS) {
+            // Get the second letter (if the grid system supports it).
 
-            $letters[] = substr(static::LETTERS, ($north_100_position * 5) + $east_100_position, 1);
+            // Find the offset on the 5x5 100km grid, within the 500km grid.
+            $east_100_offset = floor(($abs_east - static::KM500 * $east_500_offset) / static::KM100);
+            $north_100_offset = floor(($abs_north - static::KM500 * $north_500_offset) / static::KM100);
+
+            $letters[] = substr(static::LETTERS, ($north_100_offset * 5) + $east_100_offset, 1);
         }
 
         return implode('', $letters);
@@ -340,8 +366,8 @@ class Square
     /**
      * Convert an ABS East value into digits.
      * The number of letters we are using with the digits is 0, 1 or 2.
-     * The number of digits is between 0 and 7, but the number of digits and
-     * the number of letters combined must not be more than 7.
+     * The number of digits is between 0 and MAX_DIGITS, but the number of digits and
+     * the number of letters combined must not be more than MAX_DIGITS.
      * If the number of letters is zero, then the assumed letter origin will
      * be 500km square 'S'.
      */
@@ -351,7 +377,7 @@ class Square
         switch ($number_of_letters) {
             case 0:
                 // No letters, so an actual number of metres East square S.
-                $offset = $abs_east - static::GB_ORIGIN_EAST;
+                $offset = $abs_east - static::ORIGIN_EAST;
                 break;
 
             case 1:
@@ -365,13 +391,13 @@ class Square
                 break;
         }
 
-        // Knock some digits off if it comes to greater than 7, when counting the letters too.
-        if ($number_of_letters + $number_of_digits > 7) {
-            $number_of_digits = 7 - $number_of_letters;
+        // Knock some digits off if it comes to greater than MAX_DIGITS, when counting the letters too.
+        if ($number_of_letters + $number_of_digits > static::MAX_DIGITS) {
+            $number_of_digits = static::MAX_DIGITS - $number_of_letters;
         }
 
         // Left-pad the number to 5, 6, or 7 digits, depending on the number of letters.
-        $digits = str_pad((string)$offset, 7 - $number_of_letters, '0', STR_PAD_LEFT);
+        $digits = str_pad((string)$offset, static::MAX_DIGITS - $number_of_letters, '0', STR_PAD_LEFT);
 
         // Now take only the required significant digits.
         return substr($digits, 0, $number_of_digits);
@@ -382,7 +408,7 @@ class Square
         switch ($number_of_letters) {
             case 0:
                 // No letters, so an actual number of metres East square S.
-                $offset = $abs_north - static::GB_ORIGIN_NORTH;
+                $offset = $abs_north - static::ORIGIN_NORTH;
                 break;
 
             case 1:
@@ -396,13 +422,13 @@ class Square
                 break;
         }
 
-        // Knock some digits off if it comes to greater than 7, when counting the letters too.
-        if ($number_of_letters + $number_of_digits > 7) {
-            $number_of_digits = 7 - $number_of_letters;
+        // Knock some digits off if it comes to greater than MAX_DIGITS, when counting the letters too.
+        if ($number_of_letters + $number_of_digits > static::MAX_DIGITS) {
+            $number_of_digits = static::MAX_DIGITS - $number_of_letters;
         }
 
         // Left-pad the number to 5, 6, or 7 digits, depending on the number of letters.
-        $digits = str_pad((string)$offset, 7 - $number_of_letters, '0', STR_PAD_LEFT);
+        $digits = str_pad((string)$offset, static::MAX_DIGITS - $number_of_letters, '0', STR_PAD_LEFT);
 
         // Now take only the required significant digits.
         return substr($digits, 0, $number_of_digits);
@@ -414,11 +440,15 @@ class Square
      * If we are changing the number of letters, then adjust the number of digits
      * to keep the same accuracy, i.e. the same box size.
      *
-     * TODO: validation (0, 1 or 2)
+     * TODO: validation (integer)
      */
 
     public function setNumberOfLetters($number_of_letters)
     {
+        // Pull to within the bounds.
+        if ($number_of_letters < 0) $number_of_letters = 0;
+        if ($number_of_letters > static::MAX_LETTERS) $number_of_letters = static::MAX_LETTERS;
+
         // The number of letters we are increasing the current format by.
         $letter_increase = $number_of_letters - $this->number_of_letters;
 
@@ -448,14 +478,14 @@ class Square
     /**
      * Set the number of digits to be used by default for output.
      *
-     * TODO: validation (0 to 7)
+     * TODO: validation (0 to MAX_DIGITS)
      */
 
     public function setNumberOfDigits($number_of_digits)
     {
-        // Pull the valud into the allowed bounds.
-        if ($number_of_digits > 7) $number_of_digits = 7;
+        // Pull the values into the allowed bounds.
         if ($number_of_digits < 0) $number_of_digits = 0;
+        if ($number_of_digits > static::MAX_DIGITS) $number_of_digits = static::MAX_DIGITS;
 
         $this->number_of_digits = $number_of_digits;
 
