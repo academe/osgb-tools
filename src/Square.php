@@ -12,6 +12,10 @@ namespace Academe\OsgbTools;
  * The approach being taken is to make all values relative to square VV (far SW limit)
  * and convert to more appropriate offsets as needed for calculations and I/O. This may
  * be the right approach, or may be wrong, but we'll go this route and see what happens.
+ *
+ * TODO: parse a coordinate string in any format.
+ * TODO: output a coordinate string in any format.
+ * TODO: parse format details so the output format can be defaulted to the input format. This effectively sets the square size.
  */
 
 class Square
@@ -35,13 +39,24 @@ class Square
     protected $abs_northing;
 
     /**
+     * The default number of letters to use in output formatting.
+     */
+
+    protected $number_of_letters = 2;
+
+    /**
+     * The default number of digits to use for the easting and northing in output formatting.
+     */
+
+    protected $number_of_digits = 5;
+
+    /**
      * The number of metres East of square VV where the Western-most 500km square
      * of GB (square S) is located.
      * 1000km
-     * TODO: make this a constant?
      */
 
-    public static $gb_origin_east = 1000000;
+    const GB_ORIGIN_EAST = 1000000;
 
     /**
      * The number of metres North of square VV where the Southern-most 500km square
@@ -49,7 +64,7 @@ class Square
      * 500km
      */
 
-    public static $gb_origin_north = 500000;
+    const GB_ORIGIN_NORTH = 500000;
 
     /**
      * The letters used to name squares, in a 5x5 grid.
@@ -60,11 +75,10 @@ class Square
 
     /**
      * Square sizes, in metres.
-     * TODO: make these constants.
      */
 
-    public static $km500 = 500000;
-    public static $km100 = 100000;
+    const KM500 = 500000;
+    const KM100 = 100000;
 
     /**
      * Convert a letter to its Eastern zero-based postion in a 25x25 grid
@@ -101,11 +115,11 @@ class Square
         $split = str_split($letters);
 
         // The first letter will aways be the 500km square.
-        $east = static::$km500 * static::letterEastPosition($split[0]);
+        $east = static::KM500 * static::letterEastPosition($split[0]);
 
         // The optional second letter will identify the 100km square.
         if (isset($split[1])) {
-            $east += static::$km100 * static::letterEastPosition($split[1]);
+            $east += static::KM100 * static::letterEastPosition($split[1]);
         }
 
         return $east;
@@ -128,11 +142,11 @@ class Square
         $split = str_split($letters);
 
         // The first letter will aways be the 500km square.
-        $north = static::$km500 * static::letterNorthPosition($split[0]);
+        $north = static::KM500 * static::letterNorthPosition($split[0]);
 
         // The optional second letter will identify the 100km square.
         if (isset($split[1])) {
-            $north += static::$km100 * static::letterNorthPosition($split[1]);
+            $north += static::KM100 * static::letterNorthPosition($split[1]);
         }
 
         return $north;
@@ -230,8 +244,8 @@ class Square
         if ($number_of_letters >= 1) {
             // Get the first letter (we have at least one).
             // Find the position on the 5x5 500km grid.
-            $east_500_position = floor($abs_east / static::$km500);
-            $north_500_position = floor($abs_north / static::$km500);
+            $east_500_position = floor($abs_east / static::KM500);
+            $north_500_position = floor($abs_north / static::KM500);
 
             $letters[] = static::$letters[($north_500_position * 5) + $east_500_position];
         }
@@ -239,8 +253,8 @@ class Square
         if ($number_of_letters >= 2) {
             // Get the second letter.
             // Find the position on the 5x5 100km grid, within the 500km grid.
-            $east_100_position = floor(($abs_east - static::$km500 * $east_500_position) / static::$km100);
-            $north_100_position = floor(($abs_north - static::$km500 * $north_500_position) / static::$km100);
+            $east_100_position = floor(($abs_east - static::KM500 * $east_500_position) / static::KM100);
+            $north_100_position = floor(($abs_north - static::KM500 * $north_500_position) / static::KM100);
 
             $letters[] = static::$letters[($north_100_position * 5) + $east_100_position];
         }
@@ -262,17 +276,17 @@ class Square
         switch ($number_of_letters) {
             case 0:
                 // No letters, so an actual number of metres East square S.
-                $offset = $abs_east - static::$gb_origin_east;
+                $offset = $abs_east - static::GB_ORIGIN_EAST;
                 break;
 
             case 1:
                 // One letter, so an offset within the 500km box.
-                $offset = $abs_east % static::$km500;
+                $offset = $abs_east % static::KM500;
                 break;
 
             case 2:
                 // Two letters, so an offset within a 100km box.
-                $offset = $abs_east % static::$km100;
+                $offset = $abs_east % static::KM100;
                 break;
         }
 
@@ -293,17 +307,17 @@ class Square
         switch ($number_of_letters) {
             case 0:
                 // No letters, so an actual number of metres East square S.
-                $offset = $abs_north - static::$gb_origin_north;
+                $offset = $abs_north - static::GB_ORIGIN_NORTH;
                 break;
 
             case 1:
                 // One letter, so an offset within the 500km box.
-                $offset = $abs_north % static::$km500;
+                $offset = $abs_north % static::KM500;
                 break;
 
             case 2:
                 // Two letters, so an offset within a 100km box.
-                $offset = $abs_north % static::$km100;
+                $offset = $abs_north % static::KM100;
                 break;
         }
 
@@ -317,6 +331,142 @@ class Square
 
         // Now take only the required significant digits.
         return substr($digits, 0, $number_of_digits);
+    }
+
+    /**
+     * Set the number of letters to be used by default for output.
+     *
+     * If we are changing the number of letters, then adjust the number of digits
+     * to keep the same accuracy, i.e. the same box size.
+     *
+     * TODO: validation (0, 1 or 2)
+     */
+
+    public function setNumberOfLetters($number_of_letters)
+    {
+        // The number of letters we are increasing the current format by.
+        $letter_increase = $number_of_letters - $this->number_of_letters;
+
+        if ($letter_increase != 0) {
+            // Decrease the current number of digits by the same amount.
+            $new_number_of_digits = $this->getNumberOfDigits() - $letter_increase;
+
+            // Set the new number of digits.
+            // Overflow is handled in here.
+            $this->setNumberOfDigits($new_number_of_digits);
+        }
+
+        $this->number_of_letters = $number_of_letters;
+
+        return $this;
+    }
+
+    /**
+     * Get the number of letters to be used by deafult for output.
+     */
+
+    public function getNumberOfLetters()
+    {
+        return $this->number_of_letters;
+    }
+
+    /**
+     * Set the number of digits to be used by default for output.
+     *
+     * TODO: validation (0 to 7)
+     */
+
+    public function setNumberOfDigits($number_of_digits)
+    {
+        // Pull the valud into the allowed bounds.
+        if ($number_of_digits > 7) $number_of_digits = 7;
+        if ($number_of_digits < 0) $number_of_digits = 0;
+
+        $this->number_of_digits = $number_of_digits;
+
+        return $this;
+    }
+
+    /**
+     * Get the number of digits to be used by default for output.
+     */
+
+    public function getNumberOfDigits()
+    {
+        return $this->number_of_digits;
+    }
+
+    /**
+     * Set the value of the square.
+     * The letters, easting and northinng strings, are stored as absolute
+     * offsets from square VV, so all information about the original format
+     * and consequently the square size it represents, is lost. What is
+     * retained is the position to one metre.
+     *
+     * TODO: validation
+     */
+
+    public function set($letters, $easting, $northing)
+    {
+        // Set the default number of letters to be used for output formatting.
+        $this->setNumberOfLetters(strlen($letters));
+
+        $this->abs_easting = static::toAbsEast($letters, $easting);
+        $this->abs_northing = static::toAbsNorth($letters, $northing);
+
+        return $this;
+    }
+
+    /**
+     * Get the letters for the current value.
+     * The number of letters can be overwridden.
+     */
+
+    public function getLetters($number_of_letters = null)
+    {
+        if ( ! isset($number_of_letters)) {
+            $number_of_letters = $this->getNumberOfLetters();
+        }
+
+        return $this->absToLetters($this->abs_easting, $this->abs_northing, $number_of_letters);
+    }
+
+    /**
+     * Get the current easting.
+     *
+     * TODO: validation
+     */
+
+    public function getEasting($number_of_letters = null, $number_of_digits = null)
+    {
+        if ( ! isset($number_of_letters)) {
+            $number_of_letters = $this->getNumberOfLetters();
+        }
+
+        if ( ! isset($number_of_digits)) {
+            $number_of_digits = $this->getNumberOfDigits();
+        }
+
+        return $this->absEastToDigits($this->abs_easting, $number_of_letters, $number_of_digits);
+    }
+
+    /**
+     * Get the current northinh.
+     *
+     * TODO: validation
+     */
+
+    public function getNorthing($number_of_letters = null, $number_of_digits = null)
+    {
+        if ( ! isset($number_of_letters)) {
+            $number_of_letters = $this->getNumberOfLetters();
+        }
+
+        if ( ! isset($number_of_digits)) {
+            $number_of_digits = $this->getNumberOfDigits();
+        }
+
+        return $this->absNorthToDigits($this->abs_northing, $number_of_letters, $number_of_digits);
     }
 }
 
