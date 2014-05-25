@@ -635,13 +635,20 @@ class Square
 
     public function set($ngr)
     {
+        // ngr must be a string.
+        if ( ! is_string($ngr)) {
+            throw new \InvalidArgumentException(
+                sprintf('National Grid Reference (NGR) must be a string; %s passed in', gettype($ngr))
+            );
+        }
+
         // Get letters upper-case.
         $ngr = strtoupper($ngr);
 
         // Remove any non-alphanumeric characters.
         $ngr = preg_replace('/[^A-Z0-9]/', '', $ngr);
 
-        // Optional letters should at the start only.
+        // Letters should be at the start only.
         $letters = '';
         $ngr_array = str_split($ngr);
         while(count($ngr_array) && strpos(static::LETTERS, $ngr_array[0]) !== false) {
@@ -650,25 +657,33 @@ class Square
         $digits = implode($ngr_array);
 
         // Exception if the number of letters is greater than allowed.
-        if (count($letters) > static::MAX_LETTERS) {
-            // TODO
+        if (strlen($letters) > static::MAX_LETTERS) {
+            throw new \UnexpectedValueException(
+                sprintf('An NGR of type %s cannot have more then %d letters; %d passed in', static::NGR_TYPE, static::MAX_LETTERS, strlen($letters))
+            );
         }
 
         // Exception if the digits string contains non-digits.
-        if ( ! preg_match('/^[0-9]$/', $digits)) {
-            // TODO
+        if ( ! preg_match('/^[0-9]*$/', $digits)) {
+            throw new \UnexpectedValueException(
+                sprintf('Invalid (no-numeric) characters found in Easting or Northing digits')
+            );
         }
 
         // Exception if the digits are not balanced.
         if (strlen($digits) % 2 != 0) {
-            // TODO
+            throw new \UnexpectedValueException(
+                sprintf('Eastings and Northings must contain the same number of digits; a combined total of %d digits found', strlen($digits))
+            );
         }
 
         $digit_length = strlen($digits) / 2;
 
         // Exception if too many digits.
         if (strlen($letters) + $digit_length > static::MAX_DIGITS) {
-            // TODO
+            throw new \UnexpectedValueException(
+                sprintf('Too many digits; a maximum of %d digits for a Easting or Northing is allowed with %d letters; %d digits supplied', static::MAX_DIGITS - strlen($letters), strlen($letters), $digit_length)
+            );
         }
 
         // Split the digits into eastings and northings.
