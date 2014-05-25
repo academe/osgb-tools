@@ -3,6 +3,52 @@ osgb-tools
 
 Ordnance Survey (GB) grid reference conversion tools.
 
+Usage
+-----
+
+To create a square, pass it a National Grid Reference (NGR) string:
+
+    $square = new Academe\OsgbTools\Square($ngr_string);
+
+The NGT string can take any form, so long as the letters come first, then the easting then the northing.
+Examples for OSGB (these are all the same location):
+
+    NT 0456 1230 (to 10m)
+    NT04561230
+    NT 04560 12300 (to 1m)
+    N 30456 11230
+    030456,061230 (to 10m)
+    0304560, 0612300 (to 1m)
+
+The letters and the digits are both optional:
+
+    NT 00000 00000 (to 1m)
+    NT (to 100km)
+    N (to 500km)
+    0,0 (square 'S' to 1000km)
+    0000000,0000000 (square 'S' to 1m)
+
+The accuracy (size of the box in metres) is returned by:
+
+    $square->getSize();
+    
+A templated output formatter has not been written yet, but the parts can be extracted:
+
+    $letters = $square->getLetters();
+    $easting = $square->getEasting();
+    $northing = $square->getNorthing();
+
+By default, the format of the parts will be the same as passed in. This can be changed:
+
+    $square->setNumberOfLetters($number_letters); // 0, 1 or 2
+    $square->setNumberOfDigits($number_digits); // 0 to 7
+
+As you change the number of letters, the number of digits will change automatically to try to
+retain the same accuracy, i.e. to represent the same square size. You can still change the
+number of digits after that to get more or less accuracy.
+    
+    
+
 Useful Links
 
 * http://www.movable-type.co.uk/scripts/latlong-convert-coords.html  
