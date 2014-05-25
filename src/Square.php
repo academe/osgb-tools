@@ -696,5 +696,16 @@ class Square
 
         return $this;
     }
+
+    /**
+     * Pass an optional NGR string in at instantiation.
+     */
+
+    public function __construct($ngr = '')
+    {
+        if ($ngr != '') {
+            $this->set($ngr);
+        }
+    }
 }
 
