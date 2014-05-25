@@ -10,6 +10,10 @@ To create a square, pass it a National Grid Reference (NGR) string:
 
     $square = new Academe\OsgbTools\Square($ngr_string);
 
+A square is a square area on the OSGB NGR which is identified by its South-West corner. The size of the
+square, i.e. the accuracy of the location, is determined by the number of digits and letters. A two-letter
+and five-digit NGR is a square of 1m, the smallest unit supported by OSGB.
+
 The NGT string can take any form, so long as the letters come first, then the easting then the northing.
 Examples for OSGB (these are all the same location):
 
