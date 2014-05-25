@@ -37,6 +37,7 @@ A templated output formatter has not been written yet, but the parts can be extr
     $letters = $square->getLetters();
     $easting = $square->getEasting();
     $northing = $square->getNorthing();
+    echo " OSGB reference = '$letters $easting $northing'";
 
 By default, the format of the parts will be the same as passed in. This can be changed:
 
