@@ -28,6 +28,13 @@ The letters and the digits are both optional:
     0,0 (square 'S' to 1000km)
     0000000,0000000 (square 'S' to 1m)
 
+Note that a single letter identifies a 500km square, so "N 712 834" will extend beyond that square and
+come out as "J 212 334" (shifted North and East by one 500km box). This is done in preference to
+raising an exception; "N 712 834" would not normally be used ("N 000 000" to "N 499 499" would be normal),
+but still represents a real location.
+
+Any non-alphanumeric characters used in the NGR will be ignored. That includes spaces and commas.
+
 The accuracy (size of the box in metres) is returned by:
 
     $square->getSize();
