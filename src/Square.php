@@ -511,7 +511,7 @@ class Square
      * TODO: validation
      */
 
-    public function set($letters, $easting, $northing)
+    public function setParts($letters, $easting, $northing)
     {
         // Set the default number of letters to be used for output formatting.
         $this->setNumberOfLetters(strlen($letters));
@@ -618,6 +618,68 @@ class Square
         // maximum, with an exception (final multiplier) for a single letter. Location
         // 'S' of OSGB will be the South West region of Great Britain.
         return pow(10, $missing_factor) * $final_multiplier;
+    }
+
+    /**
+     * Set the value of the square from a single string.
+     * Multiple formats are supported, but all take the order:
+     *  [letters] [easting northing]
+     * - All whitespace and separating characters are disregarded.
+     * - Letters and easting/norhting are optional.
+     * - Easting and northing must use the same number of digits.
+     * - Letters are case-insenstive.
+     * - Exceptions will be raised for invalid formats (e.g. invalid
+     *   characters, letters in the wrong place, too many letters or
+     *   digits, unbalanced easting/northing digit length).
+     */
+
+    public function set($ngr)
+    {
+        // Get letters upper-case.
+        $ngr = strtoupper($ngr);
+
+        // Remove any non-alphanumeric characters.
+        $ngr = preg_replace('/[^A-Z0-9]/', '', $ngr);
+
+        // Optional letters should at the start only.
+        $letters = '';
+        $ngr_array = str_split($ngr);
+        while(count($ngr_array) && strpos(static::LETTERS, $ngr_array[0]) !== false) {
+            $letters .= array_shift($ngr_array);
+        }
+        $digits = implode($ngr_array);
+
+        // Exception if the number of letters is greater than allowed.
+        if (count($letters) > static::MAX_LETTERS) {
+            // TODO
+        }
+
+        // Exception if the digits string contains non-digits.
+        if ( ! preg_match('/^[0-9]$/', $digits)) {
+            // TODO
+        }
+
+        // Exception if the digits are not balanced.
+        if (strlen($digits) % 2 != 0) {
+            // TODO
+        }
+
+        $digit_length = strlen($digits) / 2;
+
+        // Exception if too many digits.
+        if (strlen($letters) + $digit_length > static::MAX_DIGITS) {
+            // TODO
+        }
+
+        // Split the digits into eastings and northings.
+        $eastings = substr($digits, 0, $digit_length);
+        $northings = substr($digits, $digit_length);
+
+        $this->setParts($letters, $eastings, $northings);
+
+        $this->setNumberOfDigits($digit_length);
+
+        return $this;
     }
 }
 
