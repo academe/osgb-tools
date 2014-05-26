@@ -75,9 +75,18 @@ To check if the current reference lies within a valid 100km square mapped by the
 method:
 
     if ($square->isInBound()) echo "Yes, this place is on a map";
-    
+
+TODO
+----
+
+* Currently this supports teh GB national grid only. The Irish grid is similar, and we should be
+  able to extend the OSGB to cover the Irish grid too.
+
 Useful Links
 ------------
+
+* http://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid  
+  Wikipedia overview of the OS national grid
 
 * http://www.movable-type.co.uk/scripts/latlong-convert-coords.html  
   JavaScript datum conversions (WGS84, GRS80, Airy1830, AiryModified, Intl1924, Bessel1841)
