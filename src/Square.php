@@ -3,7 +3,7 @@
 namespace Academe\OsgbTools;
 
 /**
- * The model for an Ordnace Survey (OS) Great Britain (GB) National Grid Reference (NGR).
+ * The model for an Ordnance Survey (OS) Great Britain (GB) National Grid Reference (NGR).
  * The Irish grid is handled slightly differently.
  *
  * The model represents the bottom-left corner (South-West) of a square in the OSGB NGR.
@@ -17,10 +17,7 @@ namespace Academe\OsgbTools;
  * just for bringing together the various different formats used in OSGB into one class
  * for eash of use.
  *
- * TODO: parse a coordinate string in any format.
  * TODO: output a coordinate string in any format (some kind of template, perhaps).
- * TODO: parse format details so the output format can be defaulted to the input format. This effectively sets the square size.
- * TODO: provide methods to handle determining if a square is in a valid range.
  * TODO: work out how the Irish grid can be implemented through shared code.
  */
 
@@ -77,24 +74,26 @@ class Square
     const MAX_LETTERS = 2;
 
     /**
-     * The number of metres East of square VV where the Western-most 500km square
+     * The number of metres East of square VV that the Western-most 500km square
      * of GB (square S) is located.
      * 1000km
      */
 
-    const ORIGIN_EAST = 1000000;
+    const ABS_ORIGIN_EAST = 1000000;
 
     /**
-     * The number of metres North of square VV where the Southern-most 500km square
+     * The number of metres North of square VV that the Southern-most 500km square
      * of GB (square S) is located.
      * 500km
      */
 
-    const ORIGIN_NORTH = 500000;
+    const ABS_ORIGIN_NORTH = 500000;
 
     /**
      * The letters used to name squares, in a 5x5 grid.
      * 'V' is the bottom left (South-West).
+     * The letters are in groups of five, with letters in each group
+     * listed West to East, and each group listed South to North.
      */
 
     const LETTERS = 'VWXYZQRSTULMNOPFGHJKABCDE';
@@ -107,7 +106,7 @@ class Square
     const KM100 = 100000;
 
     /**
-     * Valid squares, used by the OS.
+     * Valid squares, both 500km and 100km, used by the OS.
      * These cover just land in GB.
      * There is no reason in theory why sqaures outside these bounds cannot be
      * used, apart from being very inaccurate, so validation against these letter
@@ -210,6 +209,7 @@ class Square
     public static function lettersToAbsEast($letters)
     {
         // If there are no letters, then default to square 'S'.
+        // Without letters, this is assumed to be the origin.
         if (empty($letters)) {
             $letters = 'S';
         }
@@ -372,22 +372,22 @@ class Square
      * be 500km square 'S'.
      */
 
-    public static function absEastToDigits($abs_east, $number_of_letters, $number_of_digits)
+    public static function absToDigits($abs_distance, $number_of_letters, $number_of_digits, $origin)
     {
         switch ($number_of_letters) {
             case 0:
                 // No letters, so an actual number of metres East square S.
-                $offset = $abs_east - static::ORIGIN_EAST;
+                $offset = $abs_distance - $origin;
                 break;
 
             case 1:
                 // One letter, so an offset within the 500km box.
-                $offset = $abs_east % static::KM500;
+                $offset = $abs_distance % static::KM500;
                 break;
 
             case 2:
                 // Two letters, so an offset within a 100km box.
-                $offset = $abs_east % static::KM100;
+                $offset = $abs_distance % static::KM100;
                 break;
         }
 
@@ -403,35 +403,14 @@ class Square
         return substr($digits, 0, $number_of_digits);
     }
 
+    public static function absEastToDigits($abs_east, $number_of_letters, $number_of_digits)
+    {
+        return static::absToDigits($abs_east, $number_of_letters, $number_of_digits, static::ABS_ORIGIN_EAST);
+    }
+
     public static function absNorthToDigits($abs_north, $number_of_letters, $number_of_digits)
     {
-        switch ($number_of_letters) {
-            case 0:
-                // No letters, so an actual number of metres East square S.
-                $offset = $abs_north - static::ORIGIN_NORTH;
-                break;
-
-            case 1:
-                // One letter, so an offset within the 500km box.
-                $offset = $abs_north % static::KM500;
-                break;
-
-            case 2:
-                // Two letters, so an offset within a 100km box.
-                $offset = $abs_north % static::KM100;
-                break;
-        }
-
-        // Knock some digits off if it comes to greater than MAX_DIGITS, when counting the letters too.
-        if ($number_of_letters + $number_of_digits > static::MAX_DIGITS) {
-            $number_of_digits = static::MAX_DIGITS - $number_of_letters;
-        }
-
-        // Left-pad the number to 5, 6, or 7 digits, depending on the number of letters.
-        $digits = str_pad((string)$offset, static::MAX_DIGITS - $number_of_letters, '0', STR_PAD_LEFT);
-
-        // Now take only the required significant digits.
-        return substr($digits, 0, $number_of_digits);
+        return static::absToDigits($abs_north, $number_of_letters, $number_of_digits, static::ABS_ORIGIN_NORTH);
     }
 
     /**
@@ -439,12 +418,17 @@ class Square
      *
      * If we are changing the number of letters, then adjust the number of digits
      * to keep the same accuracy, i.e. the same box size.
-     *
-     * TODO: validation (integer)
      */
 
     public function setNumberOfLetters($number_of_letters)
     {
+        // Must be an integer.
+        if ( ! is_int($number_of_letters)) {
+            throw new \InvalidArgumentException(
+                sprintf('Number of letters must be an integer; %s passed in', gettype($number_of_letters))
+            );
+        }
+
         // Pull to within the bounds.
         if ($number_of_letters < 0) $number_of_letters = 0;
         if ($number_of_letters > static::MAX_LETTERS) $number_of_letters = static::MAX_LETTERS;
@@ -477,12 +461,18 @@ class Square
 
     /**
      * Set the number of digits to be used by default for output.
-     *
-     * TODO: validation (0 to MAX_DIGITS)
+
      */
 
     public function setNumberOfDigits($number_of_digits)
     {
+        // Must be an integer.
+        if ( ! is_int($number_of_digits)) {
+            throw new \InvalidArgumentException(
+                sprintf('Number of digits must be an integer; %s passed in', gettype($number_of_digits))
+            );
+        }
+
         // Pull the values into the allowed bounds.
         if ($number_of_digits < 0) $number_of_digits = 0;
         if ($number_of_digits > static::MAX_DIGITS) $number_of_digits = static::MAX_DIGITS;
@@ -706,6 +696,37 @@ class Square
         if ($ngr != '') {
             $this->set($ngr);
         }
+    }
+
+    /**
+     * Determine whether the NGR is valid, within a 100km square bound covered by OSGB.
+     */
+
+    public function isInBound()
+    {
+        // Get the two letters for the current NGR.
+        $letters = $this->getLetters(static::MAX_LETTERS);
+
+        // If we don't have two letters, then we are certainly out of bounds.
+        if (strlen($letters) != static::MAX_LETTERS) {
+            return false;
+        }
+
+        // Split up into separate letters.
+        $letters_parts = str_split($letters);
+
+        if ( ! isset($this->valid_squares[$letters_parts[0]])) {
+            // The first letter is out of bounds.
+            return false;
+        }
+
+        if ( ! in_array($letters, $this->valid_squares[$letters_parts[0]])) {
+            // The second letter is out of bounds.
+            return false;
+        }
+
+        // Not out of bounds, so must be valid.
+        return true;
     }
 }
 
