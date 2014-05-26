@@ -53,7 +53,7 @@ Parts of the formatted reference can be extracted separately:
 Or it can be formatted in one go:
 
     echo (string)$square; // e.g. 'SE 0123034300'
-    echo $square->setNumberOfLetters(1)->format(); // e.g. S 401230434300
+    echo $square->setNumberOfLetters(1)->format(); // e.g. 'S 401230434300'
     echo $square->format('%l %e %n', 1, 3); // e.g. 'S 401 434' with 1 letter and 3 digits
 
 By default, the format of the parts will be the same as passed in. This can be changed:
@@ -66,21 +66,27 @@ retain the same accuracy, i.e. to represent the same square size. You can still 
 number of digits after that to get more or less accuracy.
 
 Not all letter combinations cover land that the OS maps. Only 500km squares H, N, O, S and T
-are used by OS. The squares do extend beyond that in theory, but the accuracy drifts out quickly.
+are used by the OS. The squares do extend beyond that in theory, but the accuracy drifts out quickly.
 Inside these 500km squares, only a slection of 100km squares are mapped by the OS. Again, 100km
 squares outside of this range are still supported by this library, but they have no meaning on
 OS maps.
 
+Just as an aside, 500km square O covers just a tiny corner of Yorkshire, with the majority
+of that square being in the North Sea. For this reason, the only 100km square prefixed O is
+OV.
+
 To check if the current reference lies within a valid 100km square mapped by the OS, use this
 method:
 
-    if ($square->isInBound()) echo "Yes, this place is on a map";
+    if ($square->isInBound()) echo "Yes, this place is on a printed map";
 
 TODO
 ----
 
-* Currently this supports teh GB national grid only. The Irish grid is similar, and we should be
-  able to extend the OSGB to cover the Irish grid too.
+* Currently this supports the GB national grid only. The Irish grid is similar, and we should be
+  able to extend the OSGB to cover the Irish grid too. The Irish grid uses just one 500km square,
+  and that square is not listed in the references. Instead, just one letter is used to denote the
+  100km square in the 5x5 grid of 100km squares.
 
 Useful Links
 ------------
