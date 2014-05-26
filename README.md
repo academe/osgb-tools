@@ -94,6 +94,7 @@ We are going to convert SE0123034300 to Lat/Long. First create the square:
 Then extract the Easting and Northing:
 
     list($Easting, $Northing) = $square->getEastNorth();
+    // Easting = 401230, Northing = 434300
     
 This gives us the 7-digit numeric only values. There is a converter here, which we will use to demonstrate,
 though I am not convinced it is providing the correct answer (it is close, but maybe not close enough). It
@@ -105,6 +106,9 @@ also only provides conversion in one direction, and we would like both direction
     // array(2) { [0]=> float(53.804781271911) [1]=> float(-1.9813210410013) }
     
 The same conversion can also be seen here: http://www.nearby.org.uk/coord.cgi?p=SE0123034300&f=full
+
+Another tool to check: http://www.russ-hore.co.uk/osgb/ (paste in the OSGB reference "SE 01230 34300"). I suspect all the tools are suffering from rounding errors in different ways, or are maybe using different ellipsoids. They need
+investigating to find *the right one*.
 
 Again to note: this will change, and is just a quick library put in to deomonstrate.
 
