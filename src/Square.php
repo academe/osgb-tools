@@ -748,11 +748,14 @@ class Square
             $format = static::FORMAT_DEFAULT;
         }
 
-        return strtr($format, array(
+        $formatted = strtr($format, array(
             static::FORMAT_LETTERS => $this->getLetters($number_of_letters),
             static::FORMAT_EASTING => $this->getEasting($number_of_letters, $number_of_digits),
             static::FORMAT_NORTHING => $this->getNorthing($number_of_letters, $number_of_digits),
         ));
+
+        // Trim the result, as the numbers or digits are both optional.
+        return trim($formatted);
     }
 
     /**
