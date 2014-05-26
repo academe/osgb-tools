@@ -281,12 +281,15 @@ class Square
      * Alternatively, pass in the number of letters available in place of the box
      * size (0, 1 or 2).
      *
-     * TODO: validation.
      * CHECKME: does truncating to the right make sense when the string is too long?
      */
 
-    public static function digitsToDistance($digits, $number_of_letters = 2)
+    public static function digitsToDistance($digits, $number_of_letters)
     {
+        if ($number_of_letters > static::MAX_LETTERS) {
+            $number_of_letters = static::MAX_LETTERS;
+        }
+
         switch ($number_of_letters) {
             case 0:
                 $pad_size = static::MAX_DIGITS;
@@ -296,9 +299,15 @@ class Square
                 $pad_size = static::MAX_DIGITS - 1;
                 break;
 
-            default:
             case 2:
                 $pad_size = static::MAX_DIGITS - min(2, static::MAX_LETTERS);
+                break;
+
+            default:
+                // Invalid number of letters.
+                throw new \UnexpectedValueException(
+                    sprintf('Number of letters out of range; expected value 0 to %d; %d passed in', static::MAX_LETTERS, $number_of_letters)
+                );
                 break;
         }
 
@@ -711,7 +720,7 @@ class Square
             );
         }
 
-        // Exception if the digits are not balanced.
+        // Exception if the digits are not balanced, i.e. different length for Eastings and Northings.
         if (strlen($digits) % 2 != 0) {
             throw new \UnexpectedValueException(
                 sprintf('Eastings and Northings must contain the same number of digits; a combined total of %d digits found', strlen($digits))
