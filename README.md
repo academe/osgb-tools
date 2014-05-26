@@ -14,7 +14,7 @@ A square is a square area on the OSGB National Grid which is identified by its S
 square, i.e. the accuracy of the location, is determined by the number of digits and letters. A two-letter
 and five-digit NGR is a square of 1m, the smallest unit supported by OSGB.
 
-The NGT string can take any form, so long as the letters come first, then the easting then the northing.
+The NGR string can take any form, so long as the letters come first, then the easting then the northing.
 Examples for OSGB (these are all the same location):
 
     NT 0456 1230 (to 10m)
