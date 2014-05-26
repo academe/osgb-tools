@@ -81,6 +81,33 @@ method:
 
     if ($square->isInBound()) echo "Yes, this place is on a printed map";
 
+Example Datum Conversion
+------------------------
+
+This bit is work-in-progress, and is very much subject to change. However, it does demonstrate the process.
+
+We are going to convert SE0123034300 to Lat/Long. First create the square:
+
+    // Spaces in the reference are optional - they are shown here for clarity.
+    $square = new Academe\OsgbTools\Square('SE 01230 34300');
+    
+Then extract the Easting and Northing:
+
+    list($Easting, $Northing) = $square->getEastNorth();
+    
+This gives us the 7-digit numeric only values. There is a converter here, which we will use to demonstrate,
+though I am not convinced it is providing the correct answer (it is close, but maybe not close enough). It
+also only provides conversion in one direction, and we would like both directions.
+
+    $convert = new Academe\OsgbTools\Convert;
+    $lat_long = $convert->E_N_to_Lat_Long($Easting, $Northing);
+    var_dump($lat_long);
+    // array(2) { [0]=> float(53.804781271911) [1]=> float(-1.9813210410013) }
+    
+The same conversion can also be seen here: http://www.nearby.org.uk/coord.cgi?p=SE0123034300&f=full
+
+Again to note: this will change, and is just a quick library put in to deomonstrate.
+
 TODO
 ----
 
