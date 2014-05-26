@@ -18,6 +18,7 @@ namespace Academe\OsgbTools;
  * for eash of use.
  *
  * TODO: work out how the Irish grid can be implemented through shared code.
+ * TODO: pull the validation rules together to avoid so much duplication.
  */
 
 class Square
@@ -381,8 +382,26 @@ class Square
      * be 500km square 'S'.
      */
 
-    public static function absToDigits($abs_distance, $number_of_letters, $number_of_digits, $origin)
+    protected static function absToDigits($abs_distance, $number_of_letters, $number_of_digits, $origin)
     {
+        if ( ! is_int($number_of_letters)) {
+            throw new \InvalidArgumentException(
+                sprintf('Number of letters must be an integer; %s passed in', gettype($number_of_letters))
+            );
+        }
+
+        if ($number_of_letters < 0 || $number_of_letters > static::MAX_LETTERS) {
+            throw new \UnexpectedValueException(
+                sprintf('Number of letters out of range; expected value 0 to %d; %d passed in', static::MAX_LETTERS, $number_of_letters)
+            );
+        }
+
+        if ( ! is_int($number_of_digits)) {
+            throw new \InvalidArgumentException(
+                sprintf('Number of digits must be an integer; %s passed in', gettype($number_of_digits))
+            );
+        }
+
         switch ($number_of_letters) {
             case 0:
                 // No letters, so an actual number of metres East square S.
@@ -390,7 +409,7 @@ class Square
                 break;
 
             case 1:
-                // One letter, so an offset within the 500km box.
+                // One letter, so an offset within the 500km box (for OSGB, at least, not for the Irish grid).
                 $offset = $abs_distance % static::KM500;
                 break;
 
@@ -400,7 +419,7 @@ class Square
                 break;
         }
 
-        // Knock some digits off if it comes to greater than MAX_DIGITS, when counting the letters too.
+        // Knock some digits off, if it comes to greater than MAX_DIGITS, when counting the letters too.
         if ($number_of_letters + $number_of_digits > static::MAX_DIGITS) {
             $number_of_digits = static::MAX_DIGITS - $number_of_letters;
         }
@@ -460,7 +479,7 @@ class Square
     }
 
     /**
-     * Get the number of letters to be used by deafult for output.
+     * Get the number of letters to be used by default for output.
      */
 
     public function getNumberOfLetters()
@@ -470,7 +489,6 @@ class Square
 
     /**
      * Set the number of digits to be used by default for output.
-
      */
 
     public function setNumberOfDigits($number_of_digits)
@@ -507,11 +525,17 @@ class Square
      * and consequently the square size it represents, is lost. What is
      * retained is the position to one metre.
      *
-     * TODO: validation
+     * TODO: more validation
      */
 
     public function setParts($letters, $easting, $northing)
     {
+        if (strlen($letters) < 0 || strlen($letters) > static::MAX_LETTERS) {
+            throw new \UnexpectedValueException(
+                sprintf('Number of letters out of range; expected number of letters 0 to %d; %d passed in', static::MAX_LETTERS, strlen($letters))
+            );
+        }
+
         // Set the default number of letters to be used for output formatting.
         $this->setNumberOfLetters(strlen($letters));
 
@@ -551,6 +575,15 @@ class Square
             $number_of_digits = $this->getNumberOfDigits();
         }
 
+        // Seven digit references (without letters) must only be used in the valid 500km square range,
+        // since its origin is square L.
+
+        if ($number_of_letters == 0 && ! $this->isInBound(true)) {
+            throw new \UnexpectedValueException(
+                sprintf('Numeric-only reference out of range; reference must lie in squares %s', implode(', ', array_keys($this->valid_squares)))
+            );
+        }
+
         return $this->absEastToDigits($this->abs_easting, $number_of_letters, $number_of_digits);
     }
 
@@ -568,6 +601,15 @@ class Square
 
         if ( ! isset($number_of_digits)) {
             $number_of_digits = $this->getNumberOfDigits();
+        }
+
+        // Seven digit references (without letters) must only be used in the valid 500km square range,
+        // since its origin is square L.
+
+        if ($number_of_letters == 0 && ! $this->isInBound(true)) {
+            throw new \UnexpectedValueException(
+                sprintf('Numeric-only reference out of range; reference must lie in squares %s', implode(', ', array_keys(static::$valid_squares)))
+            );
         }
 
         return $this->absNorthToDigits($this->abs_northing, $number_of_letters, $number_of_digits);
@@ -709,9 +751,11 @@ class Square
 
     /**
      * Determine whether the NGR is valid, within a 100km square bound covered by OSGB.
+     * If $km500_square_only is true, then only the 500km squares are checked. This ensures
+     * the reference is within the GB range, without going into too much detail.
      */
 
-    public function isInBound()
+    public function isInBound($km500_square_only = false)
     {
         // Get the two letters for the current NGR.
         $letters = $this->getLetters(static::MAX_LETTERS);
@@ -729,7 +773,7 @@ class Square
             return false;
         }
 
-        if ( ! in_array($letters, $this->valid_squares[$letters_parts[0]])) {
+        if ( ! $km500_square_only && ! in_array($letters, $this->valid_squares[$letters_parts[0]])) {
             // The second letter is out of bounds.
             return false;
         }
@@ -740,6 +784,7 @@ class Square
 
     /**
      * Return a formatted string.
+     * TOOD: exception if trying to format with no letters outside of the GB origin.
      */
 
     public function format($format = null, $number_of_letters = null, $number_of_digits = null)
