@@ -17,7 +17,6 @@ namespace Academe\OsgbTools;
  * just for bringing together the various different formats used in OSGB into one class
  * for eash of use.
  *
- * TODO: output a coordinate string in any format (some kind of template, perhaps).
  * TODO: work out how the Irish grid can be implemented through shared code.
  */
 
@@ -104,6 +103,16 @@ class Square
 
     const KM500 = 500000;
     const KM100 = 100000;
+
+    /**
+     * The format placeholders.
+     */
+
+    const FORMAT_LETTERS = '%l';
+    const FORMAT_EASTING = '%e';
+    const FORMAT_NORTHING = '%n';
+
+    const FORMAT_DEFAULT = '%l %e%n';
 
     /**
      * Valid squares, both 500km and 100km, used by the OS.
@@ -727,6 +736,32 @@ class Square
 
         // Not out of bounds, so must be valid.
         return true;
+    }
+
+    /**
+     * Return a formatted string.
+     */
+
+    public function format($format = null, $number_of_letters = null, $number_of_digits = null)
+    {
+        if ( ! isset($format)) {
+            $format = static::FORMAT_DEFAULT;
+        }
+
+        return strtr($format, array(
+            static::FORMAT_LETTERS => $this->getLetters($number_of_letters),
+            static::FORMAT_EASTING => $this->getEasting($number_of_letters, $number_of_digits),
+            static::FORMAT_NORTHING => $this->getNorthing($number_of_letters, $number_of_digits),
+        ));
+    }
+
+    /**
+     * Default conversion to string.
+     */
+
+    public function __toString()
+    {
+        return $this->format();
     }
 }
 
