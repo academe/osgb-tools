@@ -53,7 +53,7 @@ Parts of the formatted reference can be extracted separately:
 Or it can be formatted in one go:
 
     echo (string)$square; // e.g. 'SE 0123034300'
-    echo $square->format();
+    echo $square->setNumberOfLetters(1)->format(); // e.g. S 401230434300
     echo $square->format('%l %e %n', 1, 3); // e.g. 'S 401 434' with 1 letter and 3 digits
 
 By default, the format of the parts will be the same as passed in. This can be changed:
