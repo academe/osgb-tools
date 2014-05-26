@@ -823,7 +823,7 @@ class Square
 
     /**
      * Get the easting and northing for conversion.
-     * This is the numeric-only 7-digit version.
+     * This is the numeric-only 7-digit version with the GB origin at square S.
      */
 
     public function getEastNorth()
