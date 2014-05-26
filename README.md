@@ -54,7 +54,7 @@ Or it can be formatted in one go:
 
     echo (string)$square; // e.g. 'SE 0123034300'
     echo $square->format();
-    echo $square->format('%l %e %n', 1, 3); // e.g. 'S 401 434'
+    echo $square->format('%l %e %n', 1, 3); // e.g. 'S 401 434' with 1 letter and 3 digits
 
 By default, the format of the parts will be the same as passed in. This can be changed:
 
@@ -64,6 +64,17 @@ By default, the format of the parts will be the same as passed in. This can be c
 As you change the number of letters, the number of digits will change automatically to try to
 retain the same accuracy, i.e. to represent the same square size. You can still change the
 number of digits after that to get more or less accuracy.
+
+Not all letter combinations cover land that the OS maps. Only 500km squares H, N, O, S and T
+are used by OS. The squares do extend beyond that in theory, but the accuracy drifts out quickly.
+Inside these 500km squares, only a slection of 100km squares are mapped by the OS. Again, 100km
+squares outside of this range are still supported by this library, but they have no meaning on
+OS maps.
+
+To check if the current reference lies within a valid 100km square mapped by the OS, use this
+method:
+
+    if ($square->isInBound()) echo "Yes, this place is on a map";
     
 Useful Links
 ------------
