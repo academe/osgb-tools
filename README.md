@@ -88,6 +88,14 @@ TODO
   able to extend the OSGB to cover the Irish grid too. The Irish grid uses just one 500km square,
   and that square is not listed in the references. Instead, just one letter is used to denote the
   100km square in the 5x5 grid of 100km squares.
+* Conversions to other Datums (namely WGS84) including conversion to the appropriate ellipsoid.
+  Some refactoring may be needed to keep the various concerns separated. It does not look like there
+  are any composer dependencies we can pull in to *just* handle the conversions, so whether we
+  create a separate library (based on other tried-and-tested libraries) or incorporate the code into
+  this library, I'm not sure. Probably the latter, then we can fork it off later. The key here
+  though is to keep the NGR (the square/location references) and the conversions to and from other
+  coordinate systems, separate. This will aid testing and understanding.
+  No other composer library I've found does this.
 
 Useful Links
 ------------
