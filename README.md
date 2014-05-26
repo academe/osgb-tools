@@ -43,12 +43,18 @@ The accuracy (size of the box in metres) is returned by:
 
     $square->getSize();
     
-A templated output formatter has not been written yet, but the parts can be extracted:
+Parts of the formatted reference can be extracted separately:
 
     $letters = $square->getLetters();
     $easting = $square->getEasting();
     $northing = $square->getNorthing();
     echo "OSGB reference = " . trim("$letters $easting $northing");
+    
+Or it can be formatted in one go:
+
+    echo (string)$square; // e.g. 'SE 0123034300'
+    echo $square->format();
+    echo $square->format('%l %e %n', 1, 3); // e.g. 'S 401 434'
 
 By default, the format of the parts will be the same as passed in. This can be changed:
 
@@ -59,9 +65,8 @@ As you change the number of letters, the number of digits will change automatica
 retain the same accuracy, i.e. to represent the same square size. You can still change the
 number of digits after that to get more or less accuracy.
     
-    
-
 Useful Links
+------------
 
 * http://www.movable-type.co.uk/scripts/latlong-convert-coords.html  
   JavaScript datum conversions (WGS84, GRS80, Airy1830, AiryModified, Intl1924, Bessel1841)
