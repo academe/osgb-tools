@@ -18,7 +18,7 @@ class Convert
      *  initial or final latitude of point (PHI) IN RADIANS.
      */
 
-    public function Marc($bf0, $n, $PHI0, $PHI) {
+    public function marc($bf0, $n, $PHI0, $PHI) {
         $n2 = pow($n, 2);
         $n3 = pow($n, 3);
 
@@ -45,15 +45,15 @@ class Convert
         $PHI1 = (($North - $n0) / $afo) + $PHI0;
 
         // Calculate M
-        $M = Marc($bfo, $n, $PHI0, $PHI1);
+        $M = $this->marc($bfo, $n, $PHI0, $PHI1);
 
         // Calculate new PHI value (PHI2)
         $PHI2 = (($North - $n0 - $M) / $afo) + $PHI1;
 
         // Iterate to get final value for InitialLat
-        while ( abs($North - $n0 - $M) &gt; 0.00001 ) {
+        while ( abs($North - $n0 - $M) > 0.00001 ) {
             $PHI2 = (($North - $n0 - $M) / $afo) + $PHI1;
-            $M = Marc($bfo, $n, $PHI0, $PHI2);
+            $M = $this->marc($bfo, $n, $PHI0, $PHI2);
             $PHI1 = $PHI2;
         }
 
@@ -90,7 +90,7 @@ class Convert
         $Et = $East - $e0;
 
         // Compute initial value for latitude (PHI) in radians
-        $PHId = InitialLat($North, $n0, $af0, $RadPHI0, $n, $bf0);
+        $PHId = $this->initialLat($North, $n0, $af0, $RadPHI0, $n, $bf0);
 
         $sinPHId2 = pow(sin($PHId),  2);
         $cosPHId  = pow(cos($PHId), -1);

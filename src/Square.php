@@ -820,5 +820,18 @@ class Square
     {
         return $this->format();
     }
+
+    /**
+     * Get the easting and northing for conversion.
+     * This is the numeric-only 7-digit version.
+     */
+
+    public function getEastNorth()
+    {
+        return array(
+            (int) $this->getEasting(0, static::MAX_DIGITS),
+            (int) $this->getNorthing(0, static::MAX_DIGITS),
+        );
+    }
 }
 
