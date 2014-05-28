@@ -75,19 +75,19 @@ class Square
 
     /**
      * The number of metres East of square VV that the Western-most 500km square
-     * of GB (square S) is located.
+     * of GB (square SV) is located.
      * 1000km
      */
 
-    const ABS_ORIGIN_EAST = 1000000;
+    const ABS_FALSE_ORIGIN_EAST = 1000000;
 
     /**
      * The number of metres North of square VV that the Southern-most 500km square
-     * of GB (square S) is located.
+     * of GB (square SV) is located.
      * 500km
      */
 
-    const ABS_ORIGIN_NORTH = 500000;
+    const ABS_FALSE_ORIGIN_NORTH = 500000;
 
     /**
      * The letters used to name squares, in a 5x5 grid.
@@ -125,70 +125,70 @@ class Square
 
     protected $valid_squares = array(
         'H' => array(
-            'HP',
-            'HT',
-            'HU',
-            'HW',
-            'HX',
-            'HY',
-            'HZ',
+            'P' => 'HP',
+            'T' => 'HY',
+            'U' => 'HU',
+            'W' => 'HW',
+            'X' => 'HX',
+            'Y' => 'HY',
+            'Z' => 'HZ',
         ),
         'N' => array(
-            'NA',
-            'NB',
-            'NC',
-            'ND',
-            'NF',
-            'NG',
-            'NH',
-            'NJ',
-            'NK',
-            'NL',
-            'NM',
-            'NM',
-            'NO',
-            'NR',
-            'NS',
-            'NT',
-            'NU',
-            'NW',
-            'NX',
-            'NY',
-            'NZ',
+            'A' => 'NA',
+            'B' => 'NB',
+            'C' => 'NC',
+            'D' => 'ND',
+            'F' => 'NF',
+            'G' => 'NG',
+            'H' => 'NH',
+            'J' => 'NJ',
+            'K' => 'NK',
+            'L' => 'NL',
+            'M' => 'NM',
+            'N' => 'NN',
+            'O' => 'NO',
+            'R' => 'NR',
+            'S' => 'NS',
+            'T' => 'NT',
+            'U' => 'NU',
+            'W' => 'NW',
+            'X' => 'NX',
+            'Y' => 'NY',
+            'Z' => 'NZ',
         ),
         'O' => array(
-            'OV',
+            'V' => 'OV',
         ),
         'S' => array(
-            'SC',
-            'SD',
-            'SE',
-            'SH',
-            'SJ',
-            'SK',
-            'SM',
-            'SN',
-            'SO',
-            'SP',
-            'SR',
-            'SS',
-            'ST',
-            'SU',
-            'SV',
-            'SW',
-            'SX',
-            'SY',
-            'SZ',
+            'C' => 'SC',
+            'D' => 'SD',
+            'E' => 'SE',
+            'H' => 'SH',
+            'J' => 'SJ',
+            'K' => 'SK',
+            'M' => 'SM',
+            'N' => 'SN',
+            'O' => 'SO',
+            'P' => 'SP',
+            'R' => 'SR',
+            'S' => 'SS',
+            'T' => 'ST',
+            'U' => 'SU',
+            'V' => 'SV',
+            'W' => 'SW',
+            'X' => 'SX',
+            'Y' => 'SY',
+            'Z' => 'SZ',
         ),
         'T' => array(
-            'TA',
-            'TF',
-            'TG',
-            'TL',
-            'TM',
-            'TQ',
-            'TR',
-            'TV',
+            'A' => 'TA',
+            'F' => 'TF',
+            'G' => 'TG',
+            'L' => 'TL',
+            'M' => 'TM',
+            'Q' => 'TQ',
+            'R' => 'TR',
+            'V' => 'TV',
         ),
     );
 
@@ -442,12 +442,12 @@ class Square
 
     public static function absEastToDigits($abs_east, $number_of_letters, $number_of_digits)
     {
-        return static::absToDigits($abs_east, $number_of_letters, $number_of_digits, static::ABS_ORIGIN_EAST);
+        return static::absToDigits($abs_east, $number_of_letters, $number_of_digits, static::ABS_FALSE_ORIGIN_EAST);
     }
 
     public static function absNorthToDigits($abs_north, $number_of_letters, $number_of_digits)
     {
-        return static::absToDigits($abs_north, $number_of_letters, $number_of_digits, static::ABS_ORIGIN_NORTH);
+        return static::absToDigits($abs_north, $number_of_letters, $number_of_digits, static::ABS_FALSE_ORIGIN_NORTH);
     }
 
     /**
@@ -547,6 +547,9 @@ class Square
 
         // Set the default number of letters to be used for output formatting.
         $this->setNumberOfLetters(strlen($letters));
+
+        // Set the number of digits to the length of the Easting or Northing.
+        $this->setNumberOfDigits(max(strlen($easting), strlen($northing)));
 
         $this->abs_easting = static::toAbsEast($letters, $easting);
         $this->abs_northing = static::toAbsNorth($letters, $northing);
@@ -782,7 +785,7 @@ class Square
             return false;
         }
 
-        if ( ! $km500_square_only && ! in_array($letters, $this->valid_squares[$letters_parts[0]])) {
+        if ( ! $km500_square_only && ! isset($this->valid_squares[$letters_parts[0]][$letters_parts[1]])) {
             // The second letter is out of bounds.
             return false;
         }
@@ -824,13 +827,30 @@ class Square
     /**
      * Get the easting and northing for conversion.
      * This is the numeric-only 7-digit version with the GB origin at square S.
+     * CHECKME: we know what size square was passed into this object, so here should
+     * we be returning the easting/northing of the centre of the square rather than
+     * the SW corner? Need to find a definitive defintion of an OSGB *point* given an
+     * OSGB reference that covers a square greater than 1m.
+     *
+     * I will default $centre_of_square to true for now, and this will return the
+     * centre of the square.
      */
 
-    public function getEastNorth()
+    public function getEastNorth($centre_of_square = true)
     {
+        // Do we want to return the centre of the square?
+        $offset = 0;
+        if ($centre_of_square) {
+            $square_size = $this->getSize();
+
+            if ($square_size > 1) {
+                $offset = $square_size / 2;
+            }
+        }
+
         return array(
-            (int) $this->getEasting(0, static::MAX_DIGITS),
-            (int) $this->getNorthing(0, static::MAX_DIGITS),
+            (int) $this->getEasting(0, static::MAX_DIGITS) + $offset,
+            (int) $this->getNorthing(0, static::MAX_DIGITS) + $offset,
         );
     }
 }
