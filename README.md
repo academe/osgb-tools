@@ -138,7 +138,10 @@ Useful Links
   JavaScript datum conversions (WGS84, GRS80, Airy1830, AiryModified, Intl1924, Bessel1841)
 
 * http://www.movable-type.co.uk/scripts/latlong-gridref.html  
-  JavaScript conversions (Lat/Long and OS Grid Reference)
+  JavaScript conversions (Lat/Long and OS Grid Reference). Good background explanations. Interesting that it
+  provides the centres of OSGB squares when parsing grid references and not the SW corner. This will give
+  very different results when using squares other then 1m (two letters and five digits) then my assumption.
+  Some investigation is needed to see how everyone else handles this.
 
 * http://www.jstott.me.uk/phpcoord/  
   Airy1830 (OSGB) <-> WGS84 conversions
