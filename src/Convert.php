@@ -8,6 +8,9 @@ class Convert
     // by bramp
     // Originally published at:
     // http://bramp.net/blog/2008/06/04/os-easting-northing-to-lat-long/
+    //
+    // I think this is the code we want to use, ported from JS:
+    // http://www.movable-type.co.uk/scripts/latlong-gridref.html
 
     /*
      * Compute meridional arc.

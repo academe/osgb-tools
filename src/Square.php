@@ -796,7 +796,7 @@ class Square
 
     /**
      * Return a formatted string.
-     * TOOD: exception if trying to format with no letters outside of the GB origin.
+     * TODO: exception if trying to format with no letters outside of the GB false origin.
      */
 
     public function format($format = null, $number_of_letters = null, $number_of_digits = null)
