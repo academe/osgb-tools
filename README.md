@@ -31,6 +31,9 @@ The letters and the digits are both optional:
     N (to 500km)
     0,0 (square 'S' to 1000km)
     0000000,0000000 (square 'S' to 1m)
+    
+Note: we may need to revisit the numeric-only coordinates. They should actually be the number of metres
+from sqaure NV, always. Leading zeros are not significant in this case.
 
 Note that a single letter identifies a 500km square, so "N 712 834" will extend beyond that square and
 come out as "J 212 334" (shifted North and East by one 500km box). This is done in preference to
