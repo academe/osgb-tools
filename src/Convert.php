@@ -10,7 +10,7 @@ class Convert
     const TRUE_ORIGIN_LATITUDE = 49;
     const TRUE_ORIGIN_LONGITUDE = -2;
 
-    // northing & easting of true origin, metres
+    // Northing and Easting of true origin, metres.
 
     const TRUE_ORIGIN_EASTING = 400000;
     const TRUE_ORIGIN_NORTHING = -100000;
@@ -177,14 +177,15 @@ class Convert
 
     /**
      * Convert (OSGB36) latitude/longitude to Ordnance Survey grid reference easting/northing coordinate
+     * The OSGB Lat/Long uses the Airy 1830 ellipsoid using the OSGB36 datum.
+     * This not WGS84, as used by GPS globally.
      *
-     * @param {LatLon} point: OSGB36 latitude/longitude
-     * @return {OsGridRef} OS Grid Reference easting/northing
+     * @param float latitude OSGB36 latitude
+     * @param float longitude OSGB36 longitude
+     * @return array OS Grid Reference easting/northing, pair of integers
      *
-     * Note: it is unclear what this does. OSGB36 is not a lat/long grid reference, so I'm not sure what it
-     * is claiming to convert. It does seem to correctly reverse the result of osGridToLatLong().
-     * Maybe the "OSGB36 lat/long" actually is refering to the ellipsoide being Airy rather than a more
-     * modern ellipsoid?
+     * @todo return an OS Grid Square object, flagged with the OSGB datum to keep track
+     * of what datum the data uses..
      */
 
     public function latLongToOsGrid($latitude, $longitude)
@@ -277,6 +278,8 @@ class Convert
      *
      * @param {OsGridRef} easting/northing to be converted to latitude/longitude
      * @return {LatLon} latitude/longitude (in OSGB36) of supplied grid reference
+     *
+     * @todo The return data needs to make it clear that the lat/long is in the OSGB datum.
      */
 
     public function osGridToLatLong($easting, $northing)
