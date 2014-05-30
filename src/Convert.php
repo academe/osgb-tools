@@ -132,54 +132,85 @@ class Convert
      *
      * @param {LatLon} point: OSGB36 latitude/longitude
      * @return {OsGridRef} OS Grid Reference easting/northing
+     *
+     * Note: it is unclear what this does. OSGB36 is not a lat/long grid reference, so I'm not sure what it
+     * is claiming to convert. It does seem to correctly reverse the result of osGridToLatLong().
+     * Maybe the "OSGB36 lat/long" actually is refering to the ellipsoide being Airy rather than a more
+     * modern ellipsoid?
      */
 
-    public function latLongToOsGrid ($lat, $lon)
+    public function latLongToOsGrid($lat, $lon)
     {
-        /*
-        if (point.datum != CoordTransform.datum.OSGB36) throw new Error('Can only convert OSGB36 point to OsGrid');
-        var phi = point.lat.toRad();
-        var lambda = point.lon.toRad();
+        $phi = deg2rad($lat);
+        $lambda = deg2rad($lon);
 
-        var a = 6377563.396, b = 6356256.909;      // Airy 1830 major & minor semi-axes
-        var F0 = 0.9996012717;                     // NatGrid scale factor on central meridian
-        var phi0 = (49).toRad(), lambda0 = (-2).toRad();  // NatGrid true origin is 49°N,2°W
-        var N0 = -100000, E0 = 400000;             // northing & easting of true origin, metres
-        var e2 = 1 - (b*b)/(a*a);                  // eccentricity squared
-        var n = (a-b)/(a+b), n2 = n*n, n3 = n*n*n; // n, n², n³
+        // Airy 1830 major & minor semi-axes
+        $a = 6377563.396;
+        $b = 6356256.909;
 
-        var cosphi = Math.cos(phi), sinphi = Math.sin(phi);
-        var nu = a*F0/Math.sqrt(1-e2*sinphi*sinphi);            // nu = transverse radius of curvature
-        var rho = a*F0*(1-e2)/Math.pow(1-e2*sinphi*sinphi, 1.5); // rho = meridional radius of curvature
-        var eta2 = nu/rho-1;                                    // eta = ?
+        // NatGrid scale factor on central meridian
+        $F0 = 0.9996012717;
 
-        var Ma = (1 + n + (5/4)*n2 + (5/4)*n3) * (phi-phi0);
-        var Mb = (3*n + 3*n*n + (21/8)*n3) * Math.sin(phi-phi0) * Math.cos(phi+phi0);
-        var Mc = ((15/8)*n2 + (15/8)*n3) * Math.sin(2*(phi-phi0)) * Math.cos(2*(phi+phi0));
-        var Md = (35/24)*n3 * Math.sin(3*(phi-phi0)) * Math.cos(3*(phi+phi0));
-        var M = b * F0 * (Ma - Mb + Mc - Md);              // meridional arc
+        // NatGrid true origin is 49°N,2°W
+        $phi0 = deg2rad(49);
+        $lambda0 = deg2rad(-2);
 
-        var cos3phi = cosphi*cosphi*cosphi;
-        var cos5phi = cos3phi*cosphi*cosphi;
-        var tan2phi = Math.tan(phi)*Math.tan(phi);
-        var tan4phi = tan2phi*tan2phi;
+        // northing & easting of true origin, metres
+        $N0 = -100000;
+        $E0 = 400000;
 
-        var I = M + N0;
-        var II = (nu/2)*sinphi*cosphi;
-        var III = (nu/24)*sinphi*cos3phi*(5-tan2phi+9*eta2);
-        var IIIA = (nu/720)*sinphi*cos5phi*(61-58*tan2phi+tan4phi);
-        var IV = nu*cosphi;
-        var V = (nu/6)*cos3phi*(nu/rho-tan2phi);
-        var VI = (nu/120) * cos5phi * (5 - 18*tan2phi + tan4phi + 14*eta2 - 58*tan2phi*eta2);
+        // eccentricity squared
+        $e2 = 1 - ($b*$b)/($a*$a);
 
-        var Δlambda = lambda-lambda0;
-        var Δlambda2 = Δlambda*Δlambda, Δlambda3 = Δlambda2*Δlambda, Δlambda4 = Δlambda3*Δlambda, Δlambda5 = Δlambda4*Δlambda, Δlambda6 = Δlambda5*Δlambda;
+        // n, n², n³
+        $n = ($a-$b)/($a+$b);
+        $n2 = $n*$n;
+        $n3 = $n*$n*$n;
 
-        var N = I + II*Δlambda2 + III*Δlambda4 + IIIA*Δlambda6;
-        var E = E0 + IV*Δlambda + V*Δlambda3 + VI*Δlambda5;
+        $cosphi = cos($phi);
+        $sinphi = sin($phi);
 
-        return new OsGridRef(E, N);
-        */
+        // nu = transverse radius of curvature
+        $nu = $a*$F0/sqrt(1-$e2*$sinphi*$sinphi);
+
+        // rho = meridional radius of curvature
+        $rho = $a*$F0*(1-$e2)/pow(1-$e2*$sinphi*$sinphi, 1.5);
+
+        // eta = ?
+        $eta2 = $nu/$rho-1;
+
+        $Ma = (1 + $n + (5/4)*$n2 + (5/4)*$n3) * ($phi-$phi0);
+        $Mb = (3*$n + 3*$n*$n + (21/8)*$n3) * sin($phi-$phi0) * cos($phi+$phi0);
+        $Mc = ((15/8)*$n2 + (15/8)*$n3) * sin(2*($phi-$phi0)) * cos(2*($phi+$phi0));
+        $Md = (35/24)*$n3 * sin(3*($phi-$phi0)) * cos(3*($phi+$phi0));
+
+        // meridional arc
+        $M = $b * $F0 * ($Ma - $Mb + $Mc - $Md);
+
+        $cos3phi = $cosphi*$cosphi*$cosphi;
+        $cos5phi = $cos3phi*$cosphi*$cosphi;
+        $tan2phi = tan($phi)*tan($phi);
+        $tan4phi = $tan2phi*$tan2phi;
+
+        $I = $M + $N0;
+        $II = ($nu/2)*$sinphi*$cosphi;
+        $III = ($nu/24)*$sinphi*$cos3phi*(5-$tan2phi+9*$eta2);
+        $IIIA = ($nu/720)*$sinphi*$cos5phi*(61-58*$tan2phi+$tan4phi);
+        $IV = $nu*$cosphi;
+        $V = ($nu/6)*$cos3phi*($nu/$rho-$tan2phi);
+        $VI = ($nu/120) * $cos5phi * (5 - 18*$tan2phi + $tan4phi + 14*$eta2 - 58*$tan2phi*$eta2);
+
+        $delta_lambda = $lambda-$lambda0;
+        $delta_lambda2 = $delta_lambda*$delta_lambda;
+        $delta_lambda3 = $delta_lambda2*$delta_lambda;
+        $delta_lambda4 = $delta_lambda3*$delta_lambda;
+        $delta_lambda5 = $delta_lambda4*$delta_lambda;
+        $delta_lambda6 = $delta_lambda5*$delta_lambda;
+
+        $N = $I + $II*$delta_lambda2 + $III*$delta_lambda4 + $IIIA*$delta_lambda6;
+        $E = $E0 + $IV*$delta_lambda + $V*$delta_lambda3 + $VI*$delta_lambda5;
+
+        return array(round($E), round($N));
     }
 
 
@@ -190,7 +221,7 @@ class Convert
      * @return {LatLon} latitude/longitude (in OSGB36) of supplied grid reference
      */
 
-    public function osGridToLatLong ($easting, $northing)
+    public function osGridToLatLong($easting, $northing)
     {
         $E = $easting;
         $N = $northing;
