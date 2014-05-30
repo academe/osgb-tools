@@ -201,6 +201,7 @@ class Convert
         $VI     = ($nu/120) * $cos5phi * (5 - 18 * $tan2phi + $tan4phi + 14 * $eta2 - 58 * $tan2phi * $eta2);
 
         // TODO: replace these with pow(), since PHP does have a power function, unlike for this JavaScript workaround.
+
         $delta_lambda   = $lambda - $lambda0;
         $delta_lambda2  = $delta_lambda  * $delta_lambda;
         $delta_lambda3  = $delta_lambda2 * $delta_lambda;
@@ -234,9 +235,10 @@ class Convert
         // NatGrid scale factor on central meridian
         $F0 = 0.9996012717;
 
-        // NatGrid true origin
-        $phi0 = 49*pi()/180;
-        $lambda0 = -2*pi()/180;
+        // NatGrid true origin.
+        // CHECKME: is this not just deg2rad()?
+        $phi0 = 49 * pi() / 180;
+        $lambda0 = -2 * pi() / 180;
 
         // northing & easting of true origin, metres
         $N0 = -100000;
