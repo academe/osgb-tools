@@ -192,23 +192,24 @@ class Convert
         $tan2phi = tan($phi)*tan($phi);
         $tan4phi = $tan2phi*$tan2phi;
 
-        $I = $M + $N0;
-        $II = ($nu/2)*$sinphi*$cosphi;
-        $III = ($nu/24)*$sinphi*$cos3phi*(5-$tan2phi+9*$eta2);
-        $IIIA = ($nu/720)*$sinphi*$cos5phi*(61-58*$tan2phi+$tan4phi);
-        $IV = $nu*$cosphi;
-        $V = ($nu/6)*$cos3phi*($nu/$rho-$tan2phi);
-        $VI = ($nu/120) * $cos5phi * (5 - 18*$tan2phi + $tan4phi + 14*$eta2 - 58*$tan2phi*$eta2);
+        $I      = $M + $N0;
+        $II     = ($nu/2)   * $sinphi * $cosphi;
+        $III    = ($nu/24)  * $sinphi * $cos3phi * (5 - $tan2phi + 9 * $eta2);
+        $IIIA   = ($nu/720) * $sinphi * $cos5phi * (61 - 58 * $tan2phi + $tan4phi);
+        $IV     = $nu       * $cosphi;
+        $V      = ($nu/6)   * $cos3phi * ($nu / $rho - $tan2phi);
+        $VI     = ($nu/120) * $cos5phi * (5 - 18 * $tan2phi + $tan4phi + 14 * $eta2 - 58 * $tan2phi * $eta2);
 
-        $delta_lambda = $lambda-$lambda0;
-        $delta_lambda2 = $delta_lambda*$delta_lambda;
-        $delta_lambda3 = $delta_lambda2*$delta_lambda;
-        $delta_lambda4 = $delta_lambda3*$delta_lambda;
-        $delta_lambda5 = $delta_lambda4*$delta_lambda;
-        $delta_lambda6 = $delta_lambda5*$delta_lambda;
+        // TODO: replace these with pow(), since PHP does have a power function, unlike for this JavaScript workaround.
+        $delta_lambda   = $lambda - $lambda0;
+        $delta_lambda2  = $delta_lambda  * $delta_lambda;
+        $delta_lambda3  = $delta_lambda2 * $delta_lambda;
+        $delta_lambda4  = $delta_lambda3 * $delta_lambda;
+        $delta_lambda5  = $delta_lambda4 * $delta_lambda;
+        $delta_lambda6  = $delta_lambda5 * $delta_lambda;
 
-        $N = $I + $II*$delta_lambda2 + $III*$delta_lambda4 + $IIIA*$delta_lambda6;
-        $E = $E0 + $IV*$delta_lambda + $V*$delta_lambda3 + $VI*$delta_lambda5;
+        $N = $I + $II * $delta_lambda2 + $III * $delta_lambda4 + $IIIA * $delta_lambda6;
+        $E = $E0 + $IV * $delta_lambda + $V * $delta_lambda3 + $VI * $delta_lambda5;
 
         return array(round($E), round($N));
     }
