@@ -107,13 +107,20 @@ class Square
 
     /**
      * The format placeholders.
+     * The *_REF formatting fields are formatted as OS references, with all required
+     * leading zeros to the accuracy set by the number of letters and digits.
+     * The non-REF easting and northing is the numeric-only value, in metres from the
+     * false origin. 
      */
 
-    const FORMAT_LETTERS = '%l';
-    const FORMAT_EASTING = '%e';
-    const FORMAT_NORTHING = '%n';
+    const FORMAT_LETTERS_REF = '%l';
+    const FORMAT_EASTING_REF = '%e';
+    const FORMAT_NORTHING_REF = '%n';
 
-    const FORMAT_DEFAULT = '%l %e%n';
+    const FORMAT_EASTING = '%x';
+    const FORMAT_NORTHING = '%y';
+
+    const FORMAT_DEFAULT = '%l %e %n';
 
     /**
      * Valid squares, both 500km and 100km, used by the OS.
@@ -218,8 +225,9 @@ class Square
 
     public static function lettersToAbsEast($letters)
     {
-        // If there are no letters, then default to square 'S'.
+        // If there are no letters, then default to the false origin square 'S'.
         // Without letters, this is assumed to be the origin.
+
         if (empty($letters)) {
             $letters = 'S';
         }
@@ -227,7 +235,7 @@ class Square
         // Split the string into an array of single letters.
         $split = str_split($letters);
 
-        // The first letter will aways be the 500km square.
+        // The first letter will aways be the 500km square (for OSGB).
         $east = static::KM500 * static::letterEastPosition($split[0]);
 
         // The optional second letter will identify the 100km square.
@@ -245,7 +253,7 @@ class Square
 
     public static function lettersToAbsNorth($letters)
     {
-        // If there are no letters, then default to square 'S'.
+        // If there are no letters, then default to the false origin square 'S'.
         // Without letters, this is assumed to be the origin.
         if (empty($letters)) {
             $letters = 'S';
@@ -254,7 +262,7 @@ class Square
         // Split the string into an array of single letters.
         $split = str_split($letters);
 
-        // The first letter will aways be the 500km square.
+        // The first letter will aways be the 500km square (for OSGB).
         $north = static::KM500 * static::letterNorthPosition($split[0]);
 
         // The optional second letter will identify the 100km square.
@@ -278,37 +286,29 @@ class Square
      * The default is a 10km box, with up to 5 digits identifying a 1m location, with the
      * most sigificant digit (which may be a zero) identifying a 10km box.
      *
-     * Alternatively, pass in the number of letters available in place of the box
-     * size (0, 1 or 2).
-     *
      * CHECKME: does truncating to the right make sense when the string is too long?
      */
 
     public static function digitsToDistance($digits, $number_of_letters)
     {
-        if ($number_of_letters > static::MAX_LETTERS) {
-            $number_of_letters = static::MAX_LETTERS;
+        if ($number_of_letters < 0 || $number_of_letters > static::MAX_LETTERS) {
+            // Invalid number of letters.
+            throw new \UnexpectedValueException(
+                sprintf('Number of letters out of range; expected value 0 to %d; %d passed in', static::MAX_LETTERS, $number_of_letters)
+            );
         }
 
-        switch ($number_of_letters) {
-            case 0:
-                $pad_size = static::MAX_DIGITS;
-                break;
+        // If the number of letters is zero, then the value provided is already
+        // in metres from the false origin, so don't right-pad it with zeroes.
 
-            case 1:
-                $pad_size = static::MAX_DIGITS - 1;
-                break;
+        if ($number_of_letters == 0) {
+            return (int)$digits;
+        }
 
-            case 2:
-                $pad_size = static::MAX_DIGITS - min(2, static::MAX_LETTERS);
-                break;
-
-            default:
-                // Invalid number of letters.
-                throw new \UnexpectedValueException(
-                    sprintf('Number of letters out of range; expected value 0 to %d; %d passed in', static::MAX_LETTERS, $number_of_letters)
-                );
-                break;
+        if ($number_of_letters == 1) {
+            $pad_size = static::MAX_DIGITS - 1;
+        } elseif ($number_of_letters == 2) {
+            $pad_size = static::MAX_DIGITS - min(2, static::MAX_LETTERS);
         }
 
         // Pad the string out, or truncate if it started too long.
@@ -413,7 +413,7 @@ class Square
 
         switch ($number_of_letters) {
             case 0:
-                // No letters, so an actual number of metres East square S.
+                // No letters, so an actual number of metres East or North of square S.
                 $offset = $abs_distance - $origin;
                 break;
 
@@ -534,22 +534,31 @@ class Square
      * and consequently the square size it represents, is lost. What is
      * retained is the position to one metre.
      *
-     * TODO: more validation
+     * TODO: more validation. easting/northing must be strings, as leading zeros are significant.
      */
 
     public function setParts($letters, $easting, $northing)
     {
-        if (strlen($letters) < 0 || strlen($letters) > static::MAX_LETTERS) {
+        $number_of_letters = strlen($letters);
+
+        if ($number_of_letters > static::MAX_LETTERS) {
             throw new \UnexpectedValueException(
-                sprintf('Number of letters out of range; expected number of letters 0 to %d; %d passed in', static::MAX_LETTERS, strlen($letters))
+                sprintf('Number of letters out of range; expected number of letters 0 to %d; %d passed in', static::MAX_LETTERS, $number_of_letters)
             );
         }
 
         // Set the default number of letters to be used for output formatting.
-        $this->setNumberOfLetters(strlen($letters));
+        $this->setNumberOfLetters($number_of_letters);
 
         // Set the number of digits to the length of the Easting or Northing.
-        $this->setNumberOfDigits(max(strlen($easting), strlen($northing)));
+        // Only do this if there are letters. Without letters, the accuracy is
+        // 1m from square SV (so set the digits to 7).
+
+        if ($number_of_letters == 0) {
+            $this->setNumberOfDigits(static::MAX_DIGITS);
+        } else {
+            $this->setNumberOfDigits(max(strlen($easting), strlen($northing)));
+        }
 
         $this->abs_easting = static::toAbsEast($letters, $easting);
         $this->abs_northing = static::toAbsNorth($letters, $northing);
@@ -588,7 +597,7 @@ class Square
         }
 
         // Seven digit references (without letters) must only be used in the valid 500km square range,
-        // since its origin is square L.
+        // since its origin is square L. Raise an exception if it is out of range.
 
         if ($number_of_letters == 0 && ! $this->isInBound(true)) {
             throw new \UnexpectedValueException(
@@ -674,19 +683,22 @@ class Square
     }
 
     /**
-     * Set the value of the square from a single string.
+     * Set the value of the square from a single National Grid Reference string.
      * Multiple formats are supported, but all take the order:
      *  [letters] [easting northing]
      * - All whitespace and separating characters are disregarded.
      * - Letters and easting/norhting are optional.
-     * - Easting and northing must use the same number of digits.
+     * - Easting and northing must use the same number of digits when letters are involved.
      * - Letters are case-insenstive.
      * - Exceptions will be raised for invalid formats (e.g. invalid
      *   characters, letters in the wrong place, too many letters or
      *   digits, unbalanced easting/northing digit length).
+     *
+     * @todo If number of letters is zero, then see if the numbers are separated (e.g. by a comma) as
+     * they may be different lengths.
      */
 
-    public function set($ngr)
+    public function setNgr($ngr)
     {
         // ngr must be a string.
         if ( ! is_string($ngr)) {
@@ -698,52 +710,61 @@ class Square
         // Get letters upper-case.
         $ngr = strtoupper($ngr);
 
-        // Remove any non-alphanumeric characters.
-        $ngr = preg_replace('/[^A-Z0-9]/', '', $ngr);
-
-        // Letters should be at the start only.
         $letters = '';
-        $ngr_array = str_split($ngr);
-        while(count($ngr_array) && strpos(static::LETTERS, $ngr_array[0]) !== false) {
-            $letters .= array_shift($ngr_array);
+
+        // Match a numeric-only pair of separated numbers.
+        if (preg_match('/^[^A-Z0-9]*([0-9]+)[^0-9]+([0-9]+)/', $ngr, $matches)) {
+            $easting = (int)$matches[1];
+            $northing = (int)$matches[2];
+            $digit_length = static::MAX_DIGITS;
+        } else {
+            // Remove any non-alphanumeric characters.
+            $ngr = preg_replace('/[^A-Z0-9]/', '', $ngr);
+
+            // Letters should be at the start only.
+            $ngr_array = str_split($ngr);
+            while(count($ngr_array) && strpos(static::LETTERS, $ngr_array[0]) !== false) {
+                $letters .= array_shift($ngr_array);
+            }
+            $digits = implode($ngr_array);
+
+            // Exception if the number of letters is greater than allowed.
+            if (strlen($letters) > static::MAX_LETTERS) {
+                throw new \UnexpectedValueException(
+                    sprintf('An NGR of type %s cannot have more then %d letters; %d passed in', static::NGR_TYPE, static::MAX_LETTERS, strlen($letters))
+                );
+            }
+
+            // Exception if the digits string contains non-digits.
+            if ( ! preg_match('/^[0-9]*$/', $digits)) {
+                throw new \UnexpectedValueException(
+                    sprintf('Invalid (no-numeric) characters found in Easting or Northing digits')
+                );
+            }
+
+            // Exception if the digits are not balanced, i.e. different length for Eastings and Northings.
+            if (strlen($digits) % 2 != 0) {
+                throw new \UnexpectedValueException(
+                    sprintf('Eastings and Northings must contain the same number of digits; a combined total of %d digits found', strlen($digits))
+                );
+            }
+
+            // The number of digits on both the Easting and the Northing.
+            $digit_length = strlen($digits) / 2;
+
+            // Exception if too many digits.
+            if (strlen($letters) + $digit_length > static::MAX_DIGITS) {
+                throw new \UnexpectedValueException(
+                    sprintf('Too many digits; a maximum of %d digits for a Easting or Northing is allowed with %d letters; %d digits supplied', static::MAX_DIGITS - strlen($letters), strlen($letters), $digit_length)
+                );
+            }
+
+            // Split the digits into eastings and northings.
+            $easting = substr($digits, 0, $digit_length);
+            $northing = substr($digits, $digit_length);
         }
-        $digits = implode($ngr_array);
 
-        // Exception if the number of letters is greater than allowed.
-        if (strlen($letters) > static::MAX_LETTERS) {
-            throw new \UnexpectedValueException(
-                sprintf('An NGR of type %s cannot have more then %d letters; %d passed in', static::NGR_TYPE, static::MAX_LETTERS, strlen($letters))
-            );
-        }
-
-        // Exception if the digits string contains non-digits.
-        if ( ! preg_match('/^[0-9]*$/', $digits)) {
-            throw new \UnexpectedValueException(
-                sprintf('Invalid (no-numeric) characters found in Easting or Northing digits')
-            );
-        }
-
-        // Exception if the digits are not balanced, i.e. different length for Eastings and Northings.
-        if (strlen($digits) % 2 != 0) {
-            throw new \UnexpectedValueException(
-                sprintf('Eastings and Northings must contain the same number of digits; a combined total of %d digits found', strlen($digits))
-            );
-        }
-
-        $digit_length = strlen($digits) / 2;
-
-        // Exception if too many digits.
-        if (strlen($letters) + $digit_length > static::MAX_DIGITS) {
-            throw new \UnexpectedValueException(
-                sprintf('Too many digits; a maximum of %d digits for a Easting or Northing is allowed with %d letters; %d digits supplied', static::MAX_DIGITS - strlen($letters), strlen($letters), $digit_length)
-            );
-        }
-
-        // Split the digits into eastings and northings.
-        $eastings = substr($digits, 0, $digit_length);
-        $northings = substr($digits, $digit_length);
-
-        $this->setParts($letters, $eastings, $northings);
+        $this->setParts($letters, $easting, $northing);
 
         $this->setNumberOfDigits($digit_length);
 
@@ -751,13 +772,15 @@ class Square
     }
 
     /**
-     * Pass an optional NGR string in at instantiation.
+     * Pass in an optional NGR string or Northing/Easting array at instantiation.
      */
 
-    public function __construct($ngr = '')
+    public function __construct($ngr = null)
     {
-        if ($ngr != '') {
-            $this->set($ngr);
+        if (is_string($ngr)) {
+            $this->setNgr($ngr);
+        } elseif (is_array($ngr)) {
+            $this->setEastingNorthing($ngr);
         }
     }
 
@@ -806,9 +829,11 @@ class Square
         }
 
         $formatted = strtr($format, array(
-            static::FORMAT_LETTERS => $this->getLetters($number_of_letters),
-            static::FORMAT_EASTING => $this->getEasting($number_of_letters, $number_of_digits),
-            static::FORMAT_NORTHING => $this->getNorthing($number_of_letters, $number_of_digits),
+            static::FORMAT_LETTERS_REF => $this->getLetters($number_of_letters),
+            static::FORMAT_EASTING_REF => $this->getEasting($number_of_letters, $number_of_digits),
+            static::FORMAT_NORTHING_REF => $this->getNorthing($number_of_letters, $number_of_digits),
+            static::FORMAT_EASTING => (int)$this->getEasting(0, static::MAX_DIGITS),
+            static::FORMAT_NORTHING => (int)$this->getNorthing(0, static::MAX_DIGITS),
         ));
 
         // Trim the result, as the numbers or digits are both optional.
@@ -825,23 +850,38 @@ class Square
     }
 
     /**
+     * Set the Easting and Northing in one go, as an numeric array.
+     * Numeric coordinates are in metres, from square SV.
+     */
+
+    public function setEastingNorthing($easting_northing)
+    {
+        list($easting, $northing) = $easting_northing;
+
+        $this->setParts('', $easting, $northing);
+    }
+
+    /**
      * Get the easting and northing for conversion.
      * This is the numeric-only 7-digit version with the GB origin at square S.
-     * CHECKME: we know what size square was passed into this object, so here should
-     * we be returning the easting/northing of the centre of the square rather than
-     * the SW corner? Need to find a definitive defintion of an OSGB *point* given an
-     * OSGB reference that covers a square greater than 1m.
      *
-     * I will default $centre_of_square to true for now, and this will return the
+     * This will default $centre_of_square to true for now, and this will return the
      * centre of the square.
      */
 
-    public function getEastNorth($centre_of_square = true)
+    public function getEastingNorthing($centre_of_square = true)
     {
-        // Do we want to return the centre of the square?
+        // Start with the assumption that the point is the SW corner of the square.
+
         $offset = 0;
+
+        // Do we want to return the centre of the square?
+
         if ($centre_of_square) {
             $square_size = $this->getSize();
+
+            // If the square size is 1m, then we can't divide it any further.
+            // Otherwise, chop it in half to reach the centre.
 
             if ($square_size > 1) {
                 $offset = $square_size / 2;

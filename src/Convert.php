@@ -29,140 +29,14 @@ class Convert
 
     const CONV_ACCURACY = 0.00001;
 
-    // Converts OS Easting/Northing to Lat/Long
-    // by bramp
-    // Originally published at:
-    // http://bramp.net/blog/2008/06/04/os-easting-northing-to-lat-long/
-    //
-    // I think this is the code we want to use, ported from JS:
-    // http://www.movable-type.co.uk/scripts/latlong-gridref.html
-
-    /*
-     * Compute meridional arc.
-     * Input: - 
-     *  ellipsoid semi major axis multiplied by central meridian scale factor (bf0) in metres; 
-     *  n (computed from a, b and f0); 
-     *  lat of false origin (PHI0) 
-     *  initial or final latitude of point (PHI) IN RADIANS.
-     *
-     * This method is now deprecated.
-     */
-
-    public function marc($bf0, $n, $PHI0, $PHI) {
-        $n2 = pow($n, 2);
-        $n3 = pow($n, 3);
-
-        $ans  = ((1 + $n + ((5 / 4) * ($n2)) + ((5 / 4) * $n3)) * ($PHI - $PHI0));
-        $ans -= (((3 * $n) + (3 * $n2) + ((21 / 8 ) * $n3)) * (sin($PHI - $PHI0)) * (cos($PHI + $PHI0)));
-        $ans += ((((15 / 8 ) * $n2) + ((15 / 8 ) * $n3)) * (sin(2 * ($PHI - $PHI0))) * (cos(2 * ($PHI + $PHI0))));
-        $ans -= (((35 / 24) * $n3) * (sin(3 * ($PHI - $PHI0))) * (cos(3 * ($PHI + $PHI0))));
-
-        return $bf0 * $ans;
-    }
-
-    /*
-     * Compute initial value for Latitude (PHI) IN RADIANS.
-     * Input: - _
-     * northing of point (North) and northing of false origin (n0) in meters; 
-     * semi major axis multiplied by central meridian scale factor (af0) in meters; 
-     * latitude of false origin (PHI0) IN RADIANS;
-     * n (computed from a, b and f0) 
-     * ellipsoid semi major axis multiplied by central meridian scale factor (bf0) in meters.
-     *
-     * This method is now deprecated.
-     */
-
-    public function initialLat($North, $n0, $afo, $PHI0, $n, $bfo) {
-        // First PHI value (PHI1)
-        $PHI1 = (($North - $n0) / $afo) + $PHI0;
-
-        // Calculate M
-        $M = $this->marc($bfo, $n, $PHI0, $PHI1);
-
-        // Calculate new PHI value (PHI2)
-        $PHI2 = (($North - $n0 - $M) / $afo) + $PHI1;
-
-        // Iterate to get final value for InitialLat
-        while ( abs($North - $n0 - $M) > 0.00001 ) {
-            $PHI2 = (($North - $n0 - $M) / $afo) + $PHI1;
-            $M = $this->marc($bfo, $n, $PHI0, $PHI2);
-            $PHI1 = $PHI2;
-        }
-
-        return $PHI2;
-    }
-
-    /**
-     * e.g.
-     * $e = 349000;
-     * $n = 461000;
-     * 
-     * print_r( $convert->E_N_to_Lat_Long($e, $n) );
-     *
-     * This method is now deprecated.
-     */
-
-    public function E_N_to_Lat_Long($East, $North) {
-        $a  = 6377563.396; // Semi-major axis, a
-        $b  = 6356256.910; //Semi-minor axis, b
-        $e0 = 400000.000; //True origin Easting, E0	
-        $n0 = -100000.000; //True origin Northing, N0	
-        $f0 = 0.999601271700; //Central Meridan Scale, F0
-
-        $PHI0 = 49.0; // True origin latitude, j0
-        $LAM0 = -2.0; // True origin longitude, l0
-
-        // Convert angle measures to radians
-        $RadPHI0 = $PHI0 * (M_PI / 180);
-        $RadLAM0 = $LAM0 * (M_PI / 180);
-
-        // Compute af0, bf0, e squared (e2), n and Et
-        $af0 = $a * $f0;
-        $bf0 = $b * $f0;
-        $e2 = ($af0*$af0 - $bf0*$bf0 ) / ($af0*$af0);
-        $n = ($af0 - $bf0) / ($af0 + $bf0);
-        $Et = $East - $e0;
-
-        // Compute initial value for latitude (PHI) in radians
-        $PHId = $this->initialLat($North, $n0, $af0, $RadPHI0, $n, $bf0);
-
-        $sin_phid2 = pow(sin($PHId),  2);
-        $cos_phid  = pow(cos($PHId), -1);
-
-        $tan_phid  = tan($PHId);
-        $tan_phid2 = pow($tan_phid, 2);
-        $tan_phid4 = pow($tan_phid, 4);
-        $tan_phid6 = pow($tan_phid, 6);
-
-        // Compute nu, rho and eta2 using value for PHId
-        $nu = $af0 / (sqrt(1 - ($e2 * $sin_phid2)));
-        $rho = ($nu * (1 - $e2)) / (1 - $e2 * $sin_phid2);
-        $eta2 = ($nu / $rho) - 1;
-
-        // Compute Longitude
-        $X    = $cos_phid / $nu;
-        $XI   = $cos_phid / (   6 * pow($nu, 3)) * (($nu / $rho)         +  2 * $tan_phid2);
-        $XII  = $cos_phid / ( 120 * pow($nu, 5)) * (5  + 28 * $tan_phid2  + 24 * $tan_phid4);
-        $XIIA = $cos_phid / (5040 * pow($nu, 7)) * (61 + 662 * $tan_phid2 + 1320 * $tan_phid4 + 720 * $tan_phid6);
-
-        $VII  = $tan_phid / (  2 * $rho * $nu);
-        $VIII = $tan_phid / ( 24 * $rho * pow($nu, 3)) * ( 5 +  3 * $tan_phid2 + $eta2 - 9 * $eta2 * $tan_phid2 );
-        $IX   = $tan_phid / (720 * $rho * pow($nu, 5)) * (61 + 90 * $tan_phid2 + 45 * $tan_phid4 );
-
-        $long = (180 / M_PI) * ($RadLAM0 + ($Et * $X) - pow($Et,3) * $XI + pow($Et,5) * $XII - pow($Et,7) * $XIIA);
-        $lat  = (180 / M_PI) * ($PHId - (pow($Et,2) * $VII) + (pow($Et, 4) * $VIII) - (pow($Et, 6) * $IX));
-
-        return array($lat, $long);
-    }
-
-    // The following from http://www.movable-type.co.uk/scripts/latlong-gridref.html and
-    // ported from JavaScript.
+    // The following from http://www.movable-type.co.uk/scripts/latlong-gridref.html
+    // and ported from JavaScript.
 
     /**
      * Calculate the meridian arc.
      */
 
-    public function meridianArc($n, $phi0, $phi, $F0, $b)
+    public static function meridianArc($n, $phi0, $phi, $F0, $b)
     {
         $n2 = pow($n, 2);
         $n3 = pow($n, 3);
@@ -176,16 +50,14 @@ class Convert
     }
 
     /**
-     * Convert (OSGB36) latitude/longitude to Ordnance Survey grid reference easting/northing coordinate
-     * The OSGB Lat/Long uses the Airy 1830 ellipsoid using the OSGB36 datum.
+     * Convert (OSGB36/Airy) latitude/longitude to Ordnance Survey grid reference easting/northing coordinate.
+     * The OSGB Lat/Long uses the Airy 1830 ellipsoid using the OSGB36 datum. The lat/long coordinate
+     * must be converted to Airy before converting to an OS grid reference.
      * This not WGS84, as used by GPS globally.
      *
      * @param float latitude OSGB36 latitude
      * @param float longitude OSGB36 longitude
-     * @return array OS Grid Reference easting/northing, pair of integers
-     *
-     * @todo return an OS Grid Square object, flagged with the OSGB datum to keep track
-     * of what datum the data uses..
+     * @return array OS Grid Reference easting/northing, pair of integers, from sqaure NV
      */
 
     public function latLongToOsGrid($latitude, $longitude)
@@ -240,7 +112,7 @@ class Convert
 
         // The meridional arc.
 
-        $M = $this->meridianArc($n, $phi0, $phi, $F0, $b);
+        $M = static::meridianArc($n, $phi0, $phi, $F0, $b);
 
         $cos_phi3 = pow($cos_phi, 3);
         $cos_phi5 = pow($cos_phi, 5);
@@ -269,7 +141,7 @@ class Convert
             + $V * pow($delta_lambda, 3)
             + $VI * pow($delta_lambda, 5);
 
-        return array(round($E), round($N));
+        return array((int)round($E), (int)round($N));
     }
 
 
@@ -321,7 +193,7 @@ class Convert
 
             // The meridional arc.
 
-            $M = $this->meridianArc($n, $phi0, $phi, $F0, $b);
+            $M = static::meridianArc($n, $phi0, $phi, $F0, $b);
 
             // loop until < 0.01mm
         } while ($northing - $N0 - $M >= static::CONV_ACCURACY);
