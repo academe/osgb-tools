@@ -35,6 +35,15 @@ The letters and the digits are both optional:
 Note: we may need to revisit the numeric-only coordinates. They should actually be the number of metres
 from sqaure NV, always. Leading zeros are not significant in this case.
 
+After an overnight rethink, here is my conclusion. Although the treatment of the digits can follow the
+pattern from two letters, through one letter down to no letters, it does introduce some ambiguity.
+When letters are involved, the digits supplied are assumed to start with the most significant digit. This
+allows 1, 10, 100, 1000 etc. to all reference the same point (the SW corner of a square) though with varying
+accuracies (different sizes squares). However, numeric-only easting/northings are stated to be always
+measured in metres and describe the distance from a point at square SV. Thus 1, 10, 100 etc. will be very
+different eastings or northing values in a numeric-only reference. For this reason, the library will be treating
+numeric-only references differently to letter/digit references. Numeric-only is always a point of 1m squared.
+
 Note that a single letter identifies a 500km square, so "N 712 834" will extend beyond that square and
 come out as "J 212 334" (shifted North and East by one 500km box). This is done in preference to
 raising an exception; "N 712 834" would not normally be used ("N 000 000" to "N 499 499" would be normal),
