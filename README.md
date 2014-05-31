@@ -23,7 +23,6 @@ Examples for OSGB (these are all the same location):
     N 30456 11230
     0304560,0612300 (to 1m)
     304560, 612300 (to 1m)
-    401250,1234350 (to 1m - note 7 digit nothing to reach Orkneys)
 
 The letters and the digits are both optional:
 
@@ -32,6 +31,7 @@ The letters and the digits are both optional:
     N (to 500km)
     0,0 (square 'S' to 1m)
     0000000,0000000 (square 'S' to 1m)
+    401250,1234350 (to 1m - note 7 digit northing to reach Orkneys)
     
 Note: The leading zeroes are important when letters are used, as the most significant digit represents the
 same square corner regardless of how many digits follow it. When no letters are used, the number-only
