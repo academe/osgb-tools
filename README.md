@@ -23,6 +23,7 @@ Examples for OSGB (these are all the same location):
     N 30456 11230
     0304560,0612300 (to 1m)
     304560, 612300 (to 1m)
+    401250,1234350 (to 1m - note 7 digit nothing to reach Orkneys)
 
 The letters and the digits are both optional:
 
@@ -69,6 +70,7 @@ Or it can be formatted in one go:
     echo (string)$square; // e.g. 'SE 0123034300'
     echo $square->setNumberOfLetters(1)->format(); // e.g. 'S 401230434300'
     echo $square->format('%l %e %n', 1, 3); // e.g. 'S 401 434' with 1 letter and 3 digits
+    echo $square->format('%x,%y'); // e.g. '401250,1234350' numeric-only easting/northing metres from false origin
 
 By default, the format of the parts will be the same as passed in. This can be overridden:
 
