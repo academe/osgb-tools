@@ -21,16 +21,29 @@ Examples for OSGB (these are all the same location):
     NT04561230
     NT 04560 12300 (to 1m)
     N 30456 11230
-    030456,061230 (to 10m)
-    0304560, 0612300 (to 1m)
+    0304560,0612300 (to 1m)
+    304560, 612300 (to 1m)
 
 The letters and the digits are both optional:
 
     NT 00000 00000 (to 1m)
     NT (to 100km)
     N (to 500km)
-    0,0 (square 'S' to 1000km)
+    0,0 (square 'S' to 1m)
     0000000,0000000 (square 'S' to 1m)
+    
+Note: The leading zeroes are important when letters are used, as the most significant digit represents the
+same square corner regardless of how many digits follow it. When no letters are used, the number-only
+values are handled as metres from the false origin. A more detailed explanation follows.
+
+Although the treatment of the digits can follow the
+pattern from two letters, through one letter down to no letters, it does introduce some ambiguity.
+When letters are involved, the digits supplied are assumed to start with the most significant digit. This
+allows 1, 10, 100, 1000 etc. to all reference the same point (the SW corner of a square) though with varying
+accuracies (different sizes squares). However, numeric-only easting/northings are stated to be always
+measured in metres and describe the distance from a point at square SV. Thus 1, 10, 100 etc. will be very
+different eastings or northing values in a numeric-only reference. For this reason, the library will be treating
+numeric-only references differently to letter/digit references. Numeric-only is always a point of 1m squared.
 
 Note that a single letter identifies a 500km square, so "N 712 834" will extend beyond that square and
 come out as "J 212 334" (shifted North and East by one 500km box). This is done in preference to
@@ -57,7 +70,7 @@ Or it can be formatted in one go:
     echo $square->setNumberOfLetters(1)->format(); // e.g. 'S 401230434300'
     echo $square->format('%l %e %n', 1, 3); // e.g. 'S 401 434' with 1 letter and 3 digits
 
-By default, the format of the parts will be the same as passed in. This can be changed:
+By default, the format of the parts will be the same as passed in. This can be overridden:
 
     $square->setNumberOfLetters($number_letters); // 0, 1 or 2
     $square->setNumberOfDigits($number_digits); // 0 to 7
@@ -68,7 +81,7 @@ number of digits after that to get more or less accuracy.
 
 Not all letter combinations cover land that the OS maps. Only 500km squares H, N, O, S and T
 are used by the OS. The squares do extend beyond that in theory, but the accuracy drifts out quickly.
-Inside these 500km squares, only a slection of 100km squares are mapped by the OS. Again, 100km
+Inside these 500km squares, only a selection of 100km squares are mapped by the OS. Again, 100km
 squares outside of this range are still supported by this library, but they have no meaning on
 OS maps.
 
@@ -81,8 +94,8 @@ method:
 
     if ($square->isInBound()) echo "Yes, this place is on a printed map";
 
-Example Datum Conversion
-------------------------
+Example Coordinate Conversion
+-----------------------------
 
 This bit is work-in-progress, and is very much subject to change. However, it does demonstrate the process.
 
@@ -96,12 +109,12 @@ Then extract the Easting and Northing:
     list($Easting, $Northing) = $square->getEastNorth();
     // Easting = 401230, Northing = 434300
     
-This gives us the 7-digit numeric only values. There is a converter here, which we will use to demonstrate,
-though I am not convinced it is providing the correct answer (it is close, but maybe not close enough). It
-also only provides conversion in one direction, and we would like both directions.
+This gives us the 7-digit numeric only values. The Convert class has a method to convert this to Lat/Long
+values. Note that this will be in the Airy Datum (also known as OSGB Lat/Long) and a further ellipsoid
+conversion will be necessary if comparing to GPS coordinates.
 
     $convert = new Academe\OsgbTools\Convert;
-    $lat_long = $convert->E_N_to_Lat_Long($Easting, $Northing);
+    $lat_long = $convert->osGridToLatLong($Easting, $Northing);
     var_dump($lat_long);
     // array(2) { [0]=> float(53.804781271911) [1]=> float(-1.9813210410013) }
     
@@ -110,7 +123,15 @@ The same conversion can also be seen here: http://www.nearby.org.uk/coord.cgi?p=
 Another tool to check: http://www.russ-hore.co.uk/osgb/ (paste in the OSGB reference "SE 01230 34300"). I suspect all the tools are suffering from rounding errors in different ways, or are maybe using different ellipsoids. They need
 investigating to find *the right one*.
 
-Again to note: this will change, and is just a quick library put in to deomonstrate.
+Converting the opposite way can also be done. The Lat/Long values must be in the Airy datum, so convert
+it from whatever datum is used if it is not.
+
+    $convert = new Academe\OsgbTools\Convert;
+    $square = new Academe\OsgbTools\Square($convert->latLongToOsGrid($latitude, $longitude));
+    echo $square;
+    // e.g. SE 01230 34300
+
+Again to note: this will change, and is just a quick library put in to demonstrate.
 
 TODO
 ----
