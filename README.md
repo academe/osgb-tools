@@ -21,21 +21,22 @@ Examples for OSGB (these are all the same location):
     NT04561230
     NT 04560 12300 (to 1m)
     N 30456 11230
-    030456,061230 (to 10m)
-    0304560, 0612300 (to 1m)
+    0304560,0612300 (to 1m)
+    304560, 612300 (to 1m)
 
 The letters and the digits are both optional:
 
     NT 00000 00000 (to 1m)
     NT (to 100km)
     N (to 500km)
-    0,0 (square 'S' to 1000km)
+    0,0 (square 'S' to 1m)
     0000000,0000000 (square 'S' to 1m)
     
-Note: we may need to revisit the numeric-only coordinates. They should actually be the number of metres
-from sqaure NV, always. Leading zeros are not significant in this case.
+Note: The leading zeroes are important when letters are used, as the most significant digit represents the
+same square corner regardless of how many digits follow it. When no letters are used, the number-only
+values are handled as metres from the false origin. A more detailed explanation follows.
 
-After an overnight rethink, here is my conclusion. Although the treatment of the digits can follow the
+Although the treatment of the digits can follow the
 pattern from two letters, through one letter down to no letters, it does introduce some ambiguity.
 When letters are involved, the digits supplied are assumed to start with the most significant digit. This
 allows 1, 10, 100, 1000 etc. to all reference the same point (the SW corner of a square) though with varying
