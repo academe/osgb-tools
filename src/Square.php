@@ -391,7 +391,7 @@ class Square
      * be 500km square 'S'.
      */
 
-    protected static function absToDigits($abs_distance, $number_of_letters, $number_of_digits, $origin)
+    protected static function absToDigits($abs_distance, $number_of_letters, $number_of_digits, $false_origin)
     {
         if ( ! is_int($number_of_letters)) {
             throw new \InvalidArgumentException(
@@ -413,8 +413,8 @@ class Square
 
         switch ($number_of_letters) {
             case 0:
-                // No letters, so an actual number of metres East or North of square S.
-                $offset = $abs_distance - $origin;
+                // No letters, so an actual number of metres East or North of square S (the false origin).
+                $offset = $abs_distance - $false_origin;
                 break;
 
             case 1:
@@ -433,21 +433,13 @@ class Square
             $number_of_digits = static::MAX_DIGITS - $number_of_letters;
         }
 
+        // TODO: an explanation of how this padding and chopping works. It is not intuitive.
+
         // Left-pad the number to 5, 6, or 7 digits, depending on the number of letters.
         $digits = str_pad((string)$offset, static::MAX_DIGITS - $number_of_letters, '0', STR_PAD_LEFT);
 
         // Now take only the required significant digits.
         return substr($digits, 0, $number_of_digits);
-    }
-
-    public static function absEastToDigits($abs_east, $number_of_letters, $number_of_digits)
-    {
-        return static::absToDigits($abs_east, $number_of_letters, $number_of_digits, static::ABS_FALSE_ORIGIN_EAST);
-    }
-
-    public static function absNorthToDigits($abs_north, $number_of_letters, $number_of_digits)
-    {
-        return static::absToDigits($abs_north, $number_of_letters, $number_of_digits, static::ABS_FALSE_ORIGIN_NORTH);
     }
 
     /**
@@ -462,7 +454,7 @@ class Square
         // Must be an integer.
         if ( ! is_int($number_of_letters)) {
             throw new \InvalidArgumentException(
-                sprintf('Number of letters must be an integer; %s passed in', gettype($number_of_letters))
+                sprintf('Number of letters must be an integer; type %s passed in', gettype($number_of_letters))
             );
         }
 
@@ -581,12 +573,10 @@ class Square
     }
 
     /**
-     * Get the current easting.
-     *
-     * TODO: validation
+     * Shared functionality for getEasting() and getNorthing().
      */
 
-    public function getEasting($number_of_letters = null, $number_of_digits = null)
+    protected function getEastingOrNorthing(&$number_of_letters, &$number_of_digits)
     {
         if ( ! isset($number_of_letters)) {
             $number_of_letters = $this->getNumberOfLetters();
@@ -601,39 +591,35 @@ class Square
 
         if ($number_of_letters == 0 && ! $this->isInBound(true)) {
             throw new \UnexpectedValueException(
-                sprintf('Numeric-only reference out of range; reference must lie in squares %s', implode(', ', array_keys($this->valid_squares)))
+                sprintf('Numeric-only reference out of range; reference must lie in squares %s', implode(', ', array_keys(static::$valid_squares)))
             );
         }
+    }
 
-        return $this->absEastToDigits($this->abs_easting, $number_of_letters, $number_of_digits);
+    /**
+     * Get the current easting.
+     */
+
+    public function getEasting($number_of_letters = null, $number_of_digits = null)
+    {
+        // Default the values (passed by reference) and validate.
+        $this->getEastingOrNorthing($number_of_letters, $number_of_digits);
+
+        //return $this->absEastToDigits($this->abs_easting, $number_of_letters, $number_of_digits);
+        return static::absToDigits($this->abs_easting, $number_of_letters, $number_of_digits, static::ABS_FALSE_ORIGIN_EAST);
     }
 
     /**
      * Get the current northinh.
-     *
-     * TODO: validation
      */
 
     public function getNorthing($number_of_letters = null, $number_of_digits = null)
     {
-        if ( ! isset($number_of_letters)) {
-            $number_of_letters = $this->getNumberOfLetters();
-        }
+        // Default the values (passed by reference) and validate.
+        $this->getEastingOrNorthing($number_of_letters, $number_of_digits);
 
-        if ( ! isset($number_of_digits)) {
-            $number_of_digits = $this->getNumberOfDigits();
-        }
-
-        // Seven digit references (without letters) must only be used in the valid 500km square range,
-        // since its origin is square L.
-
-        if ($number_of_letters == 0 && ! $this->isInBound(true)) {
-            throw new \UnexpectedValueException(
-                sprintf('Numeric-only reference out of range; reference must lie in squares %s', implode(', ', array_keys(static::$valid_squares)))
-            );
-        }
-
-        return $this->absNorthToDigits($this->abs_northing, $number_of_letters, $number_of_digits);
+        //return $this->absNorthToDigits($this->abs_northing, $number_of_letters, $number_of_digits);
+        return static::absToDigits($this->abs_northing, $number_of_letters, $number_of_digits, static::ABS_FALSE_ORIGIN_NORTH);
     }
 
     /**
