@@ -125,6 +125,17 @@ The same conversion can also be seen here: http://www.nearby.org.uk/coord.cgi?p=
 Another tool to check: http://www.russ-hore.co.uk/osgb/ (paste in the OSGB reference "SE 01230 34300"). I suspect all the tools are suffering from rounding errors in different ways, or are maybe using different ellipsoids. They need
 investigating to find *the right one*.
 
+The conversion can be done in one step now:
+
+    // Conert an OSGB NGR to lat/long.
+    // This will be an array now, but a LatLong class makes more sense and is in the works.
+    $lat_log_array = Academe\OsgbTools\Convert::osGridToLatLong('SE 0120 3430');
+    //
+    // A Square or array can also be passed in, as well as the examples further back:
+    $lat_log_array = Academe\OsgbTools\Convert::osGridToLatLong(array($easting, $northing));
+    $lat_log_array = Academe\OsgbTools\Convert::osGridToLatLong($square);
+    
+
 Converting the opposite way can also be done. The Lat/Long values must be in the Airy datum, so convert
 it from whatever datum is used if it is not.
 
