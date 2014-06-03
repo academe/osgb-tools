@@ -152,10 +152,32 @@ class Convert
      * @return {LatLon} latitude/longitude (in OSGB36) of supplied grid reference
      *
      * @todo The return data needs to make it clear that the lat/long is in the OSGB datum.
+     * Accept input as separate easting/northing, easting/northing array, or a SquareInterface class.
      */
 
-    public function osGridToLatLong($easting, $northing)
+    public function osGridToLatLong($easting, $northing = null)
     {
+        // Check what has been passed in.
+        if ( ! isset($northing) && is_array($easting)) {
+            // A single array.
+            list($easting, $northing) = $easting;
+        } elseif($easting instanceof SquareInterfac) {
+            // Square class passed in.
+            // TODO: how do we set "centre_of_square"?
+            list($easting, $northing) = $easting->getEastingNorthing();
+        } elseif ( ! isset($northing) && is_string($easting)) {
+            // NGR string.
+            // TODO
+        } elseif (is_numeric($easting) && is_numeric($northing)) {
+            // A pair of numeric easting/northing values.
+            // No further processing needed.
+        } else {
+            // Not recognised format.
+            throw new \InvalidArgumentException(
+                sprintf('Unexpected values passed in; need easting+northing, array(easting,northing), Square or NGR string; got %s and %s', gettype($easting), gettype($northing))
+            );
+        }
+
         // Airy 1830 major & minor semi-axes
 
         $a = static::AIRY_1830_MAJOR_SEMI_AXES;

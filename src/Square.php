@@ -21,7 +21,7 @@ namespace Academe\OsgbTools;
  * TODO: pull the validation rules together to avoid so much duplication.
  */
 
-class Square
+class Square implements SquareInterface
 {
     /**
      * The national grid reference type (OSGB or Irish)
@@ -525,8 +525,6 @@ class Square
      * offsets from square VV, so all information about the original format
      * and consequently the square size it represents, is lost. What is
      * retained is the position to one metre.
-     *
-     * TODO: more validation. easting/northing must be strings, as leading zeros are significant.
      */
 
     public function setParts($letters, $easting, $northing)
@@ -610,7 +608,7 @@ class Square
     }
 
     /**
-     * Get the current northinh.
+     * Get the current northing.
      */
 
     public function getNorthing($number_of_letters = null, $number_of_digits = null)
@@ -680,8 +678,9 @@ class Square
      *   characters, letters in the wrong place, too many letters or
      *   digits, unbalanced easting/northing digit length).
      *
-     * @todo If number of letters is zero, then see if the numbers are separated (e.g. by a comma) as
-     * they may be different lengths.
+     * If number of letters is zero, then see if the numbers are separated (e.g. by a comma) as
+     * they may be different lengths. Accept separated number as numeric easting/northings in
+     * this case.
      */
 
     public function setNgr($ngr)
@@ -845,6 +844,8 @@ class Square
         list($easting, $northing) = $easting_northing;
 
         $this->setParts('', $easting, $northing);
+
+        return $this;
     }
 
     /**
