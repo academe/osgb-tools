@@ -2,6 +2,8 @@
 
 namespace Academe\OsgbTools;
 
+use Square as OsgbSquare;
+
 class Convert
 {
     // The true origin, in degrees.
@@ -155,26 +157,27 @@ class Convert
      * Accept input as separate easting/northing, easting/northing array, or a SquareInterface class.
      */
 
-    public function osGridToLatLong($easting, $northing = null)
+    public function osGridToLatLong($easting_or_square, $northing = null)
     {
         // Check what has been passed in.
         if ( ! isset($northing) && is_array($easting)) {
             // A single array.
-            list($easting, $northing) = $easting;
-        } elseif($easting instanceof SquareInterfac) {
+            list($easting, $northing) = $easting_or_square;
+        } elseif($easting_or_square instanceof SquareInterfac) {
             // Square class passed in.
             // TODO: how do we set "centre_of_square"?
-            list($easting, $northing) = $easting->getEastingNorthing();
-        } elseif ( ! isset($northing) && is_string($easting)) {
+            list($easting, $northing) = $easting_or_square->getEastingNorthing();
+        } elseif ( ! isset($northing) && is_string($easting_or_square)) {
             // NGR string.
-            // TODO
-        } elseif (is_numeric($easting) && is_numeric($northing)) {
+            $square = new OsgbSquare($easting_or_square);
+            list($easting, $northing) = $square->getEastingNorthing();
+        } elseif (is_numeric($easting_or_square) && is_numeric($northing)) {
             // A pair of numeric easting/northing values.
-            // No further processing needed.
+            $easting = $easting_or_square;
         } else {
             // Not recognised format.
             throw new \InvalidArgumentException(
-                sprintf('Unexpected values passed in; need easting+northing, array(easting,northing), Square or NGR string; got %s and %s', gettype($easting), gettype($northing))
+                sprintf('Unexpected values passed in; need easting+northing, array(easting,northing), Square or NGR string; got %s and %s', gettype($easting_or_square), gettype($northing))
             );
         }
 
