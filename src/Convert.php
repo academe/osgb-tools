@@ -3,7 +3,7 @@
 namespace Academe\OsgbTools;
 
 // Alias the Square in case we want to override it.
-use Square as OsgbSquare;
+use Academe\OsgbTools\Square as OsgbSquare;
 
 class Convert
 {
@@ -161,7 +161,7 @@ class Convert
     public static function osGridToLatLong($easting_or_square, $northing = null)
     {
         // Check what has been passed in.
-        if ( ! isset($northing) && is_array($easting)) {
+        if ( ! isset($northing) && is_array($easting_or_square)) {
             // A single array.
             list($easting, $northing) = $easting_or_square;
         } elseif($easting_or_square instanceof SquareInterfac) {
