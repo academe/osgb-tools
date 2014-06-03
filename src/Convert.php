@@ -2,6 +2,7 @@
 
 namespace Academe\OsgbTools;
 
+// Alias the Square in case we want to override it.
 use Square as OsgbSquare;
 
 class Convert
@@ -62,7 +63,7 @@ class Convert
      * @return array OS Grid Reference easting/northing, pair of integers, from sqaure NV
      */
 
-    public function latLongToOsGrid($latitude, $longitude)
+    public static function latLongToOsGrid($latitude, $longitude)
     {
         // Latitude and longitude are angles in degrees.
         // Convert them to radians.
@@ -157,7 +158,7 @@ class Convert
      * Accept input as separate easting/northing, easting/northing array, or a SquareInterface class.
      */
 
-    public function osGridToLatLong($easting_or_square, $northing = null)
+    public static function osGridToLatLong($easting_or_square, $northing = null)
     {
         // Check what has been passed in.
         if ( ! isset($northing) && is_array($easting)) {
@@ -270,6 +271,8 @@ class Convert
             + $XII * pow($dE, 5)
             - $XIIA * pow($dE, 7);
 
+        // TODO: we want to return a simple object here for storing Lat/Long, then we can make
+        // better use of interfaces.
         return array(rad2deg($phi), rad2deg($lambda));
     }
 }
