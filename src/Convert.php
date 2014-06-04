@@ -2,8 +2,9 @@
 
 namespace Academe\OsgbTools;
 
-// Alias the Square in case we want to override it.
+// Alias the Square and Coordinate in case we want to override it.
 use Academe\OsgbTools\Square as OsgbSquare;
+use Academe\OsgbTools\Coordinate as LatLongCoordinate;
 
 class Convert
 {
@@ -61,6 +62,8 @@ class Convert
      * @param float latitude OSGB36 latitude
      * @param float longitude OSGB36 longitude
      * @return array OS Grid Reference easting/northing, pair of integers, from sqaure NV
+     *
+     * @todo accept lat+long, array(lat,long) or CoordinateInterface object.
      */
 
     public static function latLongToOsGrid($latitude, $longitude)
@@ -144,7 +147,7 @@ class Convert
             + $V * pow($delta_lambda, 3)
             + $VI * pow($delta_lambda, 5);
 
-        return array((int)round($E), (int)round($N));
+        return new OsgbSquare(array((int)round($E), (int)round($N)));
     }
 
 
@@ -164,7 +167,7 @@ class Convert
         if ( ! isset($northing) && is_array($easting_or_square)) {
             // A single array.
             list($easting, $northing) = $easting_or_square;
-        } elseif($easting_or_square instanceof SquareInterfac) {
+        } elseif($easting_or_square instanceof SquareInterface) {
             // Square class passed in.
             // TODO: how do we set "centre_of_square"?
             list($easting, $northing) = $easting_or_square->getEastingNorthing();
@@ -271,9 +274,8 @@ class Convert
             + $XII * pow($dE, 5)
             - $XIIA * pow($dE, 7);
 
-        // TODO: we want to return a simple object here for storing Lat/Long, then we can make
-        // better use of interfaces.
-        return array(rad2deg($phi), rad2deg($lambda));
+        // Return a coordinate object.
+        return new LatLongCoordinate(array(rad2deg($phi), rad2deg($lambda)));
     }
 }
 

@@ -130,7 +130,7 @@ class Square implements SquareInterface
      * combinations will be optional.
      */
 
-    protected $valid_squares = array(
+    protected static $valid_squares = array(
         'H' => array(
             'P' => 'HP',
             'T' => 'HY',
@@ -681,6 +681,8 @@ class Square implements SquareInterface
      * If number of letters is zero, then see if the numbers are separated (e.g. by a comma) as
      * they may be different lengths. Accept separated number as numeric easting/northings in
      * this case.
+     *
+     * @todo take the main parsing functionality out to a separate, static method.
      */
 
     public function setNgr($ngr)
@@ -757,7 +759,8 @@ class Square implements SquareInterface
     }
 
     /**
-     * Pass in an optional NGR string or Northing/Easting array at instantiation.
+     * Pass in an optional NGR string or easting/northing array at instantiation.
+     * @todo support separate easting/northing values.
      */
 
     public function __construct($ngr = null)
@@ -788,12 +791,12 @@ class Square implements SquareInterface
         // Split up into separate letters.
         $letters_parts = str_split($letters);
 
-        if ( ! isset($this->valid_squares[$letters_parts[0]])) {
+        if ( ! isset(static::$valid_squares[$letters_parts[0]])) {
             // The first letter is out of bounds.
             return false;
         }
 
-        if ( ! $km500_square_only && ! isset($this->valid_squares[$letters_parts[0]][$letters_parts[1]])) {
+        if ( ! $km500_square_only && ! isset(static::$valid_squares[$letters_parts[0]][$letters_parts[1]])) {
             // The second letter is out of bounds.
             return false;
         }
