@@ -135,6 +135,7 @@ class Square implements SquareInterface
      * There is no reason in theory why sqaures outside these bounds cannot be
      * used, apart from being very inaccurate, so validation against these letter
      * combinations will be optional.
+     * @todo Some methods to fetch various slices of this data for demos and external validation.
      */
 
     protected static $valid_squares = array(

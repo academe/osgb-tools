@@ -72,5 +72,5 @@ interface SquareInterface
      * Get the easting and northing for conversion, as an array.
      */
 
-    function getEastingNorthing($centre_of_square = true);
+    function getEastingNorthing($centre_of_square = null);
 }
