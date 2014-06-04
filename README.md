@@ -101,6 +101,9 @@ Example Coordinate Conversion
 
 This bit is work-in-progress, and is very much subject to change. However, it does demonstrate the process.
 
+* `Academe\OsgbTools\Convert::osGridToLatLong()` will return a `Academe\OsgbTools\Coordinate`
+* `Academe\OsgbTools\Convert::latLongToOsGrid()` will return a `Academe\OsgbTools\Square`
+
 We are going to convert SE0123034300 to Lat/Long. First create the square:
 
     // Spaces in the reference are optional - they are shown here for clarity.
