@@ -62,12 +62,29 @@ class Convert
      * @param float latitude OSGB36 latitude
      * @param float longitude OSGB36 longitude
      * @return array OS Grid Reference easting/northing, pair of integers, from sqaure NV
-     *
-     * @todo accept lat+long, array(lat,long) or CoordinateInterface object.
      */
 
-    public static function latLongToOsGrid($latitude, $longitude)
+    public static function latLongToOsGrid($latitude_or_point, $longitude = null)
     {
+        // Check what has been passed in.
+
+        if ( ! isset($longitude) && is_array($latitude_or_point)) {
+            // A single array.
+            list($latitude, $longitude) = $latitude_or_point;
+        } elseif ($latitude_or_point instanceof CoordinateInterface) {
+            // Coordinate class passed in.
+            $latitude = $easting_or_square->getLatitude();
+            $longitude = $easting_or_square->getLongitude();
+        } elseif (is_numeric($latitude_or_point) && is_numeric($latitude_or_point)) {
+            // A pair of numeric easting/northing values.
+            $latitude = $latitude_or_point;
+        } else {
+            // Not recognised format.
+            throw new \InvalidArgumentException(
+                sprintf('Unexpected values passed in; need latitude+longitude, array(latitude, longitude) or CoordinateInterface; got %s and %s', gettype($latitude_or_point), gettype($longitude))
+            );
+        }
+
         // Latitude and longitude are angles in degrees.
         // Convert them to radians.
 
