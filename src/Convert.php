@@ -68,9 +68,9 @@ class Convert
     {
         // Check what has been passed in.
 
-        if ( ! isset($longitude) && is_array($latitude_or_point)) {
+        if ( ! isset($longitude) && is_array($latitude_or_point) && count($latitude_or_point) == 2) {
             // A single array.
-            list($latitude, $longitude) = $latitude_or_point;
+            list($latitude, $longitude) = array_values($latitude_or_point);
         } elseif ($latitude_or_point instanceof CoordinateInterface) {
             // Coordinate class passed in.
             $latitude = $easting_or_square->getLatitude();
@@ -181,12 +181,11 @@ class Convert
     public static function osGridToLatLong($easting_or_square, $northing = null)
     {
         // Check what has been passed in.
-        if ( ! isset($northing) && is_array($easting_or_square)) {
+        if ( ! isset($northing) && is_array($easting_or_square) && count($easting_or_square) == 2) {
             // A single array.
-            list($easting, $northing) = $easting_or_square;
+            list($easting, $northing) = array_values($easting_or_square);
         } elseif($easting_or_square instanceof SquareInterface) {
             // Square class passed in.
-            // TODO: how do we set "centre_of_square"?
             list($easting, $northing) = $easting_or_square->getEastingNorthing();
         } elseif ( ! isset($northing) && is_string($easting_or_square)) {
             // NGR string.

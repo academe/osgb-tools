@@ -30,6 +30,13 @@ class Square implements SquareInterface
     const NGR_TYPE = 'OSGB';
 
     /**
+     * The default way of identifying the "point" of a square when converting.
+     * @todo I suspect this should be a property, with a setter and getter.
+     */
+
+    const DEFAULT_CENTRE_OF_SQUARE = true;
+
+    /**
      * The easting value.
      * Integer 0 to 9999999.
      * Represents the number of metres East from the Western-most edge
@@ -840,11 +847,12 @@ class Square implements SquareInterface
     /**
      * Set the Easting and Northing in one go, as an numeric array.
      * Numeric coordinates are in metres, from square SV.
+     * @todo validation and accept separate values or an array.
      */
 
     public function setEastingNorthing($easting_northing)
     {
-        list($easting, $northing) = $easting_northing;
+        list($easting, $northing) = array_values($easting_northing);
 
         $this->setParts('', $easting, $northing);
 
@@ -857,10 +865,18 @@ class Square implements SquareInterface
      *
      * This will default $centre_of_square to true for now, and this will return the
      * centre of the square.
+     *
+     * TODO: default the centre of square value to a property or constant that can be overridden.
      */
 
-    public function getEastingNorthing($centre_of_square = true)
+    public function getEastingNorthing($centre_of_square = null)
     {
+        // Default the centre of square handling, if not specified.
+
+        if ( ! isset($centre_of_square)) {
+            $centre_of_square = static::DEFAULT_CENTRE_OF_SQUARE;
+        }
+
         // Start with the assumption that the point is the SW corner of the square.
 
         $offset = 0;
