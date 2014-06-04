@@ -1,5 +1,9 @@
 <?php
 
+/*******************************************************************
+ * This script is incomplete, broken, and will probably be removed *
+ *******************************************************************/
+
 namespace Academe\OsgbTools;
 
 class LatLon
