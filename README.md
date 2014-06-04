@@ -145,6 +145,9 @@ it from whatever datum is used if it is not.
     echo $square;
     // e.g. SE 01230 34300
     //
+    // or
+    $square = Academe\OsgbTools\Convert::latLongToOsGrid($latitude, $longitude);
+    //
     $latitude = 53.804781271911;
     $longitude = -1.9813210410013;
     $lat_long = new Academe\OsgbTools\Coordinate(array($latitude, $longitude));
