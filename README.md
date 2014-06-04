@@ -118,7 +118,7 @@ conversion will be necessary if comparing to GPS coordinates.
     $convert = new Academe\OsgbTools\Convert;
     $lat_long = $convert->osGridToLatLong($Easting, $Northing);
     var_dump($lat_long);
-    // array(2) { [0]=> float(53.804781271911) [1]=> float(-1.9813210410013) }
+    // object(Academe\OsgbTools\Coordinate)#8 (2) { ["latitude":protected]=> float(53.805230674459) ["longitude":protected]=> float(-1.9810171150917) }
     
 The same conversion can also be seen here: http://www.nearby.org.uk/coord.cgi?p=SE0123034300&f=full
 
@@ -127,24 +127,28 @@ investigating to find *the right one*.
 
 The conversion can be done in one step now:
 
-    // Conert an OSGB NGR to lat/long.
-    // This will be an array now, but a LatLong class makes more sense and is in the works.
-    $lat_log_array = Academe\OsgbTools\Convert::osGridToLatLong('SE 0120 3430');
+    // Conert an OSGB NGR to lat/long object (\Academe\OsgbTools\Coordinate).
+    $lat_long = Academe\OsgbTools\Convert::osGridToLatLong('SE 0120 3430');
     //
     // A Square or array can also be passed in, as well as the examples further back:
-    $lat_log_array = Academe\OsgbTools\Convert::osGridToLatLong(array($easting, $northing));
-    $lat_log_array = Academe\OsgbTools\Convert::osGridToLatLong($square);
-    
+    $lat_log = Academe\OsgbTools\Convert::osGridToLatLong(array($easting, $northing));
+    $lat_log = Academe\OsgbTools\Convert::osGridToLatLong($square);
 
 Converting the opposite way can also be done. The Lat/Long values must be in the Airy datum, so convert
 it from whatever datum is used if it is not.
 
     $convert = new Academe\OsgbTools\Convert;
-    $square = new Academe\OsgbTools\Square($convert->latLongToOsGrid($latitude, $longitude));
+    $square = $convert->latLongToOsGrid($latitude, $longitude);
     echo $square;
     // e.g. SE 01230 34300
+    //
+    $latitude = 53.804781271911;
+    $longitude = -1.9813210410013;
+    $lat_long = new Academe\OsgbTools\Coordinate(array($latitude, $longitude));
+    $square = Academe\OsgbTools\Convert::latLongToOsGrid($lat_long);
+    
 
-Again to note: this will change, and is just a quick library put in to demonstrate.
+Again to note: this will change, and is just a quick library put in to demonstrate (getting more stable though).
 
 TODO
 ----
