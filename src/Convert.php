@@ -165,7 +165,7 @@ class Convert
             + $V * pow($delta_lambda, 3)
             + $VI * pow($delta_lambda, 5);
 
-        return static::createSquare(array((int)round($E), (int)round($N)));
+        return static::createSquare((int)round($E), (int)round($N));
     }
 
     /**
