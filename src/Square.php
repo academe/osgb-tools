@@ -141,7 +141,7 @@ class Square implements SquareInterface
     protected static $valid_squares = array(
         'H' => array(
             'P' => 'HP',
-            'T' => 'HY',
+            'T' => 'HT',
             'U' => 'HU',
             'W' => 'HW',
             'X' => 'HX',

@@ -3,8 +3,9 @@
 namespace Academe\OsgbTools;
 
 // Alias the Square and Coordinate in case we want to override it.
+// Actually, this doesn't help. Do we need a factory?
 use Academe\OsgbTools\Square as OsgbSquare;
-use Academe\OsgbTools\Coordinate as LatLongCoordinate;
+//use Academe\OsgbTools\Coordinate as LatLongCoordinate;
 
 class Convert
 {
@@ -164,9 +165,17 @@ class Convert
             + $V * pow($delta_lambda, 3)
             + $VI * pow($delta_lambda, 5);
 
-        return new OsgbSquare(array((int)round($E), (int)round($N)));
+        return static::createSquare(array((int)round($E), (int)round($N)));
     }
 
+    /**
+     * Return a new coordinate (Lat/Long) instance.
+     */
+
+    public static function createSquare($easting, $northing)
+    {
+        return new Square(array($easting, $northing));
+    }
 
     /**
      * Convert Ordnance Survey grid reference easting/northing coordinate to (OSGB36) latitude/longitude
@@ -291,7 +300,16 @@ class Convert
             - $XIIA * pow($dE, 7);
 
         // Return a coordinate object.
-        return new LatLongCoordinate(array(rad2deg($phi), rad2deg($lambda)));
+        return static::createCoordinate(rad2deg($phi), rad2deg($lambda));
+    }
+
+    /**
+     * Return a new coordinate (Lat/Long) instance.
+     */
+
+    public static function createCoordinate($latitude, $longitude)
+    {
+        return new Coordinate(array($latitude, $longitude));
     }
 }
 
