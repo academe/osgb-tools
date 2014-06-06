@@ -28,19 +28,19 @@ class Coordinate implements CoordinateInterface
     /**
      * Set the latitude and the longitude of the coordinates into an selected ellipsoid.
      *
-     * @param array|string $coordinates The coordinates.
-     *
+     * @param array $coordinates The latitude and longitude coordinates.
      * @throws InvalidArgumentException
      */
 
     public function __construct($coordinates)
     {
-        if (is_array($coordinates) && 2 === count($coordinates)) {
-            $this->setLatitude($coordinates[0]);
-            $this->setLongitude($coordinates[1]);
+        if (is_array($coordinates) && count($coordinates) == 2) {
+            list($lat, $long) = array_values($coordinates);
+            $this->setLatitude($lat);
+            $this->setLongitude($long);
         } else {
             throw new InvalidArgumentException(
-                'It should be a string, an array or a class which implements Geocoder\Result\ResultInterface !'
+                'Coordinate should be a an array; %s passed instead', gettype($coordinates)
             );
         }
     }
