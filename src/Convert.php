@@ -60,9 +60,9 @@ class Convert
      * must be converted to Airy before converting to an OS grid reference.
      * This not WGS84, as used by GPS globally.
      *
-     * @param float latitude OSGB36 latitude
-     * @param float longitude OSGB36 longitude
-     * @return array OS Grid Reference easting/northing, pair of integers, from sqaure NV
+     * @param mixed latitude_or_point OSGB36 latitude, OSGB36 lat/long array or CoordinateInterface
+     * @param float longitude OSGB36 longitude, optional
+     * @return object Square object converted from the lat/long coordinates
      */
 
     public static function latLongToOsGrid($latitude_or_point, $longitude = null)
@@ -172,19 +172,23 @@ class Convert
      * Return a new coordinate (Lat/Long) instance.
      */
 
-    public static function createSquare($easting, $northing)
+    public static function createSquare($easting, $northing = null)
     {
-        return new Square(array($easting, $northing));
+        if ( ! isset($northing)) {
+            return new Square($easting);
+        } else {
+            return new Square(array($easting, $northing));
+        }
     }
 
     /**
      * Convert Ordnance Survey grid reference easting/northing coordinate to (OSGB36) latitude/longitude
      *
-     * @param {OsGridRef} easting/northing to be converted to latitude/longitude
-     * @return {LatLon} latitude/longitude (in OSGB36) of supplied grid reference
-     *
-     * @todo The return data needs to make it clear that the lat/long is in the OSGB datum.
      * Accept input as separate easting/northing, easting/northing array, or a SquareInterface class.
+     *
+     * @param mixed easting_or_square OSGB36 easting, OSGB36 east/north array, OSGB grid ref string or SquareInterface
+     * @param float northing OSGB36 northing, optional
+     * @return object Coordinate object converted from the OSGB coordinates
      */
 
     public static function osGridToLatLong($easting_or_square, $northing = null)
@@ -198,7 +202,7 @@ class Convert
             list($easting, $northing) = $easting_or_square->getEastingNorthing();
         } elseif ( ! isset($northing) && is_string($easting_or_square)) {
             // NGR string.
-            $square = new OsgbSquare($easting_or_square);
+            $square = static::createSquare($easting_or_square);
             list($easting, $northing) = $square->getEastingNorthing();
         } elseif (is_numeric($easting_or_square) && is_numeric($northing)) {
             // A pair of numeric easting/northing values.
