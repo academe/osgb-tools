@@ -120,12 +120,16 @@ class Square implements SquareInterface
      * false origin. 
      */
 
+    // National Grid Reference easting and northing.
+
     const FORMAT_LETTERS_REF = '%l';
     const FORMAT_EASTING_REF = '%e';
     const FORMAT_NORTHING_REF = '%n';
 
-    const FORMAT_EASTING = '%x';
-    const FORMAT_NORTHING = '%y';
+    // Numeric (7-digit) easting and northing.
+
+    const FORMAT_EASTING = '%E';
+    const FORMAT_NORTHING = '%N';
 
     const FORMAT_DEFAULT = '%l %e %n';
 
@@ -867,10 +871,13 @@ class Square implements SquareInterface
      * This will default $centre_of_square to true for now, and this will return the
      * centre of the square.
      *
-     * TODO: default the centre of square value to a property or constant that can be overridden.
+     * I may dcecide to depracate this method under this name. What we are actually
+     * doing, is returning a *point*, signifying either the centre or the corner
+     * of the square. getPoint() would be a better name to make it clearer what is
+     * being returned. The point identifies a 1m square patch, always.
      */
 
-    public function getEastingNorthing($centre_of_square = null)
+    public function getPoint($centre_of_square = null)
     {
         // Default the centre of square handling, if not specified.
 
@@ -882,7 +889,7 @@ class Square implements SquareInterface
 
         $offset = 0;
 
-        // Do we want to return the centre of the square?
+        // Do we want to return the centre of the square, rather than the corner?
 
         if ($centre_of_square) {
             $square_size = $this->getSize();
@@ -899,6 +906,15 @@ class Square implements SquareInterface
             (int) $this->getEasting(0, static::MAX_DIGITS) + $offset,
             (int) $this->getNorthing(0, static::MAX_DIGITS) + $offset,
         );
+    }
+
+    /**
+     * Deprecated. Use getPoint() now.
+     */
+
+    public function getEastingNorthing($centre_of_square = null)
+    {
+        return $this->getPoint($centre_of_square);
     }
 }
 

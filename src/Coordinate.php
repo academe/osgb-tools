@@ -5,6 +5,9 @@ namespace Academe\OsgbTools;
 /**
  * A cut-down version of League/Geotools/Coordinate/Coordinate
  * The ellipsoid is always Airy when dealing with OSGB.
+ *
+ * Note: this is a polar lat/long coordinate. We are likely to need a
+ * Cartesian lat/long coordinate too, for the datum conversion process.
  */
 
 class Coordinate implements CoordinateInterface
