@@ -20,6 +20,24 @@ http://www.colorado.edu/geography/gcraft/notes/datum/edlist.html
 Shifting between datums in cartesian (xyz) coordinates is simple:
 http://www.colorado.edu/geography/gcraft/notes/datum/gif/geoconv.gif
 
+Data Columns
+------------
+
+TODO: desacriptions
+
+* Datum
+* Ellipsoid Code
+* Ellipsoid Name
+* dX
+* dY
+* dZ
+* Region of use
+* eX
+* eY
+* eZ
+* #S
+
+
 Ellipsoids
 ==========
 
@@ -36,4 +54,18 @@ http://www.colorado.edu/geography/gcraft/notes/datum/gif/ellipse.gif
 A good reference ellipsoid list:
 
 http://www.colorado.edu/geography/gcraft/notes/datum/elist.html
+
+Missing ellipses from this data, or clarification needed on the names:
+
+* Indonesian 1974
+* Everest (India 1830)
+* Everest (Malay. & Sing)
+* Everest (Pakistan)
+* Everest (Sabah Sarawak)
+* International 1924
+* Krassovsky 1940
+
+
+
+
 
