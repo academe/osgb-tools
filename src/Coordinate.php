@@ -4,7 +4,7 @@ namespace Academe\OsgbTools;
 
 /**
  * A cut-down version of League/Geotools/Coordinate/Coordinate
- * The ellipsoid is always Airy when dealing with OSGB.
+ * The ellipsoid is always Airy, as it is dealing with OSGB.
  *
  * Note: this is a polar lat/long coordinate. We are likely to need a
  * Cartesian lat/long coordinate too, for the datum conversion process.
@@ -29,7 +29,7 @@ class Coordinate implements CoordinateInterface
     protected $longitude;
 
     /**
-     * Set the latitude and the longitude of the coordinates into an selected ellipsoid.
+     * Set the latitude and the longitude of the coordinates.
      *
      * @param array $coordinates The latitude and longitude coordinates.
      * @throws InvalidArgumentException
@@ -67,7 +67,7 @@ class Coordinate implements CoordinateInterface
             return 180.0;
         }
 
-        $mod       = fmod($longitude, 360);
+        $mod = fmod($longitude, 360);
         $longitude = $mod < -180 ? $mod + 360 : ($mod > 180 ? $mod - 360 : $mod);
 
         return (double) $longitude;

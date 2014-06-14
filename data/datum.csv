@@ -1,0 +1,220 @@
+Datum	  Ellipsoid 	dX	dY	dZ 	Region of use 	eX 	eY	eZ  	#S
+Adindan	Clarke 1880	-118  	-14	218	Burkina Faso  	25	25	25 	1
+Adindan	Clarke 1880	-134  	-2	210	Cameroon  	25	25	25 	1
+Adindan	Clarke 1880	-165  	-11	206	Ethiopia  	3	3	3 	8
+Adindan	Clarke 1880	-123  	-20	220	Mali  	25	25	25 	1
+Adindan	Clarke 1880	-166  	-15	204	MEAN FOR Ethiopia; Sudan  	5	5	3 	22
+Adindan	Clarke 1880	-128  	-18	224	Senegal  	25	25	25 	2
+Adindan	Clarke 1880	-161  	-14	205	Sudan  	3	5	3 	14
+Afgooye	Krassovsky 1940 	-43	-163	45 	Somalia	25	25 	25	1
+Ain el Abd 1970	International 1924  	-150	-250	-1  	Bahrain	25	25  	25	2
+Ain el Abd 1970	International 1924  	-143	-236	7  	Saudi Arabia	10	10  	10	9
+American Samoa 1962	Clarke 1866  	-115	118	426  	American Samoa Islands	25 	25	25	2
+Anna 1 Astro 1965	Australian National  	-491	-22	435  	Cocos Islands	25	25  	25	1
+Antigua Island Astro 1943	Clarke 1880  	-270	13	62  	Antigua (Leeward Islands)	25  	25	25	1
+Arc 1950	Clarke 1880 	-138	-105	-289  	Botswana	3	5  	3	9
+Arc 1950	Clarke 1880 	-153	-5	-292 	Burundi	20	20 	20	3
+Arc 1950	Clarke 1880 	-125	-108	-295  	Lesotho	3	3  	8	5
+Arc 1950	Clarke 1880 	-161	-73	-317 	Malawi	9	24 	8	6
+Arc 1950	Clarke 1880 	-143	-90	-294 	MEAN FOR Botswana; Lesotho; Malawi; Swaziland; Zaire; Zambia; Zimbabwe  	20	33	20 	41
+Arc 1950	Clarke 1880 	-134	-105	-295  	Swaziland	15	15  	15	4
+Arc 1950	Clarke 1880 	-169	-19	-278 	Zaire	25	25 	25	2
+Arc 1950	Clarke 1880 	-147	-74	-283 	Zambia	21	21 	27	5
+Arc 1950	Clarke 1880 	-142	-96	-293 	Zimbabwe	5	8 	11	10
+Arc 1960	Clarke 1880 	-160	-6	-302 	MEAN FOR Kenya; Tanzania	20 	20	20	25
+Arc 1960	Clarke 1880 	-157	-2	-299 	Kenya	4	3 	3	24
+Arc 1960	Clarke 1880 	-175	-23	-303 	Taanzania	6	9 	10	12
+Ascension Island 1958	International 1924  	-205	107	53  	Ascension Island	25	25  	25	2
+Astro Beacon E 1945	International 1924  	145	75	-272  	Iwo Jima	25	25  	25	1
+Astro DOS 71/4	International 1924  	-320	550	-494  	St Helena Island	25	25  	25	1
+Astro Tern Island (FRIG) 1961	International 1924  	114	-116	-333  	Tern Island	25	25  	25	1
+Astronomical Station 1952	International 1924  	124	-234	-25  	Marcus Island	25	25  	25	1
+Australian Geodetic 1966	Australian National  	-133	-48	148  	Australia; Tasmania	3 	3	3	105
+Australian Geodetic 1984	Australian National  	-134	-48	149  	Australia; Tasmania	2 	2	2	90
+Ayabelle Lighthouse	Clarke 1880  	-79	-129	145  	Djibouti	25	25  	25	1
+Bellevue (IGN)	International 1924  	-127	-769	472  	Efate & Erromango Islands	20  	20	20	3
+Bermuda 1957	Clarke 1866 	-73	213	296 	Bermuda	20	20 	20	3
+Bissau	International 1924  	-173	253	27  	Guinea-Bissau	25	25  	25	2
+Bogota Observatory	International 1924  	307	304	-318  	Colombia	6	5  	6	7
+Bukit Rimpah	Bessel 1841 	-384	664	-48 	Indonesia (Bangka & Belitung Ids)	-1  	-1	-1	0
+Camp Area Astro	International 1924  	-104	-129	239  	Antarctica (McMurdo Camp Area)	-1  	-1	-1	0
+Campo Inchauspe	International 1924  	-148	136	90  	Argentina	5	5  	5	20
+Canton Astro 1966	International 1924  	298	-304	-375  	Phoenix Islands	15	15  	15	4
+Cape	Clarke 1880	-136  	-108	-292	South Africa  	3	6	6 	5
+Cape Canaveral	Clarke 1866  	-2	151	181  	Bahamas; Florida	3	3  	3	19
+Carthage	Clarke 1880 	-263	6	431 	Tunisia	6	9 	8	5
+Chatham Island Astro 1971	International 1924  	175	-38	113  	New Zealand (Chatham Island)	15  	15	15	4
+Chua Astro	International 1924  	-134	229	-29  	Paraguay	6	9  	5	6
+Corrego Alegre	International 1924  	-206	172	-6  	Brazil	5	3  	5	17
+Dabola	Clarke 1880	-83  	37	124	Guinea  	15	15	15 	4
+Deception Island	Clarke 1880  	260	12	-147  	Deception Island; Antarctia	20  	20	20	3
+Djakarta (Batavia)	Bessel 1841  	-377	681	-50  	Indonesia (Sumatra)	3 	3	3	5
+DOS 1968	International 1924  	230	-199	-752  	New Georgia Islands (Gizo Island)	25  	25	25	1
+Easter Island 1967	International 1924  	211	147	111  	Easter Island	25	25  	25	1
+Estonia; Coordinate System 1937	Bessel 1841  	374	150	588  	Estonia	2	3  	3	19
+European 1950	International 1924  	-104	-101	-140  	Cyprus	15	15  	15	4
+European 1950	International 1924  	-130	-117	-151  	Egypt	6	8  	8	14
+European 1950	International 1924  	-86	-96	-120  	England; Channel Islands; Scotland; Shetland Islands  	3	3	3 	40
+European 1950	International 1924  	-86	-96	-120  	England; Ireland; Scotland; Shetland Islands  	3	3	3 	47
+European 1950	International 1924  	-87	-95	-120  	Finland; Norway	3	5  	3	20
+European 1950	International 1924  	-84	-95	-130  	Greece	25	25  	25	2
+European 1950	International 1924  	-117	-132	-164  	Iran	9	12  	11	27
+European 1950	International 1924  	-97	-103	-120  	Italy (Sardinia)	25	25  	25	2
+European 1950	International 1924  	-97	-88	-135  	Italy (Sicily)	20	20  	20	3
+European 1950	International 1924  	-107	-88	-149  	Malta	25	25  	25	1
+European 1950	International 1924  	-87	-98	-121  	MEAN FOR Austria; Belgium; Denmark; Finland; France; W Germany; Gibraltar; Greece; Italy; Luxembourg; Netherlands; Norway; Portugal; Spain; Sweden; Switzerland  	3	8	5 	85
+European 1950	International 1924  	-87	-96	-120  	MEAN FOR Austria; Denmark; France; W Germany; Netherlands; Switzerland  	3	3	3 	52
+European 1950	International 1924  	-103	-106	-141  	MEAN FOR Iraq; Israel; Jordan; Lebanon; Kuwait; Saudi Arabia; Syria  	-1	-1	-1 	0
+European 1950	International 1924  	-84	-107	-120  	Portugal; Spain	5	6  	3	18
+European 1950	International 1924  	-112	-77	-145  	Tunisia	25	25  	25	4
+European 1979	International 1924  	-86	-98	-119  	MEAN FOR Austria; Finland; Netherlands; Norway; Spain; Sweden; Switzerland  	3	3	3 	22
+Fort Thomas 1955	Clarke 1880  	-7	215	225  	Nevis; St. Kitts (Leeward Islands)	25  	25	25	2
+Gan 1970	International 1924  	-133	-321	50  	Republic of Maldives	25 	25	25	1
+Geodetic Datum 1949	International 1924  	84	-22	209  	New Zealand	5	3  	5	14
+Graciosa Base SW 1948	International 1924  	-104	167	-38  	Azores (Faial; Graciosa; Pico; Sao Jorge; Terceira)  	3	3	3 	5
+Guam 1963	Clarke 1866 	-100	-248	259 	Guam	3	3 	3 	5
+Gunung Segara	Bessel 1841  	-403	684	41  	Indonesia (Kalimantan)	-1 	-1	-1	0
+GUX 1 Astro	International 1924  	252	-209	-751  	Guadalcanal Island	25 	25	25	1
+Herat North	International 1924  	-333	-222	114  	Afghanistan	-1	-1  	-1	0 
+Hermannskogel Datum	Bessel 1841 (Namibia)  	653	-212	449  	Croatia -Serbia, Bosnia-Herzegovina  	-1 	-1	-1 	0
+Hjorsey 1955	International 1924  	-73	46	-86  	Iceland	3	3  	6	6
+Hong Kong 1963	International 1924  	-156	-271	-189  	Hong Kong	25	25  	25	2
+Hu-Tzu-Shan	International 1924  	-637	-549	-203  	Taiwan	15	15  	15	4
+Indian	Everest (India 1830)  	282	726	254  	Bangladesh	10	8  	12	6
+Indian	Everest (India 1956)  	295	736	257  	India; Nepal	12	10  	15	7
+Indian	Everest (Pakistan)  	283	682	231  	Pakistan	-1	-1  	-1	0
+Indian 1954	Everest (India 1830)  	217	823	299  	Thailand	15	6  	12	11
+Indian 1960	Everest (India 1830)  	182	915	344  	Vietnam (Con Son Island)	25  	25	25	1
+Indian 1960	Everest (India 1830)  	198	881	317  	Vietnam (Near 16øN)	25  	25	25	2
+Indian 1975	Everest (India 1830)  	210	814	289  	Thailand	3	2  	3	62
+Indonesian 1974	Indonesian 1974  	-24	-15	5  	Indonesia	25	25  	25	1
+Ireland 1965	Modified Airy  	506	-122	611  	Ireland	3	3  	3	7
+ISTS 061 Astro 1968	International 1924  	-794	119	-298  	South Georgia Islands	25 	25	25	1
+ISTS 073 Astro 1969	International 1924  	208	-435	-229  	Diego Garcia	25	25  	25	2
+Johnston Island 1961	International 1924  	189	-79	-202  	Johnston Island	25	25  	25	1
+Kandawala	Everest (India 1830)  	-97	787	86  	Sri Lanka	20	20  	20	3
+Kerguelen Island 1949	International 1924  	145	-187	103  	Kerguelen Island	25	25  	25	1
+Kertau 1948	Everest (Malay. & Sing)  	-11	851	5  	West Malaysia & Singapore	10  	8	6	6
+Kusaie Astro 1951	International 1924  	647	1777	-1124  	Caroline Islands	25	25  	25	1
+Korean Geodetic System	GRS 80  	0	0	0 	South Korea	2	2  	2	12
+L. C. 5 Astro 1961	Clarke 1866  	42	124	147  	Cayman Brac Island	25 	25	25	1
+Leigon	Clarke 1880	-130  	29	364	Ghana  	2	3	2 	8
+Liberia 1964	Clarke 1880 	-90	40	88 	Liberia	15	15 	15	4
+Luzon	Clarke 1866	-133  	-77	-51	Philippines (Excluding Mindanao)  	8	11	9 	6
+Luzon	Clarke 1866	-133  	-79	-72	Philippines (Mindanao)  	25	25	25 	1
+M'Poraloko	Clarke 1880 	-74	-130	42 	Gabon	25	25 	25	1
+Mahe 1971	Clarke 1880 	41	-220	-134 	Mahe Island	25	25  	25	1
+Massawa	Bessel 1841	639  	405	60	Ethiopia (Eritrea)  	25	25	25 	1
+Merchich	Clarke 1880 	31	146	47 	Morocco	5	3 	3	9
+Midway Astro 1961	International 1924  	912	-58	1227  	Midway Islands	25	25  	25	1
+Minna	Clarke 1880	-81  	-84	115	Cameroon  	25	25	25 	2
+Minna	Clarke 1880	-92  	-93	122	Nigeria  	3	6	5 	6
+Montserrat Island Astro 1958	Clarke 1880  	174	359	365  	Montserrat (Leeward Islands)	25  	25	25	1
+Nahrwan	Clarke 1880	-247  	-148	369	Oman (Masirah Island)  	25	25	25 	2
+Nahrwan	Clarke 1880	-243  	-192	477	Saudi Arabia  	20	20	20 	3
+Nahrwan	Clarke 1880	-249  	-156	381	United Arab Emirates  	25	25	25 	2
+Naparima BWI	International 1924  	-10	375	165  	Trinidad & Tobago	15 	15	15	4
+North American 1927	Clarke 1866  	-5	135	172  	Alaska (Excluding Aleutian Ids)	5  	9	5	47
+North American 1927	Clarke 1866  	-2	152	149  	Alaska (Aleutian Ids East of 180øW) 	6	8	10	6 
+North American 1927	Clarke 1866  	2	204	105  	Alaska (Aleutian Ids West of 180øW) 	10	10	10	5 
+North American 1927	Clarke 1866  	-4	154	178  	Bahamas (Except San Salvador Id)	5  	3	5	11
+North American 1927	Clarke 1866  	1	140	165  	Bahamas (San Salvador Island)	25  	25	25	1
+North American 1927	Clarke 1866  	-7	162	188  	Canada (Alberta; British Columbia)	8  	8	6	25
+North American 1927	Clarke 1866  	-9	157	184  	Canada (Manitoba; Ontario)	9  	5	5	25
+North American 1927	Clarke 1866  	-22	160	190  	Canada (New Brunswick; Newfoundland; Nova Scotia; Quebec)  	6	6	3 	37
+North American 1927	Clarke 1866  	4	159	188  	Canada (Northwest Territories; Saskatchewan)  	5	5	3 	17
+North American 1927	Clarke 1866  	-7	139	181  	Canada (Yukon)	5	8  	3	8
+North American 1927	Clarke 1866  	0	125	201  	Canal Zone	20	20  	20	3
+North American 1927	Clarke 1866  	-9	152	178  	Cuba	25	25  	25	1
+North American 1927	Clarke 1866  	11	114	195  	Greenland (Hayes Peninsula)	25  	25	25	2
+North American 1927	Clarke 1866  	-3	142	183  	MEAN FOR Antigua; Barbados; Barbuda; Caicos Islands; Cuba; Dominican Republic; Grand Cayman; Jamaica; Turks Islands  	3	9	12 	15
+North American 1927	Clarke 1866  	0	125	194  	MEAN FOR Belize; Costa Rica; El Salvador; Guatemala; Honduras; Nicaragua  	8	3	5 	19
+North American 1927	Clarke 1866  	-10	158	187  	MEAN FOR Canada	15	11  	6	112
+North American 1927	Clarke 1866  	-8	160	176  	MEAN FOR CONUS	5	5  	6	405
+North American 1927	Clarke 1866  	-9	161	179  	MEAN FOR CONUS (East of Mississippi; River Including Louisiana; Missouri; Minnesota)  	5	5	8 	129
+North American 1927	Clarke 1866  	-8	159	175  	MEAN FOR CONUS (West of Mississippi; River Excluding Louisiana; Minnesota; Missouri)  	5	3	3 	276
+North American 1927	Clarke 1866  	-12	130	190  	Mexico	8	6  	6	22
+North American 1983	GRS 80  	0	0	0 	Alaska (Excluding Aleutian Ids)	2  	2	2	42
+North American 1983	GRS 80  	-2	0	4 	Aleutian Ids	5	2  	5	4
+North American 1983	GRS 80  	0	0	0 	Canada	2	2 	2	96
+North American 1983	GRS 80  	0	0	0 	CONUS	2	2 	2	216
+North American 1983	GRS 80  	1	1	-1 	Hawaii	2	2 	2	6
+North American 1983	GRS 80  	0	0	0 	Mexico; Central America	2	2  	2	25
+North Sahara 1959	Clarke 1880  	-186	-93	310  	Algeria	25	25  	25	3
+Observatorio Meteorologico 1939	International 1924  	-425	-169	81  	Azores (Corvo & Flores Islands)	20  	20	20	3
+Old Egyptian 1907	Helmert 1906  	-130	110	-13  	Egypt	3	6  	8	14
+Old Hawaiian	Clarke 1866 	89	-279	-183 	Hawaii	25	25 	25	2
+Old Hawaiian	Clarke 1866 	45	-290	-172 	Kauai	20	20 	20	3
+Old Hawaiian	Clarke 1866 	65	-290	-190 	Maui	25	25 	25	2
+Old Hawaiian	Clarke 1866 	61	-285	-181 	MEAN FOR Hawaii; Kauai; Maui; Oahu	25  	20	20	15
+Old Hawaiian	Clarke 1866 	58	-283	-182 	Oahu	10	6 	6	8
+Oman	Clarke 1880	-346  	-1	224	Oman  	3	3	9 	7
+Ordnance Survey Great Britain 1936	Airy 1830  	371	-112	434  	England	5	5  	6	21
+Ordnance Survey Great Britain 1936	Airy 1830  	371	-111	434  	England; Isle of Man; Wales	10  	10	15	25
+Ordnance Survey Great Britain 1936	Airy 1830  	375	-111	431  	MEAN FOR England; Isle of Man; Scotland; Shetland Islands; Wales  	10	10	15 	38
+Ordnance Survey Great Britain 1936	Airy 1830  	384	-111	425  	Scotland; Shetland Islands	10  	10	10	13
+Ordnance Survey Great Britain 1936	Airy 1830  	370	-108	434  	Wales	20	20  	20	3
+Pico de las Nieves	International 1924  	-307	-92	127  	Canary Islands	25	25  	25	1
+Pitcairn Astro 1967	International 1924  	185	165	42  	Pitcairn Island	25	25  	25	1
+Point 58	Clarke 1880 	-106	-129	165 	MEAN FOR Burkina Faso & Niger	25  	25	25	1
+Pointe Noire 1948	Clarke 1880  	-148	51	-291  	Congo	25	25  	25	1
+Porto Santo 1936	International 1924  	-499	-249	314  	Porto Santo; Madeira Islands	25  	25	25	2
+Provisional South American 1956	International 1924  	-270	188	-388  	Bolivia	5	11  	14	5
+Provisional South American 1956	International 1924  	-270	183	-390  	Chile (Northern; Near 19øS)	25  	25	25	1
+Provisional South American 1956	International 1924  	-305	243	-442  	Chile (Southern; Near 43øS)	20  	20	20	3
+Provisional South American 1956	International 1924  	-282	169	-371  	Colombia	15	15  	15	4
+Provisional South American 1956	International 1924  	-278	171	-367  	Ecuador	3	5  	3	11
+Provisional South American 1956	International 1924  	-298	159	-369  	Guyana	6	14  	5	9
+Provisional South American 1956	International 1924  	-288	175	-376  	MEAN FOR Bolivia; Chile; Colombia; Ecuador; Guyana; Peru; Venezuela  	17	27	27 	63
+Provisional South American 1956	International 1924  	-279	175	-379  	Peru	6	8 	12	6
+Provisional South American 1956	International 1924  	-295	173	-371  	Venezuela	9	14  	15	24
+Provisional South Chilean 1963	International 1924  	16	196	93  	Chile (Near 53øS) (Hito XVIII)	25  	25	25	2
+Puerto Rico	Clarke 1866 	11	72	-101 	Puerto Rico; Virgin Islands	3 	3	3	11
+Pulkovo 1942	Krassovsky 1940  	28	-130	-95  	Russia	-1	-1  	-1	0
+Qatar National	International 1924  	-128	-283	22  	Qatar	20	20  	20	3
+Qornoq	International 1924  	164	138	-189  	Greenland (South)	25	25  	32	2
+Reunion	International 1924  	94	-948	-1262  	Mascarene Islands	25	25  	25	1
+Rome 1940	International 1924  	-225	-65	9  	Italy (Sardinia)	25	25  	25	1
+S-42 (Pulkovo 1942)	Krassovsky 1940  	28	-121	-77  	Hungary	2	2  	2	5
+S-42 (Pulkovo 1942)	Krassovsky 1940  	23	-124	-82  	Poland	4	2  	4	11
+S-42 (Pulkovo 1942)	Krassovsky 1940  	26	-121	-78  	Czechoslavakia	3	3  	2	6
+S-42 (Pulkovo 1942)	Krassovsky 1940  	24	-124	-82  	Latvia	2	2  	2	5
+S-42 (Pulkovo 1942)	Krassovsky 1940  	15	-130	-84  	Kazakhstan	25	25  	25	2
+S-42 (Pulkovo 1942)	Krassovsky 1940  	24	-130	-92  	Albania	3	3  	3	7
+S-42 (Pulkovo 1942)	Krassovsky 1940  	28	-121	-77  	Romania	3	5  	3	4
+S-JTSK	Bessel 1841	589  	76	480	Czechoslavakia (Prior 1 JAN 1993)  	4	2	3 	6
+Santo (DOS) 1965	International 1924  	170	42	84  	Espirito Santo Island	25 	25	25	1
+Sao Braz	International 1924  	-203	141	53  	Azores (Sao Miguel; Santa Maria Ids)	25  	25	25	2
+Sapper Hill 1943	International 1924  	-355	21	72  	East Falkland Island	1 	1	1	5
+Schwarzeck	Bessel 1841 (Namibia)  	616	97	-251  	Namibia	20	20  	20	3
+Selvagem Grande 1938	International 1924  	-289	-124	60  	Salvage Islands	25	25  	25	1
+Sierra Leone 1960	Clarke 1880  	-88	4	101  	Sierra Leone	15	15  	15	8
+South American 1969	South American 1969  	-62	-1	-37  	Argentina	5	5  	5	10
+South American 1969	South American 1969  	-61	2	-48  	Bolivia	15	15  	15	4
+South American 1969	South American 1969  	-60	-2	-41  	Brazil	3	5  	5	22
+South American 1969	South American 1969  	-75	-1	-44  	Chile	15	8  	11	9
+South American 1969	South American 1969  	-44	6	-36  	Colombia	6	6  	5	7
+South American 1969	South American 1969  	-48	3	-44  	Ecuador	3	3  	3	11
+South American 1969	South American 1969  	-47	26	-42  	Ecuador (Baltra; Galapagos)	25  	25	25	1
+South American 1969	South American 1969  	-53	3	-47  	Guyana	9	5  	5	5
+South American 1969	South American 1969  	-57	1	-41  	MEAN FOR Argentina; Bolivia; Brazil; Chile; Colombia; Ecuador; Guyana; Paraguay; Peru; Trinidad & Tobago; Venezuela  	15	6	9 	84
+South American 1969	South American 1969  	-61	2	-33  	Paraguay	15	15  	15	4
+South American 1969	South American 1969  	-58	0	-44  	Peru	5	5 	5	6
+South American 1969	South American 1969  	-45	12	-33  	Trinidad & Tobago	25 	25	25	1
+South American 1969	South American 1969  	-45	8	-33  	Venezuela	3	6  	3	5
+South Asia	Modified Fischer 1960  	7	-10	-26  	Singapore	25	25  	25	1
+Tananarive Observatory 1925	International 1924  	-189	-242	-91  	Madagascar	-1	-1  	-1	0
+Timbalai 1948	Everest (Sabah Sarawak)  	-679	669	-48  	Brunei; E. Malaysia (Sabah Sarawak)	10  	10	12	8
+Tokyo	Bessel 1841	-148  	507	685	Japan  	8	5	8 	16
+Tokyo	Bessel 1841	-148  	507	685	MEAN FOR Japan; South Korea; Okinawa  	20	5	20 	31
+Tokyo	Bessel 1841	-158  	507	676	Okinawa  	20	5	20 	3
+Tokyo	Bessel 1841	-147  	506	687	South Korea  	2	2	2 	29
+Tristan Astro 1968	International 1924  	-632	438	-609  	Tristan da Cunha	25	25  	25	1
+Viti Levu 1916	Clarke 1880  	51	391	-36  	Fiji (Viti Levu Island)	25  	25	25	1
+Voirol 1960	Clarke 1880 	-123	-206	219 	Algeria	25	25 	25	2
+Wake Island Astro 1952	International 1924  	276	-57	149  	Wake Atoll	25	25  	25	2
+Wake-Eniwetok 1960	Hough 1960  	102	52	-38  	Marshall Islands	3	3  	3	10
+WGS 1972	WGS 72	0  	0	0	Global Definition  	-1	-1	-1 	0
+WGS 1984	WGS 84	0  	0	0	Global Definition  	-1	-1	-1 	0
+Yacare	International 1924  	-155	171	37  	Uruguay	-1	-1  	-1	0
+Zanderij	International 1924 	-265	120	-358 	Suriname	5	5 	8	5
