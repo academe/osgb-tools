@@ -152,7 +152,10 @@ it from whatever datum is used if it is not.
     $longitude = -1.9813210410013;
     $lat_long = new Academe\OsgbTools\Coordinate(array($latitude, $longitude));
     $square = Academe\OsgbTools\Convert::latLongToOsGrid($lat_long);
-    
+
+Some terms: Geodetic coordinates consist of geodetic latitude, geodetic longitude, and geodetic height. 
+Geocentric coordinates are Cartesian coordinates (X, Y, Z) that define the position of a point with respect
+to the center of mass of the earth.
 
 Again to note: this will change, and is just a quick library put in to demonstrate (getting more stable though).
 
