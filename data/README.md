@@ -22,7 +22,9 @@ http://www.colorado.edu/geography/gcraft/notes/datum/gif/geoconv.gif
 
 Q: For conversion, if we don't know the datum, but do know the ellipsoid, is there a mean
 set of datum shitfing parameters that can be defined to get *closer* than not doing the
-shift at all?
+shift at all? For example, the countries of the UK all use their own reference origin, but the
+same ellipsis. There is a mean originin that can be used across all UK countries for conversion
+from Airy 1830.
 
 Data Columns
 ------------
