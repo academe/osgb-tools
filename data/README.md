@@ -20,6 +20,10 @@ http://www.colorado.edu/geography/gcraft/notes/datum/edlist.html
 Shifting between datums in cartesian (xyz) coordinates is simple:
 http://www.colorado.edu/geography/gcraft/notes/datum/gif/geoconv.gif
 
+Q: For conversion, if we don't know the datum, but do know the ellipsoid, is there a mean
+set of datum shitfing parameters that can be defined to get *closer* than not doing the
+shift at all?
+
 Data Columns
 ------------
 
