@@ -14,6 +14,11 @@ WGS84 	World Geodetic System 1984	http://en.wikipedia.org/wiki/World_Geodetic_Sy
 NAVD88 	N. American Vertical Datum 1988
 ETRS89 	European Terrestrial Reference System 1989
 
+For datum conversion parameters, see:
+http://www.colorado.edu/geography/gcraft/notes/datum/edlist.html
+
+Shifting between datums in cartesian (xyz) coordinates is simple:
+http://www.colorado.edu/geography/gcraft/notes/datum/gif/geoconv.gif
 
 Ellipsoids
 ==========
