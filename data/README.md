@@ -44,53 +44,64 @@ Shifting between datums in cartesian (xyz) coordinates is simple:
 http://www.colorado.edu/geography/gcraft/notes/datum/gif/geoconv.gif
 
 Q: For conversion, if we don't know the datum, but do know the ellipsoid, is there a mean
-set of datum shitfing parameters that can be defined to get *closer* than not doing the
+set of datum shiting parameters that can be defined to get *closer* than not doing the
 shift at all? For example, the countries of the UK all use their own reference origin, but the
-same ellipsis. There is a mean originin that can be used across all UK countries for conversion
+same ellipsoid. There is a mean origin that can be used across all UK countries for conversion
 from Airy 1830.
 
 Data Columns
 ------------
 
-TODO: desacriptions
+These are columns in datum.csv
 
-* Datum
-* Ellipsoid Code
-* Ellipsoid Name
-* dX
-* dY
-* dZ
-* Region of use
-* eX
-* eY
-* eZ
-* #S
+* datum name - the US name for the datum
+* region of use - notes on which regions the datum covers
+* ellipsoid code - the ISO/IEC 18026 code for the ellipsoid
+* dx - transform delta in metres
+* dy - transform delta in metres
+* dz - transform delta in metres
+* ex - error estimate in metres
+* ey - error estimate in metres
+* ez - error estimate in metres
+* sat - number of salettite measurement stations
 
+File is comma-separated, non-quoted (no commas in any data), ASCII.
+The first row contain column headings, in lower-case, with a space between words.
+
+The transform delta values are the number of metres that must be added to a local cartesian
+ordinate to shift to the WGS-84 datum.
 
 Ellipsoids
 ==========
 
-Values are:
-
-* id - the unique code for the ellipsoid
-* name - the human-readable name of the ellipsoid
-* a - the semi-major access (metres)
-* infF - 1/Flattening
-
-The following digram shows what the ellipsoidal parameters represent:
+The following digram shows what the ellipsoidal parameters represent.
+Ity helps to put the raw figures into context:
 http://www.colorado.edu/geography/gcraft/notes/datum/gif/ellipse.gif
 
-A good reference ellipsoid list:
-
+Most of the datums and ellipsoids have come from here:
 http://www.colorado.edu/geography/gcraft/notes/datum/elist.html
 
-Missing ellipses from this data, or clarification needed on the names:
+Data Columns
+------------
 
-* Indonesian 1974 a=6378388 b=6356911.946 invF=297
-* Everest (India 1830) a=6377276.345 b=6356075.413 invf=300.8017
-* Everest (Malay. & Sing 1948) a=6377304.063 b=6356103.039 invF=300.8017
-* Everest (Pakistan) a=6377309.613 b=6356109.571 invF=300.8017
-* Everest (Sabah & Sarawak) a=6377298.556 b=6356097.550 invF=300.8017
-* International 1924 a=6378388 b=6356911.946 invF=297
-* Krassovsky 1940 a=6378245 b=6356863.019 invF=298.3
+These are columns in ellipsoid.csv
+
+* code - the ISO/IEC 18026 code for the ellipsoid
+* league code - the league/geotools code for the ellipsoid
+* name - the human-readable name of the ellipsoid
+* a - the semi-major access (metres)
+* invf - 1/flattening
+
+ARINC Datum Codes
+=================
+
+In an attempt to gather standard codes for referencing datums, the list of datums and codes
+from the ARINC 424-18 (from 2007) specification has been collected. These are codes used for international
+air travel. It is probably the only internationally accepted codes that exist, since air travel
+is the only activity that needs to work with varying land-based geodfesic datums. It makes
+sense to adopt these codes rather than make up our own.
+
+Also worth looking at are EPSH codes - http://spatialreference.org/ref/epsg/ - though I think they may be
+more related to map projections in various zones, but may be useful as an unambiguous authoritive reference
+for datums, elliposoids etc.
 
