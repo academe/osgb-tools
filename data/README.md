@@ -23,8 +23,6 @@ The table shows that each datum is further devided into regions, with means that
 groups of those regions. When a datum is assighned to a coordinate, the regions of that
 datum must be taken into account.
 
-TODO: denormalise the datums table into master-detail datum+regional variation.
-
 No datum is defined by more than one ellipsoid.
 
 Reference datums:
