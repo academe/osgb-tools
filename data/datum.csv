@@ -1,220 +1,220 @@
-datum name,region of use,ellipsoid code,dx,dy,dz,ex,ey,ez,sat
-Ordnance Survey Great Britain 1936,England,AA,371,-112,434,5,5,6,21
-Ordnance Survey Great Britain 1936,England; Isle of Man; Wales,AA,371,-111,434,10,10,15,25
-Ordnance Survey Great Britain 1936,MEAN FOR England; Isle of Man; Scotland; Shetland Islands; Wales,AA,375,-111,431,10,10,15,38
-Ordnance Survey Great Britain 1936,Scotland; Shetland Islands,AA,384,-111,425,10,10,10,13
-Ordnance Survey Great Britain 1936,Wales,AA,370,-108,434,20,20,20,3
-Anna 1 Astro 1965,Cocos Islands,AN,-491,-22,435,25,25,25,1
-Australian Geodetic 1966,Australia; Tasmania,AN,-133,-48,148,3,3,3,105
-Australian Geodetic 1984,Australia; Tasmania,AN,-134,-48,149,2,2,2,90
-Bukit Rimpah,Indonesia (Bangka & Belitung Ids),BR,-384,664,-48,-1,-1,-1,0
-Djakarta (Batavia),Indonesia (Sumatra),BR,-377,681,-50,3,3,3,5
-Estonia; Coordinate System 1937,Estonia,BR,374,150,588,2,3,3,19
-Gunung Segara,Indonesia (Kalimantan),BR,-403,684,41,-1,-1,-1,0
-Hermannskogel Datum,Croatia; Bosnia-Herzegovina,BR,653,-212,449,-1,-1,-1,0
-Massawa,Ethiopia (Eritrea),BR,639,405,60,25,25,25,1
-Schwarzeck,Namibia,BR,616,97,-251,20,20,20,3
-S-JTSK,Czechoslavakia (Prior 1 JAN 1993),BR,589,76,480,4,2,3,6
-Tokyo,Japan,BR,-148,507,685,8,5,8,16
-Tokyo,MEAN FOR Japan; South Korea; Okinawa,BR,-148,507,685,20,5,20,31
-Tokyo,Okinawa,BR,-158,507,676,20,5,20,3
-Tokyo,South Korea,BR,-147,506,687,2,2,2,29
-American Samoa 1962,American Samoa Islands,CC,-115,118,426,25,25,25,2
-Bermuda 1957,Bermuda,CC,-73,213,296,20,20,20,3
-Cape Canaveral,Bahamas; Florida,CC,-2,151,181,3,3,3,19
-Guam 1963,Guam,CC,-100,-248,259,3,3,3,5
-L. C. 5 Astro 1961,Cayman Brac Island,CC,42,124,147,25,25,25,1
-Luzon,Philippines (Excluding Mindanao),CC,-133,-77,-51,8,11,9,6
-Luzon,Philippines (Mindanao),CC,-133,-79,-72,25,25,25,1
-North American 1927,Alaska (Excluding Aleutian Ids),CC,-5,135,172,5,9,5,47
-North American 1927,Alaska (Aleutian Ids East of 180øW),CC,-2,152,149,6,8,10,6
-North American 1927,Alaska (Aleutian Ids West of 180øW),CC,2,204,105,10,10,10,5
-North American 1927,Bahamas (Except San Salvador Id),CC,-4,154,178,5,3,5,11
-North American 1927,Bahamas (San Salvador Island),CC,1,140,165,25,25,25,1
-North American 1927,Canada (Alberta; British Columbia),CC,-7,162,188,8,8,6,25
-North American 1927,Canada (Manitoba; Ontario),CC,-9,157,184,9,5,5,25
-North American 1927,Canada (New Brunswick; Newfoundland; Nova Scotia; Quebec),CC,-22,160,190,6,6,3,37
-North American 1927,Canada (Northwest Territories; Saskatchewan),CC,4,159,188,5,5,3,17
-North American 1927,Canada (Yukon),CC,-7,139,181,5,8,3,8
-North American 1927,Canal Zone,CC,0,125,201,20,20,20,3
-North American 1927,Cuba,CC,-9,152,178,25,25,25,1
-North American 1927,Greenland (Hayes Peninsula),CC,11,114,195,25,25,25,2
-North American 1927,MEAN FOR Antigua; Barbados; Barbuda; Caicos Islands; Cuba; Dominican Republic; Grand Cayman; Jamaica; Turks Islands,CC,-3,142,183,3,9,12,15
-North American 1927,MEAN FOR Belize; Costa Rica; El Salvador; Guatemala; Honduras; Nicaragua,CC,0,125,194,8,3,5,19
-North American 1927,MEAN FOR Canada,CC,-10,158,187,15,11,6,112
-North American 1927,MEAN FOR CONUS,CC,-8,160,176,5,5,6,405
-North American 1927,MEAN FOR CONUS (East of Mississippi; River Including Louisiana; Missouri; Minnesota),CC,-9,161,179,5,5,8,129
-North American 1927,MEAN FOR CONUS (West of Mississippi; River Excluding Louisiana; Minnesota; Missouri),CC,-8,159,175,5,3,3,276
-North American 1927,Mexico,CC,-12,130,190,8,6,6,22
-Old Hawaiian,Hawaii,CC,89,-279,-183,25,25,25,2
-Old Hawaiian,Kauai,CC,45,-290,-172,20,20,20,3
-Old Hawaiian,Maui,CC,65,-290,-190,25,25,25,2
-Old Hawaiian,MEAN FOR Hawaii; Kauai; Maui; Oahu,CC,61,-285,-181,25,20,20,15
-Old Hawaiian,Oahu,CC,58,-283,-182,10,6,6,8
-Puerto Rico,Puerto Rico; Virgin Islands,CC,11,72,-101,3,3,3,11
-Adindan,Burkina Faso,CD,-118,-14,218,25,25,25,1
-Adindan,Cameroon,CD,-134,-2,210,25,25,25,1
-Adindan,Ethiopia,CD,-165,-11,206,3,3,3,8
-Adindan,Mali,CD,-123,-20,220,25,25,25,1
-Adindan,MEAN FOR Ethiopia; Sudan,CD,-166,-15,204,5,5,3,22
-Adindan,Senegal,CD,-128,-18,224,25,25,25,2
-Adindan,Sudan,CD,-161,-14,205,3,5,3,14
-Antigua Island Astro 1943,Antigua (Leeward Islands),CD,-270,13,62,25,25,25,1
-Arc 1950,Botswana,CD,-138,-105,-289,3,5,3,9
-Arc 1950,Burundi,CD,-153,-5,-292,20,20,20,3
-Arc 1950,Lesotho,CD,-125,-108,-295,3,3,8,5
-Arc 1950,Malawi,CD,-161,-73,-317,9,24,8,6
-Arc 1950,MEAN FOR Botswana; Lesotho; Malawi; Swaziland; Zaire; Zambia; Zimbabwe,CD,-143,-90,-294,20,33,20,41
-Arc 1950,Swaziland,CD,-134,-105,-295,15,15,15,4
-Arc 1950,Zaire,CD,-169,-19,-278,25,25,25,2
-Arc 1950,Zambia,CD,-147,-74,-283,21,21,27,5
-Arc 1950,Zimbabwe,CD,-142,-96,-293,5,8,11,10
-Arc 1960,MEAN FOR Kenya; Tanzania,CD,-160,-6,-302,20,20,20,25
-Arc 1960,Kenya,CD,-157,-2,-299,4,3,3,24
-Arc 1960,Taanzania,CD,-175,-23,-303,6,9,10,12
-Ayabelle Lighthouse,Djibouti,CD,-79,-129,145,25,25,25,1
-Cape,South Africa,CD,-136,-108,-292,3,6,6,5
-Carthage,Tunisia,CD,-263,6,431,6,9,8,5
-Dabola,Guinea,CD,-83,37,124,15,15,15,4
-Deception Island,Deception Island; Antarctia,CD,260,12,-147,20,20,20,3
-Fort Thomas 1955,Nevis; St. Kitts (Leeward Islands),CD,-7,215,225,25,25,25,2
-Leigon,Ghana,CD,-130,29,364,2,3,2,8
-Liberia 1964,Liberia,CD,-90,40,88,15,15,15,4
-Mahe 1971,Mahe Island,CD,41,-220,-134,25,25,25,1
-Merchich,Morocco,CD,31,146,47,5,3,3,9
-Minna,Cameroon,CD,-81,-84,115,25,25,25,2
-Minna,Nigeria,CD,-92,-93,122,3,6,5,6
-Montserrat Island Astro 1958,Montserrat (Leeward Islands),CD,174,359,365,25,25,25,1
-M'Poraloko,Gabon,CD,-74,-130,42,25,25,25,1
-Nahrwan,Oman (Masirah Island),CD,-247,-148,369,25,25,25,2
-Nahrwan,Saudi Arabia,CD,-243,-192,477,20,20,20,3
-Nahrwan,United Arab Emirates,CD,-249,-156,381,25,25,25,2
-North Sahara 1959,Algeria,CD,-186,-93,310,25,25,25,3
-Oman,Oman,CD,-346,-1,224,3,3,9,7
-Point 58,MEAN FOR Burkina Faso & Niger,CD,-106,-129,165,25,25,25,1
-Pointe Noire 1948,Congo,CD,-148,51,-291,25,25,25,1
-Sierra Leone 1960,Sierra Leone,CD,-88,4,101,15,15,15,8
-Viti Levu 1916,Fiji (Viti Levu Island),CD,51,391,-36,25,25,25,1
-Voirol 1960,Algeria,CD,-123,-206,219,25,25,25,2
-Indian,Bangladesh,EA,282,726,254,10,8,12,6
-Indian,India; Nepal,EC,295,736,257,12,10,15,7
-Indian,Pakistan,EF,283,682,231,-1,-1,-1,0
-Indian 1954,Thailand,EA,217,823,299,15,6,12,11
-Indian 1960,Vietnam (Con Son Island),EA,182,915,344,25,25,25,1
-Indian 1960,Vietnam (Near 16øN),EA,198,881,317,25,25,25,2
-Indian 1975,Thailand,EA,210,814,289,3,2,3,62
-Kandawala,Sri Lanka,EA,-97,787,86,20,20,20,3
-Kertau 1948,West Malaysia & Singapore,EE,-11,851,5,10,8,6,6
-Timbalai 1948,Brunei; E. Malaysia (Sabah Sarawak),EB,-679,669,-48,10,10,12,8
-Korean Geodetic System,South Korea,RF,0,0,0,2,2,2,12
-North American 1983,Alaska (Excluding Aleutian Ids),RF,0,0,0,2,2,2,42
-North American 1983,Aleutian Ids,RF,-2,0,4,5,2,5,4
-North American 1983,Canada,RF,0,0,0,2,2,2,96
-North American 1983,CONUS,RF,0,0,0,2,2,2,216
-North American 1983,Hawaii,RF,1,1,-1,2,2,2,6
-North American 1983,Mexico; Central America,RF,0,0,0,2,2,2,25
-Old Egyptian 1907,Egypt,HE,-130,110,-13,3,6,8,14
-Wake-Eniwetok 1960,Marshall Islands,HO,102,52,-38,3,3,3,10
-Ain el Abd 1970,Bahrain,IN,-150,-250,-1,25,25,25,2
-Ain el Abd 1970,Saudi Arabia,IN,-143,-236,7,10,10,10,9
-Ascension Island 1958,Ascension Island,IN,-205,107,53,25,25,25,2
-Astro Beacon E 1945,Iwo Jima,IN,145,75,-272,25,25,25,1
-Astro DOS 71/4,St Helena Island,IN,-320,550,-494,25,25,25,1
-Astro Tern Island (FRIG) 1961,Tern Island,IN,114,-116,-333,25,25,25,1
-Astronomical Station 1952,Marcus Island,IN,124,-234,-25,25,25,25,1
-Bellevue (IGN),Efate & Erromango Islands,IN,-127,-769,472,20,20,20,3
-Bissau,Guinea-Bissau,IN,-173,253,27,25,25,25,2
-Bogota Observatory,Colombia,IN,307,304,-318,6,5,6,7
-Camp Area Astro,Antarctica (McMurdo Camp Area),IN,-104,-129,239,-1,-1,-1,0
-Campo Inchauspe,Argentina,IN,-148,136,90,5,5,5,20
-Canton Astro 1966,Phoenix Islands,IN,298,-304,-375,15,15,15,4
-Chatham Island Astro 1971,New Zealand (Chatham Island),IN,175,-38,113,15,15,15,4
-Chua Astro,Paraguay,IN,-134,229,-29,6,9,5,6
-Corrego Alegre,Brazil,IN,-206,172,-6,5,3,5,17
-DOS 1968,New Georgia Islands (Gizo Island),IN,230,-199,-752,25,25,25,1
-Easter Island 1967,Easter Island,IN,211,147,111,25,25,25,1
-European 1950,Cyprus,IN,-104,-101,-140,15,15,15,4
-European 1950,Egypt,IN,-130,-117,-151,6,8,8,14
-European 1950,England; Channel Islands; Scotland; Shetland Islands,IN,-86,-96,-120,3,3,3,40
-European 1950,England; Ireland; Scotland; Shetland Islands,IN,-86,-96,-120,3,3,3,47
-European 1950,Finland; Norway,IN,-87,-95,-120,3,5,3,20
-European 1950,Greece,IN,-84,-95,-130,25,25,25,2
-European 1950,Iran,IN,-117,-132,-164,9,12,11,27
-European 1950,Italy (Sardinia),IN,-97,-103,-120,25,25,25,2
-European 1950,Italy (Sicily),IN,-97,-88,-135,20,20,20,3
-European 1950,Malta,IN,-107,-88,-149,25,25,25,1
-European 1950,MEAN FOR Austria; Belgium; Denmark; Finland; France; W Germany; Gibraltar; Greece; Italy; Luxembourg; Netherlands; Norway; Portugal; Spain; Sweden; Switzerland,IN,-87,-98,-121,3,8,5,85
-European 1950,MEAN FOR Austria; Denmark; France; W Germany; Netherlands; Switzerland,IN,-87,-96,-120,3,3,3,52
-European 1950,MEAN FOR Iraq; Israel; Jordan; Lebanon; Kuwait; Saudi Arabia; Syria,IN,-103,-106,-141,-1,-1,-1,0
-European 1950,Portugal; Spain,IN,-84,-107,-120,5,6,3,18
-European 1950,Tunisia,IN,-112,-77,-145,25,25,25,4
-European 1979,MEAN FOR Austria; Finland; Netherlands; Norway; Spain; Sweden; Switzerland,IN,-86,-98,-119,3,3,3,22
-Gan 1970,Republic of Maldives,IN,-133,-321,50,25,25,25,1
-Geodetic Datum 1949,New Zealand,IN,84,-22,209,5,3,5,14
-Graciosa Base SW 1948,Azores (Faial; Graciosa; Pico; Sao Jorge; Terceira),IN,-104,167,-38,3,3,3,5
-GUX 1 Astro,Guadalcanal Island,IN,252,-209,-751,25,25,25,1
-Herat North,Afghanistan,IN,-333,-222,114,-1,-1,-1,0
-Hjorsey 1955,Iceland,IN,-73,46,-86,3,3,6,6
-Hong Kong 1963,Hong Kong,IN,-156,-271,-189,25,25,25,2
-Hu-Tzu-Shan,Taiwan,IN,-637,-549,-203,15,15,15,4
-ISTS 061 Astro 1968,South Georgia Islands,IN,-794,119,-298,25,25,25,1
-ISTS 073 Astro 1969,Diego Garcia,IN,208,-435,-229,25,25,25,2
-Johnston Island 1961,Johnston Island,IN,189,-79,-202,25,25,25,1
-Kerguelen Island 1949,Kerguelen Island,IN,145,-187,103,25,25,25,1
-Kusaie Astro 1951,Caroline Islands,IN,647,1777,-1124,25,25,25,1
-Midway Astro 1961,Midway Islands,IN,912,-58,1227,25,25,25,1
-Naparima BWI,Trinidad & Tobago,IN,-10,375,165,15,15,15,4
-Observatorio Meteorologico 1939,Azores (Corvo & Flores Islands),IN,-425,-169,81,20,20,20,3
-Pico de las Nieves,Canary Islands,IN,-307,-92,127,25,25,25,1
-Pitcairn Astro 1967,Pitcairn Island,IN,185,165,42,25,25,25,1
-Porto Santo 1936,Porto Santo; Madeira Islands,IN,-499,-249,314,25,25,25,2
-Provisional South American 1956,Bolivia,IN,-270,188,-388,5,11,14,5
-Provisional South American 1956,Chile (Northern; Near 19øS),IN,-270,183,-390,25,25,25,1
-Provisional South American 1956,Chile (Southern; Near 43øS),IN,-305,243,-442,20,20,20,3
-Provisional South American 1956,Colombia,IN,-282,169,-371,15,15,15,4
-Provisional South American 1956,Ecuador,IN,-278,171,-367,3,5,3,11
-Provisional South American 1956,Guyana,IN,-298,159,-369,6,14,5,9
-Provisional South American 1956,MEAN FOR Bolivia; Chile; Colombia; Ecuador; Guyana; Peru; Venezuela,IN,-288,175,-376,17,27,27,63
-Provisional South American 1956,Peru,IN,-279,175,-379,6,8,12,6
-Provisional South American 1956,Venezuela,IN,-295,173,-371,9,14,15,24
-Provisional South Chilean 1963,Chile (Near 53øS) (Hito XVIII),IN,16,196,93,25,25,25,2
-Qatar National,Qatar,IN,-128,-283,22,20,20,20,3
-Qornoq,Greenland (South),IN,164,138,-189,25,25,32,2
-Reunion,Mascarene Islands,IN,94,-948,-1262,25,25,25,1
-Rome 1940,Italy (Sardinia),IN,-225,-65,9,25,25,25,1
-Santo (DOS) 1965,Espirito Santo Island,IN,170,42,84,25,25,25,1
-Sao Braz,Azores (Sao Miguel; Santa Maria Ids),IN,-203,141,53,25,25,25,2
-Sapper Hill 1943,East Falkland Island,IN,-355,21,72,1,1,1,5
-Selvagem Grande 1938,Salvage Islands,IN,-289,-124,60,25,25,25,1
-Tananarive Observatory 1925,Madagascar,IN,-189,-242,-91,-1,-1,-1,0
-Tristan Astro 1968,Tristan da Cunha,IN,-632,438,-609,25,25,25,1
-Wake Island Astro 1952,Wake Atoll,IN,276,-57,149,25,25,25,2
-Yacare,Uruguay,IN,-155,171,37,-1,-1,-1,0
-Zanderij,Suriname,IN,-265,120,-358,5,5,8,5
-Afgooye,Somalia,KA,-43,-163,45,25,25,25,1
-Pulkovo 1942,Russia,KA,28,-130,-95,-1,-1,-1,0
-S-42 (Pulkovo 1942),Hungary,KA,28,-121,-77,2,2,2,5
-S-42 (Pulkovo 1942),Poland,KA,23,-124,-82,4,2,4,11
-S-42 (Pulkovo 1942),Czechoslavakia,KA,26,-121,-78,3,3,2,6
-S-42 (Pulkovo 1942),Latvia,KA,24,-124,-82,2,2,2,5
-S-42 (Pulkovo 1942),Kazakhstan,KA,15,-130,-84,25,25,25,2
-S-42 (Pulkovo 1942),Albania,KA,24,-130,-92,3,3,3,7
-S-42 (Pulkovo 1942),Romania,KA,28,-121,-77,3,5,3,4
-Ireland 1965,Ireland,AM,506,-122,611,3,3,3,7
-South Asia,Singapore,FA,7,-10,-26,25,25,25,1
-South American 1969,Argentina,SA,-62,-1,-37,5,5,5,10
-South American 1969,Bolivia,SA,-61,2,-48,15,15,15,4
-South American 1969,Brazil,SA,-60,-2,-41,3,5,5,22
-South American 1969,Chile,SA,-75,-1,-44,15,8,11,9
-South American 1969,Colombia,SA,-44,6,-36,6,6,5,7
-South American 1969,Ecuador,SA,-48,3,-44,3,3,3,11
-South American 1969,Ecuador (Baltra; Galapagos),SA,-47,26,-42,25,25,25,1
-South American 1969,Guyana,SA,-53,3,-47,9,5,5,5
-South American 1969,MEAN FOR Argentina; Bolivia; Brazil; Chile; Colombia; Ecuador; Guyana; Paraguay; Peru; Trinidad & Tobago; Venezuela,SA,-57,1,-41,15,6,9,84
-South American 1969,Paraguay,SA,-61,2,-33,15,15,15,4
-South American 1969,Peru,SA,-58,0,-44,5,5,5,6
-South American 1969,Trinidad & Tobago,SA,-45,12,-33,25,25,25,1
-South American 1969,Venezuela,SA,-45,8,-33,3,6,3,5
-WGS 1972,Global Definition,WD,0,0,0,-1,-1,-1,0
-WGS 1984,Global Definition,WE,0,0,0,-1,-1,-1,0
-Indonesian 1974,Indonesia,ID,-24,-15,5,25,25,25,1
+datum name,region of use,datum code,ellipsoid code,dx,dy,dz,ex,ey,ez,sat,epsg
+Ordnance Survey Great Britain 1936,England,,AA,371,-112,434,5,5,6,21,
+Ordnance Survey Great Britain 1936,England; Isle of Man; Wales,,AA,371,-111,434,10,10,15,25,
+Ordnance Survey Great Britain 1936,MEAN FOR England; Isle of Man; Scotland; Shetland Islands; Wales,,AA,375,-111,431,10,10,15,38,
+Ordnance Survey Great Britain 1936,Scotland; Shetland Islands,,AA,384,-111,425,10,10,10,13,
+Ordnance Survey Great Britain 1936,Wales,,AA,370,-108,434,20,20,20,3,
+Anna 1 Astro 1965,Cocos Islands,,AN,-491,-22,435,25,25,25,1,
+Australian Geodetic 1966,Australia; Tasmania,,AN,-133,-48,148,3,3,3,105,
+Australian Geodetic 1984,Australia; Tasmania,,AN,-134,-48,149,2,2,2,90,
+Bukit Rimpah,Indonesia (Bangka & Belitung Ids),,BR,-384,664,-48,-1,-1,-1,0,
+Djakarta (Batavia),Indonesia (Sumatra),,BR,-377,681,-50,3,3,3,5,
+Estonia; Coordinate System 1937,Estonia,,BR,374,150,588,2,3,3,19,
+Gunung Segara,Indonesia (Kalimantan),,BR,-403,684,41,-1,-1,-1,0,
+Hermannskogel Datum,Croatia; Bosnia-Herzegovina,,BR,653,-212,449,-1,-1,-1,0,
+Massawa,Ethiopia (Eritrea),,BR,639,405,60,25,25,25,1,
+Schwarzeck,Namibia,,BR,616,97,-251,20,20,20,3,
+S-JTSK,Czechoslavakia (Prior 1 JAN 1993),,BR,589,76,480,4,2,3,6,
+Tokyo,Japan,,BR,-148,507,685,8,5,8,16,
+Tokyo,MEAN FOR Japan; South Korea; Okinawa,,BR,-148,507,685,20,5,20,31,
+Tokyo,Okinawa,,BR,-158,507,676,20,5,20,3,
+Tokyo,South Korea,,BR,-147,506,687,2,2,2,29,
+American Samoa 1962,American Samoa Islands,,CC,-115,118,426,25,25,25,2,
+Bermuda 1957,Bermuda,,CC,-73,213,296,20,20,20,3,
+Cape Canaveral,Bahamas; Florida,,CC,-2,151,181,3,3,3,19,
+Guam 1963,Guam,,CC,-100,-248,259,3,3,3,5,
+L. C. 5 Astro 1961,Cayman Brac Island,,CC,42,124,147,25,25,25,1,
+Luzon,Philippines (Excluding Mindanao),,CC,-133,-77,-51,8,11,9,6,
+Luzon,Philippines (Mindanao),,CC,-133,-79,-72,25,25,25,1,
+North American 1927,Alaska (Excluding Aleutian Ids),,CC,-5,135,172,5,9,5,47,
+North American 1927,Alaska (Aleutian Ids East of 180øW),,CC,-2,152,149,6,8,10,6,
+North American 1927,Alaska (Aleutian Ids West of 180øW),,CC,2,204,105,10,10,10,5,
+North American 1927,Bahamas (Except San Salvador Id),,CC,-4,154,178,5,3,5,11,
+North American 1927,Bahamas (San Salvador Island),,CC,1,140,165,25,25,25,1,
+North American 1927,Canada (Alberta; British Columbia),,CC,-7,162,188,8,8,6,25,
+North American 1927,Canada (Manitoba; Ontario),,CC,-9,157,184,9,5,5,25,
+North American 1927,Canada (New Brunswick; Newfoundland; Nova Scotia; Quebec),,CC,-22,160,190,6,6,3,37,
+North American 1927,Canada (Northwest Territories; Saskatchewan),,CC,4,159,188,5,5,3,17,
+North American 1927,Canada (Yukon),,CC,-7,139,181,5,8,3,8,
+North American 1927,Canal Zone,,CC,0,125,201,20,20,20,3,
+North American 1927,Cuba,,CC,-9,152,178,25,25,25,1,
+North American 1927,Greenland (Hayes Peninsula),,CC,11,114,195,25,25,25,2,
+North American 1927,MEAN FOR Antigua; Barbados; Barbuda; Caicos Islands; Cuba; Dominican Republic; Grand Cayman; Jamaica; Turks Islands,,CC,-3,142,183,3,9,12,15,
+North American 1927,MEAN FOR Belize; Costa Rica; El Salvador; Guatemala; Honduras; Nicaragua,,CC,0,125,194,8,3,5,19,
+North American 1927,MEAN FOR Canada,,CC,-10,158,187,15,11,6,112,
+North American 1927,MEAN FOR CONUS,,CC,-8,160,176,5,5,6,405,
+North American 1927,MEAN FOR CONUS (East of Mississippi; River Including Louisiana; Missouri; Minnesota),,CC,-9,161,179,5,5,8,129,
+North American 1927,MEAN FOR CONUS (West of Mississippi; River Excluding Louisiana; Minnesota; Missouri),,CC,-8,159,175,5,3,3,276,
+North American 1927,Mexico,,CC,-12,130,190,8,6,6,22,
+Old Hawaiian,Hawaii,,CC,89,-279,-183,25,25,25,2,
+Old Hawaiian,Kauai,,CC,45,-290,-172,20,20,20,3,
+Old Hawaiian,Maui,,CC,65,-290,-190,25,25,25,2,
+Old Hawaiian,MEAN FOR Hawaii; Kauai; Maui; Oahu,,CC,61,-285,-181,25,20,20,15,
+Old Hawaiian,Oahu,,CC,58,-283,-182,10,6,6,8,
+Puerto Rico,Puerto Rico; Virgin Islands,,CC,11,72,-101,3,3,3,11,
+Adindan,Burkina Faso,,CD,-118,-14,218,25,25,25,1,
+Adindan,Cameroon,,CD,-134,-2,210,25,25,25,1,
+Adindan,Ethiopia,,CD,-165,-11,206,3,3,3,8,
+Adindan,Mali,,CD,-123,-20,220,25,25,25,1,
+Adindan,MEAN FOR Ethiopia; Sudan,,CD,-166,-15,204,5,5,3,22,
+Adindan,Senegal,,CD,-128,-18,224,25,25,25,2,
+Adindan,Sudan,,CD,-161,-14,205,3,5,3,14,
+Antigua Island Astro 1943,Antigua (Leeward Islands),,CD,-270,13,62,25,25,25,1,
+Arc 1950,Botswana,,CD,-138,-105,-289,3,5,3,9,
+Arc 1950,Burundi,,CD,-153,-5,-292,20,20,20,3,
+Arc 1950,Lesotho,,CD,-125,-108,-295,3,3,8,5,
+Arc 1950,Malawi,,CD,-161,-73,-317,9,24,8,6,
+Arc 1950,MEAN FOR Botswana; Lesotho; Malawi; Swaziland; Zaire; Zambia; Zimbabwe,,CD,-143,-90,-294,20,33,20,41,
+Arc 1950,Swaziland,,CD,-134,-105,-295,15,15,15,4,
+Arc 1950,Zaire,,CD,-169,-19,-278,25,25,25,2,
+Arc 1950,Zambia,,CD,-147,-74,-283,21,21,27,5,
+Arc 1950,Zimbabwe,,CD,-142,-96,-293,5,8,11,10,
+Arc 1960,MEAN FOR Kenya; Tanzania,,CD,-160,-6,-302,20,20,20,25,
+Arc 1960,Kenya,,CD,-157,-2,-299,4,3,3,24,
+Arc 1960,Taanzania,,CD,-175,-23,-303,6,9,10,12,
+Ayabelle Lighthouse,Djibouti,,CD,-79,-129,145,25,25,25,1,
+Cape,South Africa,,CD,-136,-108,-292,3,6,6,5,
+Carthage,Tunisia,,CD,-263,6,431,6,9,8,5,
+Dabola,Guinea,,CD,-83,37,124,15,15,15,4,
+Deception Island,Deception Island; Antarctia,,CD,260,12,-147,20,20,20,3,
+Fort Thomas 1955,Nevis; St. Kitts (Leeward Islands),,CD,-7,215,225,25,25,25,2,
+Leigon,Ghana,,CD,-130,29,364,2,3,2,8,
+Liberia 1964,Liberia,,CD,-90,40,88,15,15,15,4,
+Mahe 1971,Mahe Island,,CD,41,-220,-134,25,25,25,1,
+Merchich,Morocco,,CD,31,146,47,5,3,3,9,
+Minna,Cameroon,,CD,-81,-84,115,25,25,25,2,
+Minna,Nigeria,,CD,-92,-93,122,3,6,5,6,
+Montserrat Island Astro 1958,Montserrat (Leeward Islands),,CD,174,359,365,25,25,25,1,
+M'Poraloko,Gabon,,CD,-74,-130,42,25,25,25,1,
+Nahrwan,Oman (Masirah Island),,CD,-247,-148,369,25,25,25,2,
+Nahrwan,Saudi Arabia,,CD,-243,-192,477,20,20,20,3,
+Nahrwan,United Arab Emirates,,CD,-249,-156,381,25,25,25,2,
+North Sahara 1959,Algeria,,CD,-186,-93,310,25,25,25,3,
+Oman,Oman,,CD,-346,-1,224,3,3,9,7,
+Point 58,MEAN FOR Burkina Faso & Niger,,CD,-106,-129,165,25,25,25,1,
+Pointe Noire 1948,Congo,,CD,-148,51,-291,25,25,25,1,
+Sierra Leone 1960,Sierra Leone,,CD,-88,4,101,15,15,15,8,
+Viti Levu 1916,Fiji (Viti Levu Island),,CD,51,391,-36,25,25,25,1,
+Voirol 1960,Algeria,,CD,-123,-206,219,25,25,25,2,
+Indian,Bangladesh,,EA,282,726,254,10,8,12,6,
+Indian,India; Nepal,,EC,295,736,257,12,10,15,7,
+Indian,Pakistan,,EF,283,682,231,-1,-1,-1,0,
+Indian 1954,Thailand,,EA,217,823,299,15,6,12,11,
+Indian 1960,Vietnam (Con Son Island),,EA,182,915,344,25,25,25,1,
+Indian 1960,Vietnam (Near 16øN),,EA,198,881,317,25,25,25,2,
+Indian 1975,Thailand,,EA,210,814,289,3,2,3,62,
+Kandawala,Sri Lanka,,EA,-97,787,86,20,20,20,3,
+Kertau 1948,West Malaysia & Singapore,,EE,-11,851,5,10,8,6,6,
+Timbalai 1948,Brunei; E. Malaysia (Sabah Sarawak),,EB,-679,669,-48,10,10,12,8,
+Korean Geodetic System,South Korea,,RF,0,0,0,2,2,2,12,
+North American 1983,Alaska (Excluding Aleutian Ids),,RF,0,0,0,2,2,2,42,
+North American 1983,Aleutian Ids,,RF,-2,0,4,5,2,5,4,
+North American 1983,Canada,,RF,0,0,0,2,2,2,96,4617
+North American 1983,CONUS,,RF,0,0,0,2,2,2,216,
+North American 1983,Hawaii,,RF,1,1,-1,2,2,2,6,
+North American 1983,Mexico; Central America,,RF,0,0,0,2,2,2,25,
+Old Egyptian 1907,Egypt,,HE,-130,110,-13,3,6,8,14,
+Wake-Eniwetok 1960,Marshall Islands,,HO,102,52,-38,3,3,3,10,
+Ain el Abd 1970,Bahrain,,IN,-150,-250,-1,25,25,25,2,
+Ain el Abd 1970,Saudi Arabia,,IN,-143,-236,7,10,10,10,9,
+Ascension Island 1958,Ascension Island,,IN,-205,107,53,25,25,25,2,
+Astro Beacon E 1945,Iwo Jima,,IN,145,75,-272,25,25,25,1,
+Astro DOS 71/4,St Helena Island,,IN,-320,550,-494,25,25,25,1,
+Astro Tern Island (FRIG) 1961,Tern Island,,IN,114,-116,-333,25,25,25,1,
+Astronomical Station 1952,Marcus Island,,IN,124,-234,-25,25,25,25,1,
+Bellevue (IGN),Efate & Erromango Islands,,IN,-127,-769,472,20,20,20,3,
+Bissau,Guinea-Bissau,,IN,-173,253,27,25,25,25,2,
+Bogota Observatory,Colombia,,IN,307,304,-318,6,5,6,7,
+Camp Area Astro,Antarctica (McMurdo Camp Area),,IN,-104,-129,239,-1,-1,-1,0,
+Campo Inchauspe,Argentina,,IN,-148,136,90,5,5,5,20,
+Canton Astro 1966,Phoenix Islands,,IN,298,-304,-375,15,15,15,4,
+Chatham Island Astro 1971,New Zealand (Chatham Island),,IN,175,-38,113,15,15,15,4,
+Chua Astro,Paraguay,,IN,-134,229,-29,6,9,5,6,
+Corrego Alegre,Brazil,,IN,-206,172,-6,5,3,5,17,
+DOS 1968,New Georgia Islands (Gizo Island),,IN,230,-199,-752,25,25,25,1,
+Easter Island 1967,Easter Island,,IN,211,147,111,25,25,25,1,
+European 1950,Cyprus,,IN,-104,-101,-140,15,15,15,4,
+European 1950,Egypt,,IN,-130,-117,-151,6,8,8,14,
+European 1950,England; Channel Islands; Scotland; Shetland Islands,,IN,-86,-96,-120,3,3,3,40,
+European 1950,England; Ireland; Scotland; Shetland Islands,,IN,-86,-96,-120,3,3,3,47,
+European 1950,Finland; Norway,,IN,-87,-95,-120,3,5,3,20,
+European 1950,Greece,,IN,-84,-95,-130,25,25,25,2,
+European 1950,Iran,,IN,-117,-132,-164,9,12,11,27,
+European 1950,Italy (Sardinia),,IN,-97,-103,-120,25,25,25,2,
+European 1950,Italy (Sicily),,IN,-97,-88,-135,20,20,20,3,
+European 1950,Malta,,IN,-107,-88,-149,25,25,25,1,
+European 1950,MEAN FOR Austria; Belgium; Denmark; Finland; France; W Germany; Gibraltar; Greece; Italy; Luxembourg; Netherlands; Norway; Portugal; Spain; Sweden; Switzerland,,IN,-87,-98,-121,3,8,5,85,
+European 1950,MEAN FOR Austria; Denmark; France; W Germany; Netherlands; Switzerland,,IN,-87,-96,-120,3,3,3,52,
+European 1950,MEAN FOR Iraq; Israel; Jordan; Lebanon; Kuwait; Saudi Arabia; Syria,,IN,-103,-106,-141,-1,-1,-1,0,
+European 1950,Portugal; Spain,,IN,-84,-107,-120,5,6,3,18,
+European 1950,Tunisia,,IN,-112,-77,-145,25,25,25,4,
+European 1979,MEAN FOR Austria; Finland; Netherlands; Norway; Spain; Sweden; Switzerland,ED79,IN,-86,-98,-119,3,3,3,22,
+Gan 1970,Republic of Maldives,,IN,-133,-321,50,25,25,25,1,
+Geodetic Datum 1949,New Zealand,,IN,84,-22,209,5,3,5,14,
+Graciosa Base SW 1948,Azores (Faial; Graciosa; Pico; Sao Jorge; Terceira),,IN,-104,167,-38,3,3,3,5,
+GUX 1 Astro,Guadalcanal Island,,IN,252,-209,-751,25,25,25,1,
+Herat North,Afghanistan,,IN,-333,-222,114,-1,-1,-1,0,
+Hjorsey 1955,Iceland,,IN,-73,46,-86,3,3,6,6,
+Hong Kong 1963,Hong Kong,,IN,-156,-271,-189,25,25,25,2,
+Hu-Tzu-Shan,Taiwan,,IN,-637,-549,-203,15,15,15,4,
+ISTS 061 Astro 1968,South Georgia Islands,,IN,-794,119,-298,25,25,25,1,
+ISTS 073 Astro 1969,Diego Garcia,,IN,208,-435,-229,25,25,25,2,
+Johnston Island 1961,Johnston Island,,IN,189,-79,-202,25,25,25,1,
+Kerguelen Island 1949,Kerguelen Island,,IN,145,-187,103,25,25,25,1,
+Kusaie Astro 1951,Caroline Islands,,IN,647,1777,-1124,25,25,25,1,
+Midway Astro 1961,Midway Islands,,IN,912,-58,1227,25,25,25,1,
+Naparima BWI,Trinidad & Tobago,,IN,-10,375,165,15,15,15,4,
+Observatorio Meteorologico 1939,Azores (Corvo & Flores Islands),,IN,-425,-169,81,20,20,20,3,
+Pico de las Nieves,Canary Islands,,IN,-307,-92,127,25,25,25,1,
+Pitcairn Astro 1967,Pitcairn Island,,IN,185,165,42,25,25,25,1,
+Porto Santo 1936,Porto Santo; Madeira Islands,,IN,-499,-249,314,25,25,25,2,
+Provisional South American 1956,Bolivia,,IN,-270,188,-388,5,11,14,5,
+Provisional South American 1956,Chile (Northern; Near 19øS),,IN,-270,183,-390,25,25,25,1,
+Provisional South American 1956,Chile (Southern; Near 43øS),,IN,-305,243,-442,20,20,20,3,
+Provisional South American 1956,Colombia,,IN,-282,169,-371,15,15,15,4,
+Provisional South American 1956,Ecuador,,IN,-278,171,-367,3,5,3,11,
+Provisional South American 1956,Guyana,,IN,-298,159,-369,6,14,5,9,
+Provisional South American 1956,MEAN FOR Bolivia; Chile; Colombia; Ecuador; Guyana; Peru; Venezuela,,IN,-288,175,-376,17,27,27,63,
+Provisional South American 1956,Peru,,IN,-279,175,-379,6,8,12,6,
+Provisional South American 1956,Venezuela,,IN,-295,173,-371,9,14,15,24,
+Provisional South Chilean 1963,Chile (Near 53øS) (Hito XVIII),,IN,16,196,93,25,25,25,2,
+Qatar National,Qatar,,IN,-128,-283,22,20,20,20,3,
+Qornoq,Greenland (South),,IN,164,138,-189,25,25,32,2,
+Reunion,Mascarene Islands,,IN,94,-948,-1262,25,25,25,1,
+Rome 1940,Italy (Sardinia),,IN,-225,-65,9,25,25,25,1,
+Santo (DOS) 1965,Espirito Santo Island,,IN,170,42,84,25,25,25,1,
+Sao Braz,Azores (Sao Miguel; Santa Maria Ids),,IN,-203,141,53,25,25,25,2,
+Sapper Hill 1943,East Falkland Island,,IN,-355,21,72,1,1,1,5,
+Selvagem Grande 1938,Salvage Islands,,IN,-289,-124,60,25,25,25,1,
+Tananarive Observatory 1925,Madagascar,,IN,-189,-242,-91,-1,-1,-1,0,
+Tristan Astro 1968,Tristan da Cunha,,IN,-632,438,-609,25,25,25,1,
+Wake Island Astro 1952,Wake Atoll,,IN,276,-57,149,25,25,25,2,
+Yacare,Uruguay,,IN,-155,171,37,-1,-1,-1,0,
+Zanderij,Suriname,,IN,-265,120,-358,5,5,8,5,
+Afgooye,Somalia,,KA,-43,-163,45,25,25,25,1,
+Pulkovo 1942,Russia,,KA,28,-130,-95,-1,-1,-1,0,
+S-42 (Pulkovo 1942),Hungary,,KA,28,-121,-77,2,2,2,5,
+S-42 (Pulkovo 1942),Poland,,KA,23,-124,-82,4,2,4,11,
+S-42 (Pulkovo 1942),Czechoslavakia,,KA,26,-121,-78,3,3,2,6,
+S-42 (Pulkovo 1942),Latvia,,KA,24,-124,-82,2,2,2,5,
+S-42 (Pulkovo 1942),Kazakhstan,,KA,15,-130,-84,25,25,25,2,
+S-42 (Pulkovo 1942),Albania,,KA,24,-130,-92,3,3,3,7,
+S-42 (Pulkovo 1942),Romania,,KA,28,-121,-77,3,5,3,4,
+Ireland 1965,Ireland,,AM,506,-122,611,3,3,3,7,
+South Asia,Singapore,,FA,7,-10,-26,25,25,25,1,
+South American 1969,Argentina,,SA,-62,-1,-37,5,5,5,10,
+South American 1969,Bolivia,,SA,-61,2,-48,15,15,15,4,
+South American 1969,Brazil,,SA,-60,-2,-41,3,5,5,22,
+South American 1969,Chile,,SA,-75,-1,-44,15,8,11,9,
+South American 1969,Colombia,,SA,-44,6,-36,6,6,5,7,
+South American 1969,Ecuador,,SA,-48,3,-44,3,3,3,11,
+South American 1969,Ecuador (Baltra; Galapagos),,SA,-47,26,-42,25,25,25,1,
+South American 1969,Guyana,,SA,-53,3,-47,9,5,5,5,
+South American 1969,MEAN FOR Argentina; Bolivia; Brazil; Chile; Colombia; Ecuador; Guyana; Paraguay; Peru; Trinidad & Tobago; Venezuela,,SA,-57,1,-41,15,6,9,84,
+South American 1969,Paraguay,,SA,-61,2,-33,15,15,15,4,
+South American 1969,Peru,,SA,-58,0,-44,5,5,5,6,
+South American 1969,Trinidad & Tobago,,SA,-45,12,-33,25,25,25,1,
+South American 1969,Venezuela,,SA,-45,8,-33,3,6,3,5,
+WGS 1972,Global Definition,,WD,0,0,0,-1,-1,-1,0,
+WGS 1984,Global Definition,,WE,0,0,0,-1,-1,-1,0,
+Indonesian 1974,Indonesia,,ID,-24,-15,5,25,25,25,1,

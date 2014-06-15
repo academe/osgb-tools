@@ -1,159 +1,159 @@
-Datum Name,Code,Ellipsoid Name,Ellipsoid Code
-Ordanance Survey of Great Britain 1936,OGB,Airy,AA
-AGD 1966,AGE,Australian National,AN
-AGD 1984,AGD,Australian National,AN
-Anna 1 Astro 1965 (Cocos Is.),ANO,Australian National,AN
-Australian Geodetic,AUA,Australian National,AN
-Postdam,PDM,Bessel,BR
-Berne 1873,BRN,Bessel 1841,BR
-Bukit Rimpah (Indonesia),BUR,Bessel 1841,BR
-CH-1903,CHI,Bessel 1841,BR
-"Djakarta (Batavia), Indonesia",BAT,Bessel 1841,BR
-G. Segara (Indonesia),GSE,Bessel 1841,BR
-"Massawa, (Eritrea), Ethopia",MAS,Bessel 1841,BR
-Netherlands Triangulation 1921,NTH,Bessel 1841,BR
-Portuguese Datum DLX,DLX,Bessel 1841,BR
-RT90 (Sweden),STO,Bessel 1841,BR
-"Schwarzeck, Southwest Africa",SCK,Bessel 1841,BR
-Tokyo,TOY,Bessel 1841,BR
-Bermuda 1957,BER,Clarke 1866,CC
-Cape Canaveral,CAC,Clarke 1866,CC
-Guam 1963,GUA,Clarke 1866,CC
-L.C. 5 Astro (Cayman Brac I.),LCF,Clarke 1866,CC
-"Luzon, Philippines",LUZ,Clarke 1866,CC
-North American 1927,NAS,Clarke 1866,CC
-North American 1927 Caribbean,NAT,Clarke 1866,CC
-North American 1927 Mexico and C. America,NAU,Clarke 1866,CC
-Old Hawaiian,OHA,Clarke 1866,CC
-Puerto Rico,PUR,Clarke 1866,CC
-Adindan,ADI,Clarke 1880,CD
-"Arc 1950, Africa",ARF,Clarke 1880,CD
-Arc 1960,ARS,Clarke 1880,CD
-Cape,CAP,Clarke 1880,CD
-Carthage,CGE,Clarke 1880,CD
-Liberia 1964 (Roberts Field Astro),LIB,Clarke 1880,CD
-"Mahe 1971, Mahe Island",MIK,Clarke 1880,CD
-"Merchich, Morocco",MER,Clarke 1880,CD
-Minna,MIN,Clarke 1880,CD
-"Monavatu, Viti Levu I., Fiji Is.",MVS,Clarke 1880,CD
-Nahrwan,NAH,Clarke 1880,CD
-Nigeria,NIG,Clarke 1880,CD
-Nouvelle Triangulation de France (France),IGF,Clarke 1880,CD
-Oman,FAH,Clarke 1880,CD
-Danish GI 1934,DAN,Danish,DA
-"Reykjavik, Iceland",REY,Danish (1876) or Andrae,DA
-Indian,IND,Everest,EA
-Kandawala Datum (Sri Lanka),KAN,Everest,
-"Timbalai 1948, Borneo",TIL,Everest,
-"Stockholm, Sweden",STO,GRS 1980,RF
-GGRS 87 (Greece),GRX,GRS 80,RF
-North American 1983,NAR,GRS-80 (WGS-84),RF
-La Canoa,LAC,Hayford 1909,HA
-Old Egyptian 1930,OEG,Helmert 1906,HE
-"Wake- Eniwetok, 1960",ENW,Hough,HO
-Ain El Abd 1970 (Bahrain),AIN,International,IN
-Ascension Island 1958,ASC,International,IN
-Astro B4 Sorol Atoll (Tern I.),ASG,International,IN
-"Astro Beacon ""E"" (Iwo Jima I.)",ASF,International,IN
-Astro DOS 71/4 (St. Helena I.),ASQ,International,IN
-Astronomic Station 1952 (Marcus I.),ASI,International,IN
-Austria NS,ANS,International,IN
-Belgium 1950,BEL,International,IN
-Bellevue (IGN) Datum (New Herbrides Is.),IBE,International,IN
-"Bogota Observatorio, Columbia",BOO,International,IN
-Camp Area Astro,CAZ,International,IN
-"Campo Inchauspe, Argentina",CAI,International,IN
-Canton Island Astro 1966,CAO,International,IN
-"Chatham Island Observatory, Port Blair, Andaman Is.",CHO,International,IN
-Chua Astro,CHU,International,IN
-"Corrego Alegre, Brazil",COA,International,IN
-D.O.S. Astro GUX 1 (Guadacanal),DOB,International,IN
-DOS 1968,GIZ,International,IN
-Easter Island 1967,EAS,International,IN
-European 1950,EUR,International,IN
-European 1979,EUS,International,IN
-Gandajika Base (Maldives),GAN,International,IN
-Geodetic Datum 1949 (New Zealand),GEO,International,IN
-Herat North (Afghanistan),HEN,International,IN
-"Hito XVIII Astro, Chile",HIT,International,IN
-"Hjorsey 1955, Iceland",HJO,International,IN
-Hong Kong 1963,HKD,International,IN
-"Hu-Tzu-Shan, Taiwan",HTN,International,IN
-ISTS 073 Astro 1969,IST,International,IN
-Johnston Island 1961,JOH,International,IN
-Kerguelen Island,KEG,International,IN
-Marcus Astro 1961,MCS,International,IN
-Midway Astro 1961,MID,International,IN
-"Naparima, BWI",NAP,International,IN
-Nouvelle Triangulation de France (Luxembourg),IGL,International,IN
-"Observatorio 1966 (Corvo and Flores I, Azores)",OCF,International,IN
-Over Water Areas,N,International,IN
-"Pico de las Nieves, Gran Canaria",PLN,International,IN
-Pitcairn Astro 1967,PIT,International,IN
-Portuguese Datum 1973,PRD,International,IN
-Provisional Chilean 1963,PRC,International,IN
-Provisional South American 1956,PRP,International,IN
-Qatar National Datum,QAT,International,IN
-"Qornoq, Greenland",QUO,International,IN
-Reunion (Mascarene I.),REU,International,IN
-RNB 72 (Belgium),RNB,International,IN
-Rome 1940,MOD,International,IN
-S.W. Base (Azores),SWB,International,IN
-Santo DOS (Espirito Santo I.),SAE,International,IN
-"Sao Braz, Sao Miguel and Santa Maria, Azores",SAO,International,IN
-Sapper Hill 1943,SAP,International,IN
-Southeast Base (Maderia and Porto Santo),SEB,International,IN
-Spitzbergen (Norway),SPZ,International,IN
-"Tananarive Observatory 1925, Madagascar",TAN,International,IN
-"Trinidad Trigonometrical Survey, Lesser Antilles",TRI,International,IN
-Tristan Astro 1968 (Tristan da Cunha),TDC,International,IN
-"Yacare, Uraguay",YAC,International,IN
-Zanderij,ZAN,International,IN
-Afgooye (Somalia),AFG,Krassovsky,KA
-Afgooye (Somalia),AFG,Krassovsky,KA
-"Pulkovo 1942 System, USSR",PUK,Krassovsky 1940,KA
-Ireland 1965,IRL,Modified Airy,AM
-Kertau 1948,KEA,Modified Everest,EE
-South Asia Datum,SOA,Modified Fischer 1960,FA
-South American 1969,SAN,South American 1969,SA
-World Geodetic System 1960,WGA,WGS-60,WS
-World Geodetic System 1966,WGB,WGS-66,WC
-World Geodetic System 1972,WGC,WGS-72,WD
-World Geodetic System 1984,WGE,WGS-84 (GRS-80),WE
-Lee No. 7,LEE,,
-Lemuta Samoa Islands,LEM,,
-Local (Local Astro),LOC,,
-Manchurian Principal System,MCN,,
-Manira,MAQ,,
-Marco Astro (Salvage I.),MAT,,
-Marcus Astro 1965,MAX,,
-Masira Island Astro 1958,MAZ,,
-"McMurdo Camp Area, Antarctica",MCM,,
-Mercury (Fischer 1960),MET,,
-Modified Mercury (Fischer 1968),MOT,,
-Montjong Lowe (Indonesia),MOL,,
-Mozambique,MOZ,,
-Nanking 1960,NAN,,
-Nikolskoe Astro 1929,NIL,,
-"NMA/539 Wilkes Station, Antarctica",NMW,,
-North Astro 1947,NOT,,
-"Paga Hill 1939, New Guinea",PAH,,
-Palmer Astro,PAM,,
-Pete Astro 1969,PET,,
-"Pico de Sao Tome, Sao Tome I.",PST,,
-Pico Norte,PIC,,
-"Pidurutal Agala, Ceylon (Sri Lanka)",PID,,
-Ponape Astro 1962,PON,,
-Port Lockroy,POR,,
-"Pronto Socorro, Brazil",PRS,,
-"Pulkovo 1932 System, USSR",PKO,,
-Sierra Leone 1960,SRL,,
-"Southeast Island, Seychelles",SEI,,
-"Sydney Observatory, New South Wales, Australia",SYO,,
-Table Hill,TAH,,
-Taongi Astro 1952,TAO,,
-"Tsingtao Observatory, China",TSO,,
-"Vaitape Flagstaff, Borabora I., Society Is.",VBS,,
-"Voirol, Algeria",VOI,,
-Wake Island Astro 1952,WAK,,
-Yof Astro 1967,YOF,,
+Datum Name,Code,Ellipsoid Name,Ellipsoid Code,EPSG
+Ordanance Survey of Great Britain 1936,OGB,Airy,AA,27700
+AGD 1966,AGE,Australian National,AN,
+AGD 1984,AGD,Australian National,AN,
+Anna 1 Astro 1965 (Cocos Is.),ANO,Australian National,AN,
+Australian Geodetic,AUA,Australian National,AN,
+Postdam,PDM,Bessel,BR,
+Berne 1873,BRN,Bessel 1841,BR,
+Bukit Rimpah (Indonesia),BUR,Bessel 1841,BR,
+CH-1903,CHI,Bessel 1841,BR,
+"Djakarta (Batavia), Indonesia",BAT,Bessel 1841,BR,
+G. Segara (Indonesia),GSE,Bessel 1841,BR,
+"Massawa, (Eritrea), Ethopia",MAS,Bessel 1841,BR,
+Netherlands Triangulation 1921,NTH,Bessel 1841,BR,
+Portuguese Datum DLX,DLX,Bessel 1841,BR,
+RT90 (Sweden),STO,Bessel 1841,BR,
+"Schwarzeck, Southwest Africa",SCK,Bessel 1841,BR,
+Tokyo,TOY,Bessel 1841,BR,
+Bermuda 1957,BER,Clarke 1866,CC,
+Cape Canaveral,CAC,Clarke 1866,CC,
+Guam 1963,GUA,Clarke 1866,CC,
+L.C. 5 Astro (Cayman Brac I.),LCF,Clarke 1866,CC,
+"Luzon, Philippines",LUZ,Clarke 1866,CC,
+North American 1927,NAS,Clarke 1866,CC,
+North American 1927 Caribbean,NAT,Clarke 1866,CC,
+North American 1927 Mexico and C. America,NAU,Clarke 1866,CC,
+Old Hawaiian,OHA,Clarke 1866,CC,
+Puerto Rico,PUR,Clarke 1866,CC,
+Adindan,ADI,Clarke 1880,CD,
+"Arc 1950, Africa",ARF,Clarke 1880,CD,
+Arc 1960,ARS,Clarke 1880,CD,
+Cape,CAP,Clarke 1880,CD,
+Carthage,CGE,Clarke 1880,CD,
+Liberia 1964 (Roberts Field Astro),LIB,Clarke 1880,CD,
+"Mahe 1971, Mahe Island",MIK,Clarke 1880,CD,
+"Merchich, Morocco",MER,Clarke 1880,CD,
+Minna,MIN,Clarke 1880,CD,
+"Monavatu, Viti Levu I., Fiji Is.",MVS,Clarke 1880,CD,
+Nahrwan,NAH,Clarke 1880,CD,
+Nigeria,NIG,Clarke 1880,CD,
+Nouvelle Triangulation de France (France),IGF,Clarke 1880,CD,
+Oman,FAH,Clarke 1880,CD,
+Danish GI 1934,DAN,Danish,DA,
+"Reykjavik, Iceland",REY,Danish (1876) or Andrae,DA,
+Indian,IND,Everest,EA,
+Kandawala Datum (Sri Lanka),KAN,Everest,,
+"Timbalai 1948, Borneo",TIL,Everest,,
+"Stockholm, Sweden",STO,GRS 1980,RF,
+GGRS 87 (Greece),GRX,GRS 80,RF,
+North American 1983,NAR,GRS-80 (WGS-84),RF,
+La Canoa,LAC,Hayford 1909,HA,
+Old Egyptian 1930,OEG,Helmert 1906,HE,
+"Wake- Eniwetok, 1960",ENW,Hough,HO,
+Ain El Abd 1970 (Bahrain),AIN,International,IN,
+Ascension Island 1958,ASC,International,IN,
+Astro B4 Sorol Atoll (Tern I.),ASG,International,IN,
+"Astro Beacon ""E"" (Iwo Jima I.)",ASF,International,IN,
+Astro DOS 71/4 (St. Helena I.),ASQ,International,IN,
+Astronomic Station 1952 (Marcus I.),ASI,International,IN,
+Austria NS,ANS,International,IN,
+Belgium 1950,BEL,International,IN,
+Bellevue (IGN) Datum (New Herbrides Is.),IBE,International,IN,
+"Bogota Observatorio, Columbia",BOO,International,IN,
+Camp Area Astro,CAZ,International,IN,
+"Campo Inchauspe, Argentina",CAI,International,IN,
+Canton Island Astro 1966,CAO,International,IN,
+"Chatham Island Observatory, Port Blair, Andaman Is.",CHO,International,IN,
+Chua Astro,CHU,International,IN,
+"Corrego Alegre, Brazil",COA,International,IN,
+D.O.S. Astro GUX 1 (Guadacanal),DOB,International,IN,
+DOS 1968,GIZ,International,IN,
+Easter Island 1967,EAS,International,IN,
+European 1950,EUR,International,IN,
+European 1979,EUS,International,IN,
+Gandajika Base (Maldives),GAN,International,IN,
+Geodetic Datum 1949 (New Zealand),GEO,International,IN,
+Herat North (Afghanistan),HEN,International,IN,
+"Hito XVIII Astro, Chile",HIT,International,IN,
+"Hjorsey 1955, Iceland",HJO,International,IN,
+Hong Kong 1963,HKD,International,IN,
+"Hu-Tzu-Shan, Taiwan",HTN,International,IN,
+ISTS 073 Astro 1969,IST,International,IN,
+Johnston Island 1961,JOH,International,IN,
+Kerguelen Island,KEG,International,IN,
+Marcus Astro 1961,MCS,International,IN,
+Midway Astro 1961,MID,International,IN,
+"Naparima, BWI",NAP,International,IN,
+Nouvelle Triangulation de France (Luxembourg),IGL,International,IN,
+"Observatorio 1966 (Corvo and Flores I, Azores)",OCF,International,IN,
+Over Water Areas,N,International,IN,
+"Pico de las Nieves, Gran Canaria",PLN,International,IN,
+Pitcairn Astro 1967,PIT,International,IN,
+Portuguese Datum 1973,PRD,International,IN,
+Provisional Chilean 1963,PRC,International,IN,
+Provisional South American 1956,PRP,International,IN,
+Qatar National Datum,QAT,International,IN,
+"Qornoq, Greenland",QUO,International,IN,
+Reunion (Mascarene I.),REU,International,IN,
+RNB 72 (Belgium),RNB,International,IN,
+Rome 1940,MOD,International,IN,
+S.W. Base (Azores),SWB,International,IN,
+Santo DOS (Espirito Santo I.),SAE,International,IN,
+"Sao Braz, Sao Miguel and Santa Maria, Azores",SAO,International,IN,
+Sapper Hill 1943,SAP,International,IN,
+Southeast Base (Maderia and Porto Santo),SEB,International,IN,
+Spitzbergen (Norway),SPZ,International,IN,
+"Tananarive Observatory 1925, Madagascar",TAN,International,IN,
+"Trinidad Trigonometrical Survey, Lesser Antilles",TRI,International,IN,
+Tristan Astro 1968 (Tristan da Cunha),TDC,International,IN,
+"Yacare, Uraguay",YAC,International,IN,
+Zanderij,ZAN,International,IN,
+Afgooye (Somalia),AFG,Krassovsky,KA,
+Afgooye (Somalia),AFG,Krassovsky,KA,
+"Pulkovo 1942 System, USSR",PUK,Krassovsky 1940,KA,
+Ireland 1965,IRL,Modified Airy,AM,
+Kertau 1948,KEA,Modified Everest,EE,
+South Asia Datum,SOA,Modified Fischer 1960,FA,
+South American 1969,SAN,South American 1969,SA,
+World Geodetic System 1960,WGA,WGS-60,WS,
+World Geodetic System 1966,WGB,WGS-66,WC,
+World Geodetic System 1972,WGC,WGS-72,WD,
+World Geodetic System 1984,WGE,WGS-84 (GRS-80),WE,4326
+Lee No. 7,LEE,,,
+Lemuta Samoa Islands,LEM,,,
+Local (Local Astro),LOC,,,
+Manchurian Principal System,MCN,,,
+Manira,MAQ,,,
+Marco Astro (Salvage I.),MAT,,,
+Marcus Astro 1965,MAX,,,
+Masira Island Astro 1958,MAZ,,,
+"McMurdo Camp Area, Antarctica",MCM,,,
+Mercury (Fischer 1960),MET,,,
+Modified Mercury (Fischer 1968),MOT,,,
+Montjong Lowe (Indonesia),MOL,,,
+Mozambique,MOZ,,,
+Nanking 1960,NAN,,,
+Nikolskoe Astro 1929,NIL,,,
+"NMA/539 Wilkes Station, Antarctica",NMW,,,
+North Astro 1947,NOT,,,
+"Paga Hill 1939, New Guinea",PAH,,,
+Palmer Astro,PAM,,,
+Pete Astro 1969,PET,,,
+"Pico de Sao Tome, Sao Tome I.",PST,,,
+Pico Norte,PIC,,,
+"Pidurutal Agala, Ceylon (Sri Lanka)",PID,,,
+Ponape Astro 1962,PON,,,
+Port Lockroy,POR,,,
+"Pronto Socorro, Brazil",PRS,,,
+"Pulkovo 1932 System, USSR",PKO,,,
+Sierra Leone 1960,SRL,,,
+"Southeast Island, Seychelles",SEI,,,
+"Sydney Observatory, New South Wales, Australia",SYO,,,
+Table Hill,TAH,,,
+Taongi Astro 1952,TAO,,,
+"Tsingtao Observatory, China",TSO,,,
+"Vaitape Flagstaff, Borabora I., Society Is.",VBS,,,
+"Voirol, Algeria",VOI,,,
+Wake Island Astro 1952,WAK,,,
+Yof Astro 1967,YOF,,,
