@@ -1,4 +1,4 @@
-iso18026 code,league code,name,a,invf,epsg code
+code,league code,name,a,invf,epsg code
 AA,AIRY,Airy 1830,6377563.396,299.3249646,7001
 AM,MODIFIED_AIRY,Airy Modified 1849,6377340.189,299.3249646,7002
 AN,AUSTRALIAN_NATIONAL,Australian National,6378160,298.25,7003
