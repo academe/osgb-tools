@@ -1,7 +1,7 @@
 datum name,region of use,datum code,ellipsoid code,dx,dy,dz,ex,ey,ez,sat,epsg
 Ordnance Survey Great Britain 1936,England,,AA,371,-112,434,5,5,6,21,
 Ordnance Survey Great Britain 1936,England; Isle of Man; Wales,,AA,371,-111,434,10,10,15,25,
-Ordnance Survey Great Britain 1936,MEAN FOR England; Isle of Man; Scotland; Shetland Islands; Wales,,AA,375,-111,431,10,10,15,38,6277
+Ordnance Survey Great Britain 1936,MEAN FOR England; Isle of Man; Scotland; Shetland Islands; Wales,,AA,375,-111,431,10,10,15,38,4277
 Ordnance Survey Great Britain 1936,Scotland; Shetland Islands,,AA,384,-111,425,10,10,10,13,
 Ordnance Survey Great Britain 1936,Wales,,AA,370,-108,434,20,20,20,3,
 Anna 1 Astro 1965,Cocos Islands,,AN,-491,-22,435,25,25,25,1,
