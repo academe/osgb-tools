@@ -4,6 +4,7 @@ namespace Academe\OsgbTools;
 
 // Alias the Square and Coordinate in case we want to override it.
 // Actually, this doesn't help. Do we need a factory?
+// Yes - create a simple factory (TODO).
 use Academe\OsgbTools\Square as OsgbSquare;
 //use Academe\OsgbTools\Coordinate as LatLongCoordinate;
 

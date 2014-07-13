@@ -28,6 +28,9 @@ class Convert extends OsgbTools\Convert
     public static function latLongToOsGrid($latitude_or_point, $longitude = null)
     {
         // TODO: validate (and possibly convert) the ellipsoide if given a \League\Geotools\Coordinate\CoordinateInterface
+        // The assumption will need to be that the ellipsoid represents coordinate system and datum, which
+        // would not be a safe assumption in a more generic library that could cover many more datums (there
+        // are about 666 of them in use, 480 of them geodetic).
 
         return parent::latLongToOsGrid($latitude_or_point, $longitude);
     }
