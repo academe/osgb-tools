@@ -1,0 +1,15 @@
+epsg_code,name,greenwich_longitude,uom_code,notes,revision
+8901,Greenwich,0,9102,,02/06/1995
+8902,Lisbon,-9.0754862,9110,,02/06/1995
+8903,Paris,2.5969213,9105,"Value adopted by IGN (Paris) in 1936. Equivalent to 2°20'14.025"". Preferred by EPSG to earlier value of 2°20'13.95"" (2.596898 grads) used by RGS London.",24/06/2008
+8904,Bogota,-74.04513,9110,,02/06/1995
+8905,Madrid,-3.411658,9110,,02/06/1995
+8906,Rome,12.27084,9110,,02/06/1995
+8907,Bern,7.26225,9110,"1895 value.  Newer value of 7°26'22.335"" determined in 1938.",24/06/2008
+8908,Jakarta,106.482779,9110,,02/06/1995
+8909,Ferro,-17.4,9110,Used in Austria and former Czechoslovakia.,02/06/1995
+8910,Brussels,4.220471,9110,,02/06/1995
+8911,Stockholm,18.03298,9110,,02/06/1995
+8912,Athens,23.4258815,9110,Used in Greece for older mapping based on Hatt projection.,16/06/1997
+8913,Oslo,10.43225,9110,Formerly known as Kristiania or Christiania.,20/10/1999
+8914,Paris RGS,2.201395,9110,Value replaced by IGN (France) in 1936 - see code 8903. Equivalent to 2.596898 grads.,01/11/2007
