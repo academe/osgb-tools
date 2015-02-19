@@ -2,7 +2,7 @@
 	"name" : "academe/osgb-tools",
 	"description" : "Tools for conversion of OSGB (Eastings and Northings)",
 	"type" : "library",
-	"keywords" : ["OSGB","Eastings","Northings","WGS84"]
+	"keywords" : ["OSGB","Eastings","Northings","WGS84"],
 	"licence" : "MIT",
 	"autoload": {
 		"psr-4": {
