@@ -211,6 +211,15 @@ Useful Links
   TG51401317 represents a 10m box with its (south-west) origin 51.40km across,
   13.17km up within the TG square.
 
+* http://www.georeference.org/doc/the_earth_as_an_ellipsoid.htm  
+  This page has a great visualisation of what a datum is, and how ellipsoids relate to each
+  other. Without going into any of the maths, it simply shows you what it looks like, and
+  that gives a deeper understanding of what the maths needs to achieve. This library does not
+  have any datum conversions built in yet, but it does need it - the Airy datum on its own
+  is a but of an island when every system under the sun uses WGS84 as its reference datum.
+  Using this library to locate points on the map will disagree with Google Maps, for example,
+  by hundreds of metres in many places without the conversion.
+
 Ideally, the OSGB (Northing/Easting + grids) would convert directly from/to WGS84 and not Airy.
 
 A class to handle OSGB coordinates all all their variations, will be necessary.
