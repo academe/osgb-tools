@@ -218,7 +218,9 @@ Useful Links
   have any datum conversions built in yet, but it does need it - the Airy datum on its own
   is a but of an island when every system under the sun uses WGS84 as its reference datum.
   Using this library to locate points on the map will disagree with Google Maps, for example,
-  by hundreds of metres in many places without the conversion.
+  by hundreds of metres in many places without the conversion. Quote from this page: "A datum
+  is a reference ellipsoid together with an offset from the center of the Earth". Nowhere
+  else is this eplained in such plain English.
 
 Ideally, the OSGB (Northing/Easting + grids) would convert directly from/to WGS84 and not Airy.
 
